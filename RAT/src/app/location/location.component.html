@@ -1,37 +1,39 @@
+<div class="location-container">
+    <mat-card class="mat-elevation-z10 card-container">
+        <mat-card-title>Locations</mat-card-title>
+        <mat-card-content>
+            <table mat-table [dataSource]="locations" class="mat-elevation-z8 location-table">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> Id </th>
+                    <td mat-cell *matCellDef="let location"> {{location.id}} </td>
+                </ng-container>
 
-<table mat-table [dataSource]="locations" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let location"> {{location.id}} </td>
-    </ng-container>
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let location"> {{location.name}} </td>
+                </ng-container>
 
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let location"> {{location.name}} </td>
-    </ng-container>
+                <ng-container matColumnDef="country">
+                    <th mat-header-cell *matHeaderCellDef> Country </th>
+                    <td mat-cell *matCellDef="let location"> {{location.country}} </td>
+                </ng-container>
 
-    <ng-container matColumnDef="country">
-        <th mat-header-cell *matHeaderCellDef> Country </th>
-        <td mat-cell *matCellDef="let location"> {{location.country}} </td>
-    </ng-container>
+                <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef> City </th>
+                    <td mat-cell *matCellDef="let location"> {{location.city}} </td>
+                </ng-container>
 
+                <ng-container matColumnDef="emailAlertsActive">
+                    <th mat-header-cell *matHeaderCellDef> EmailAlertsActive </th>
+                    <td mat-cell *matCellDef="let location"> {{location.emailAlertsActive}} </td>
+                </ng-container>
 
-    <ng-container matColumnDef="city">
-        <th mat-header-cell *matHeaderCellDef> City </th>
-        <td mat-cell *matCellDef="let location"> {{location.city}} </td>
-    </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
 
-    <ng-container matColumnDef="emailAlertsActive">
-        <th mat-header-cell *matHeaderCellDef> EmailAlertsActive </th>
-        <td mat-cell *matCellDef="let location"> {{location.emailAlertsActive}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
-</table>
-
-<app-child [childItem]="parentItem"
-           (sendToParent)="doSmtgWithDataFromChild($event)"></app-child>
-
-
-<button routerLink="/test">Go to test page</button>
+    <app-child [childItem]="parentItem" (sendToParent)="doSmtgWithDataFromChild($event)"></app-child>
+    <button mat-raised-button routerLink="/devices">Go to devices page</button>
+</div>

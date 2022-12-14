@@ -23,7 +23,7 @@ export class LocationComponent implements OnInit {
     { id: 8, name: 'Location8', country: 'Ro', city: 'Bucuresti', emailAlertsActive: true },
   ];
 
-  columnsToDisplay: string[] = ["id","name", "country", "city", "emailAlertsActive"];
+  columnsToDisplay: string[] = ["id", "name", "country", "city", "emailAlertsActive"];
 
   constructor(private locationService: LocationService) {
   }
@@ -35,7 +35,7 @@ export class LocationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocations();
-  } 
+  }
 
   getLocations() {
     this.locationService.getAllLocations().subscribe({

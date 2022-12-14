@@ -5,7 +5,7 @@ import { Location } from "../models/location.model";
 @Injectable({providedIn: 'root'})
 export class LocationService {
 
-    protected apiURL = "localhost:/location"
+    protected apiURL = "localhost:7137/location"
     constructor(protected http: HttpClient) {
     }
 

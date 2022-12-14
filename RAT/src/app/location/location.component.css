@@ -3,3 +3,13 @@
     font-size: 30px;
     margin-top: 100px;
 }
+
+.location-table {
+    width: 100%;
+}
+
+.card-container {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 30px;
+}

@@ -9,7 +9,7 @@ export class ChildComponent implements OnInit {
 
   @Input() childItem = ''
   @Output() sendToParent = new EventEmitter<string>()
-  
+
   constructor() { }
 
   ngOnInit(): void {

@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DeviceComponent } from './device/device.component';
 import { LocationComponent } from './location/location.component';
-import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
-  
   {
-    path: "location",
+    path: "",
+    component: LocationComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: "locations",
     component: LocationComponent
   },
   {
-    path: "test",
-    component: TestComponent
+    path: "devices",
+    component: DeviceComponent
   },
   {
     path: "**",
