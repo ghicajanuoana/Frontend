@@ -3,4 +3,5 @@ export class Location {
     country: string = "";
     city: string = "";
     emailAlertsActive: boolean = true;
+    name: string = ''
 }
