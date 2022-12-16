@@ -28,11 +28,6 @@ export class LocationComponent implements OnInit {
   constructor(private locationService: LocationService) {
   }
 
-  doSmtgWithDataFromChild(value: string) {
-    console.log("did we recive data?")
-    console.log(value)
-  }
-
   ngOnInit(): void {
     this.getLocations();
   }
