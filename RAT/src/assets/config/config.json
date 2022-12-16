@@ -1,0 +1,4 @@
+{
+    "production": false,
+    "webApiUrl": "https://localhost:7137/api"
+}

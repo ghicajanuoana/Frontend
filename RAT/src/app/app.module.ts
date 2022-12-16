@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -6,21 +6,29 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { LocationComponent } from './location/location.component';
-import { ChildComponent } from './child/child.component'
 import { LocationService } from './services/location.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { DeviceComponent } from './device/device.component';
+import { ConfigService } from './services/configuration.service';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+
+const appInitializer = (appConfig: ConfigService) => {
+  return () => {
+    return appConfig.loadConfigurations();
+  };
+};
 
 @NgModule({
   declarations: [
     AppComponent,
     LocationComponent,
-    ChildComponent,
-    DeviceComponent
+    DeviceComponent,
+    NavMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -28,13 +36,16 @@ import { DeviceComponent } from './device/device.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatCardModule,
     MatListModule
   ],
   providers: [
-    LocationService
+    { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [ConfigService] },
+    LocationService,
+    ConfigService
   ],
   bootstrap: [AppComponent]
 })
