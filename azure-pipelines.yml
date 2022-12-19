@@ -21,7 +21,6 @@ steps:
     ng build --configuration production --aot
     echo '$(System.SourcesDirectory)'
   displayName: 'npm install and build'
-  workingDirectory: '$(Build.SourcesDirectory)/Dev.2022.Client'
 
 
 - script: |
