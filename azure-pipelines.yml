@@ -21,23 +21,23 @@ steps:
     ng build --configuration production --aot
     echo '$(System.SourcesDirectory)'
   displayName: 'npm install and build'
-  workingDirectory: '$(Build.SourcesDirectory)/RemoteAnalyticsClient'
+  workingDirectory: '$(Build.SourcesDirectory)/Dev.2022.Client'
 
 
 - script: |
     ng build --configuration production
     echo '$(System.SourcesDirectory)'
   displayName: 'npm install and build'
-  workingDirectory: '$(Build.SourcesDirectory)/RemoteAnalyticsClient'
+  workingDirectory: '$(Build.SourcesDirectory)/Dev.2022.Client'
 
 - task: ArchiveFiles@2
-  displayName: "Archiving RemoteAnalyticsClient Artifacts"
+  displayName: "Archiving Dev.2022.Client Artifacts"
   inputs:
-    rootFolderOrFile: '$(Build.SourcesDirectory)/RemoteAnalyticsClient/dist'
+    rootFolderOrFile: '$(Build.SourcesDirectory)/Dev.2022.Client/dist'
     includeRootFolder: true
     replaceExistingArchive: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/RemoteAnalyticsClient.zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Dev.2022.Client.zip'
 - task: PublishBuildArtifacts@1
   displayName: "Upload RemoteAnalyticsClient Artifacts"
   inputs:
