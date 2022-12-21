@@ -13,3 +13,47 @@
     margin: auto;
     margin-bottom: 30px;
 }
+
+.button-link {
+  background-color: #3366ff;
+  color: white;
+  margin-top:20px;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #edf1f7;
+}
+
+.mat-row:nth-child(odd) {
+  
+}
+
+.mat-header-cell {
+  color: #1e6bb8;
+  font-size: 15px;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.12);
+  border-left: 0.5px solid rgba(0, 0, 0, 0.12);
+  padding-left: 10px;
+}
+
+.mat-cell {
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
+  border-top: 0.5px solid rgba(0, 0, 0, 0.12);
+  border-left: 0.5px solid rgba(0, 0, 0, 0.12);
+  vertical-align: middle;
+  padding-left:10px;
+}
+
+.mat-card-content{
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.mat-card-title
+{
+    padding-bottom:10px;
+}
+
+.mat-row:hover {
+  background-color: #dadee3;
+}

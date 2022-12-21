@@ -10,20 +10,10 @@ import { LocationService } from '../services/location.service';
 export class LocationComponent implements OnInit {
 
   location: Location = new Location();
-  parentItem: string = "Location is parent";
+ 
+  locations: Location[] = [];
 
-  locations: Location[] = [
-    { id: 1, name: 'Location1', country: 'Ro', city: 'Cluj-Napoca', emailAlertsActive: true },
-    { id: 2, name: 'Location2', country: 'Ro', city: 'Cluj-Napoca', emailAlertsActive: true },
-    { id: 3, name: 'Location3', country: 'Ro', city: 'Bucuresti', emailAlertsActive: true },
-    { id: 4, name: 'Location4', country: 'Uk', city: 'Londra', emailAlertsActive: true },
-    { id: 5, name: 'Location5', country: 'Uk', city: 'Coventry', emailAlertsActive: true },
-    { id: 6, name: 'Location6', country: 'Ro', city: 'Cluj-Napoca', emailAlertsActive: true },
-    { id: 7, name: 'Location7', country: 'Uk', city: 'Londra', emailAlertsActive: true },
-    { id: 8, name: 'Location8', country: 'Ro', city: 'Bucuresti', emailAlertsActive: true },
-  ];
-
-  columnsToDisplay: string[] = ["id", "name", "country", "city", "emailAlertsActive"];
+  columnsToDisplay: string[] = ["name", "country", "city", "address","contactEmail"];
 
   constructor(private locationService: LocationService) {
   }
@@ -41,5 +31,6 @@ export class LocationComponent implements OnInit {
         console.log(error)
       }
     })
+    this.locations.sort((a, b) => a.name.localeCompare(b.name));
   }
 }
