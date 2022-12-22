@@ -10,7 +10,7 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-                <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="showClicked(myRowData)"></tr>
+                <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
             </table>
         </mat-card-content>
     </mat-card>

@@ -31,7 +31,4 @@ export class DeviceTypeComponent implements OnInit {
     })
   }
 
-  showClicked(row: any) {
-  }
-
 }
