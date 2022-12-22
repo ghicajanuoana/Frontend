@@ -13,9 +13,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { DeviceComponent } from './device/device.component';
+import { DeviceComponent } from './devices/device/device.component';
 import { ConfigService } from './services/configuration.service';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { DeviceTypeComponent } from './devices/device-type/device-type.component';
+import { DeviceTypeService } from './services/device-type.service';
 
 const appInitializer = (appConfig: ConfigService) => {
   return () => {
@@ -28,7 +30,8 @@ const appInitializer = (appConfig: ConfigService) => {
     AppComponent,
     LocationComponent,
     DeviceComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    DeviceTypeComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ const appInitializer = (appConfig: ConfigService) => {
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [ConfigService] },
     LocationService,
+    DeviceTypeService,
     ConfigService
   ],
   bootstrap: [AppComponent]

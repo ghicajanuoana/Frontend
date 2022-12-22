@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Devices } from '../models/device.model';
-import { DeviceService } from '../services/device.service';
+import { Devices } from '../../models/device.model';
+import { DeviceService } from '../../services/device.service';
 
 @Component({
   selector: 'app-device',

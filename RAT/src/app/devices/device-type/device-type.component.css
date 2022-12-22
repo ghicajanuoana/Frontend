@@ -1,0 +1,51 @@
+.field-name {
+    color: #1e6bb8;
+}
+
+.device-table {
+    width: 100%;
+}
+
+.card-container {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+.card-title {
+    font-size: 14px;
+}
+
+.mat-row:nth-child(even) {
+    background-color: #f7f9fc;
+}
+
+.mat-row:nth-child(odd) {
+    background-color: white;
+}
+
+.device-type-container {
+    background-color: #edf1f7;
+}
+
+.table-data.mat-cell {
+    border-bottom: 1px solid #edf1f7;
+    border-top: 1px solid #edf1f7;
+}
+
+.table-data.mat-cell:first-child {
+    border-left: 1px solid #edf1f7;
+}
+
+.table-data.mat-cell:last-child {
+    border-right: 1px solid #edf1f7;
+}
+
+.table-data {
+    cursor: pointer;
+}
+
+.mat-row:hover {
+    background-color: #ccc;
+}
