@@ -10,7 +10,7 @@ export class LocationService {
   protected apiURL: string = "";
   constructor(protected http: HttpClient, private config: ConfigService) {
     if (config.serverSettings) {
-      this.apiURL = `${config.serverSettings.webApiUrl}Location`;
+      this.apiURL = `${config.serverSettings.webApiUrl}location`;
     }
   }
 

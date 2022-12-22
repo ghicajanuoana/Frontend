@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
-import { Console } from "console";
 import { Devices } from "../models/device.model"
 import { ConfigService } from "./configuration.service"
 import { header } from "./global.service";
@@ -11,7 +10,7 @@ export class DeviceService {
     protected apiURL: string = "";
     constructor(protected http: HttpClient, private config: ConfigService) {
         if (config.serverSettings) {
-            this.apiURL = `${config.serverSettings.webApiUrl}deviceTypes`;
+            this.apiURL = `${config.serverSettings.webApiUrl}device`;
         }
     }
 

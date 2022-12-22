@@ -11,7 +11,8 @@ import { DeviceService } from '../../services/device.service';
 export class DeviceComponent implements OnInit {
 
   devices: Devices[] = []
-  columnsToDisplay: string[] = ["id", "name"];
+
+  columnsToDisplay: string[] = ["name", "serialNumber", "description", "imagePath", "deviceType", "location"];
 
   constructor(public router: Router, public deviceService: DeviceService) { }
 
@@ -28,9 +29,6 @@ export class DeviceComponent implements OnInit {
         console.log(error)
       }
     })
-  }
-
-  gotoLocation() {
-    this.router.navigate(["/location"])
+    this.devices.sort((a, b) => a.name.localeCompare(b.name));
   }
 }

@@ -1,4 +1,9 @@
 export class Devices {
-    id: number = 0;
+    deviceId: number = 0;
     name: string = "";
+    serialNumber: string="";
+    deviceType: any;
+    location: any;
+    imagePath: string="";
+    description: string="";
 }
