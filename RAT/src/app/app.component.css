@@ -13,6 +13,47 @@
 }
 
 .sidenav-content {
-    margin-left: 200px!important;
-    background-color: #edf1f7;
+    margin-left: 200px !important;
+    margin-top: 50px;
+}
+
+.sidenav-list-items {
+    text-decoration: none;
+    color: #222b45;
+    font-size: smaller;
+}
+
+.sidenav-list-items:hover {
+    color: #3366ff;
+}
+
+.sidenav-list-items:focus {
+    color: #3366ff;
+}
+
+#features {
+    font-size: smaller;
+    color: gray;
+}
+
+.align-text {
+    display: flex;
+    align-items: center;
+}
+
+.disable_ripple:hover {
+    background: white !important;
+}
+
+.mat-list-item:focus {
+    color: #3366ff;
+}
+
+.text-format {
+    font-weight: 500;
+}
+
+.icon{
+    transform: scale(0.8);
+    color:gray;
 }

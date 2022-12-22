@@ -18,6 +18,8 @@ import { ConfigService } from './services/configuration.service';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { DeviceTypeComponent } from './devices/device-type/device-type.component';
 import { DeviceTypeService } from './services/device-type.service';
+import { MatIconModule } from '@angular/material/icon'; 
+import { MatExpansionModule} from '@angular/material/expansion';
 
 const appInitializer = (appConfig: ConfigService) => {
   return () => {
@@ -43,7 +45,9 @@ const appInitializer = (appConfig: ConfigService) => {
     MatButtonModule,
     MatSidenavModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatIconModule,
+    MatExpansionModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [ConfigService] },
