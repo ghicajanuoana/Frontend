@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddLocationComponent } from './location/add-location/add-location.component';
 import { DeviceTypeComponent } from './devices/device-type/device-type.component';
 import { DeviceComponent } from './devices/device/device.component';
 import { LocationComponent } from './location/location.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "device-types",
     component: DeviceTypeComponent
+  },
+  {
+    path: "add-location",
+    component: AddLocationComponent
   },
   {
     path: "**",
