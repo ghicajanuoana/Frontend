@@ -1,17 +1,19 @@
 <div class="device-type-container">
-    <mat-card class="card-container">
-        <mat-card-title class="card-title">Device Types</mat-card-title>
-        <mat-divider></mat-divider>
-        <mat-card-content>
-            <table mat-table [dataSource]="deviceTypes" class=" device-table">
-                <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef class="field-name"> Name </th>
-                    <td class="table-data" mat-cell *matCellDef="let device"> {{device.name}} </td>
-                </ng-container>
+  <mat-card class="card-container">
+    <mat-card-title class="card-title">Device Types</mat-card-title>
 
-                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-                <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
-            </table>
-        </mat-card-content>
-    </mat-card>
+    <mat-card-content>
+      <table mat-table [dataSource]="deviceTypes" class=" device-table">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef class="field-name"> Name </th>
+          <td class="table-data" mat-cell *matCellDef="let device"> {{device.name}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+      </table>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <button class="addDevice" mat-raised-button (click)="openDialog()">ADD DEVICE TYPE</button>
+  </mat-card>
 </div>

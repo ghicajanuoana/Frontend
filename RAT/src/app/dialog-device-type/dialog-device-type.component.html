@@ -1,0 +1,17 @@
+<div mat-dialog-content>
+  <p>Add device type</p>
+  <mat-divider></mat-divider>
+  <form class="form-custom" appearance="fill" #devicesForm="ngForm" (ngSubmit)="dialogCreate(devicesForm.value)">
+    <mat-label>Name* </mat-label>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Name" type="text" name="deviceTypeName" [(ngModel)]="data.name">
+    </mat-form-field>
+    <div *ngIf="showError">Please enter an unique name</div>
+    <div mat-dialog-actions >
+      <button class="buttons" mat-button (click)="onCancelClick()">CANCEL</button>
+      <button class="buttons" mat-button type="submit">SAVE</button>
+    </div>
+    <mat-divider></mat-divider>
+  </form>
+</div>

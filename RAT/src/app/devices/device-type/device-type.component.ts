@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DeviceTypes } from 'src/app/models/device-type.model';
 import { Router } from '@angular/router';
 import { DeviceTypeService } from 'src/app/services/device-type.service';
-import { Console } from 'console';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogDeviceTypeComponent } from '../../dialog-device-type/dialog-device-type.component';
 
 @Component({
   selector: 'app-device-type',
@@ -14,10 +15,25 @@ export class DeviceTypeComponent implements OnInit {
   deviceTypes: DeviceTypes[] = []
   columnsToDisplay: string[] = ["name"];
 
-  constructor(public router: Router, public deviceTypeService: DeviceTypeService) { }
+  name!: string;
+
+  constructor(public router: Router, public deviceTypeService: DeviceTypeService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getDeviceTypes();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogDeviceTypeComponent,
+      {
+        data: { name: this.name }
+      });
+
+    dialogRef.afterClosed().subscribe(result => {     
+      if (result) {
+        this.getDeviceTypes();
+      }
+    });
   }
 
   getDeviceTypes() {

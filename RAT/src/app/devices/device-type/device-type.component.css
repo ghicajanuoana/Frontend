@@ -49,3 +49,8 @@
 .mat-row:hover {
     background-color: #ccc;
 }
+.addDevice {
+  background-color: #3366ff;
+  color: white;
+  margin-top: 20px;
+}

@@ -19,11 +19,15 @@ import { DeviceTypeComponent } from './devices/device-type/device-type.component
 import { DeviceTypeService } from './services/device-type.service';
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatExpansionModule} from '@angular/material/expansion';
-import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddLocationComponent } from './location/add-location/add-location.component';
+import { DialogDeviceTypeComponent } from './dialog-device-type/dialog-device-type.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 const appInitializer = (appConfig: ConfigService) => {
   return () => {
@@ -38,7 +42,8 @@ const appInitializer = (appConfig: ConfigService) => {
     DeviceComponent,
     NavMenuComponent,
     AddLocationComponent,
-    DeviceTypeComponent
+    DeviceTypeComponent,
+    DialogDeviceTypeComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,12 @@ const appInitializer = (appConfig: ConfigService) => {
     MatCheckboxModule,
     ReactiveFormsModule,
     FormsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [ConfigService] },
