@@ -29,6 +29,7 @@ import { DialogDeviceTypeComponent } from './dialog-device-type/dialog-device-ty
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MapComponent } from './map/map.component';
 
 
 const appInitializer = (appConfig: ConfigService) => {
@@ -47,7 +48,8 @@ const appInitializer = (appConfig: ConfigService) => {
     NavMenuComponent,
     AddLocationComponent,
     DeviceTypeComponent,
-    DialogDeviceTypeComponent
+    DialogDeviceTypeComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

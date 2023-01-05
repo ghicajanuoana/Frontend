@@ -7,4 +7,6 @@ export class Location {
     address: string = "";
     recipientEmail: string = "";
     contactEmail: string = "";
+    latitude?: number | undefined;
+    longitude?: number | undefined;
 }

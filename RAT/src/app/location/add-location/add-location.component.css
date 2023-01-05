@@ -1,20 +1,19 @@
-.mat-card-header{
+.mat-card-header {
     font-weight: bold;
     padding-bottom: 15px;
 }
 
-.card-container{
+.card-container {
     margin-left: 50px;
     width: 90%;
-    height: 760px;
     margin-top: 50px;
 }
 
-.account-text{
+.account-text {
     margin-top: 30px;
 }
 
-.mat-card-content{
+.mat-card-content {
     margin-left: 30px;
 }
 
@@ -23,23 +22,23 @@
     width: 100%;
 }
 
-.field-name{
+.field-name {
     color: grey;
 }
 
-.star{
+.star {
     color: red;
 }
 
-.cancel-btn{
+.cancel-btn {
     background-color: rgb(46, 128, 252);
     color: white;
 }
 
-.buttons-container{
+.buttons-container {
     margin-left: 30px;
 }
- 
+
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-    background-color: rgb(46, 128, 252); 
+    background-color: rgb(46, 128, 252);
 }

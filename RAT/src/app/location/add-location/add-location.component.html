@@ -46,10 +46,14 @@
                 <label class="field-name">Contact Email</label>
                 <mat-form-field class="input-text-field">
                     <mat-label>Contact Email</mat-label>
-                    <input type="email" matInput placeholder="email@xyz.abc" name="contactEmail" formControlName="contactEmail" class="form-input-field"/>
-                    <mat-error *ngIf="addLocation.contactEmail.hasError">Please enter a valid email address</mat-error>
+                    <input type="email" matInput placeholder="email@xyz.abc" name="contactEmail"
+                        formControlName="contactEmail" class="form-input-field" />
+                    <mat-error *ngIf="addLocation.contactEmail.hasError">Please enter a valid email address
+                    </mat-error>
                 </mat-form-field>
-                <mat-checkbox [checked]="!addLocationForm.value.resolved" [(ngModel)]="checked" [ngModelOptions]="{standalone:true}"
+
+                <mat-checkbox [checked]="!addLocationForm.value.resolved" [(ngModel)]="checked"
+                    [ngModelOptions]="{standalone:true}"
                     (change)="addLocationForm.get('emailAlerts')?.setValue($event.checked)"
                     fromControlName="emailAlerts" class="email-checkbox">Email Alerts</mat-checkbox>
             </mat-card-content>
@@ -58,13 +62,31 @@
                 <label class="field-name">Recipient Email</label>
                 <mat-form-field class="input-text-field">
                     <mat-label>Recipient Email</mat-label>
-                    <input type="email" matInput placeholder="email@xyz.abc" name="recipientEmail" formControlName="recipientEmail" class="form-input-field"/>
-                    <mat-error *ngIf="addLocation.recipientEmail.hasError">Please enter a valid email address</mat-error>
+                    <input type="email" matInput placeholder="email@xyz.abc" name="recipientEmail"
+                        formControlName="recipientEmail" class="form-input-field" />
+                    <mat-error *ngIf="addLocation.recipientEmail.hasError">Please enter a valid email address
+                    </mat-error>
                 </mat-form-field>
             </mat-card-content>
 
+            <mat-card-content>
+                <label class="field-name">Latitude</label>
+                <mat-form-field class="input-text-field">
+                    <input matInput name="latitude" formControlName="latitude" type="text" [value]="this.lat">
+                </mat-form-field>
+
+                <label class="field-name">Longitude</label>
+                <mat-form-field class="input-text-field">
+                    <input matInput name="longitude" formControlName="longitude" type="text" [value]="this.lng">
+                </mat-form-field>
+
+                <app-map (latitudeEvent)="latitudeHandler($event)" (longitudeEvent)="longitudeHandler($event)">
+                </app-map>
+            </mat-card-content>
+
             <mat-card-actions class="buttons-container">
-                <button (click)="createLocation()" mat-raised-button class="save-btn" [disabled]="!addLocationForm.valid">Save</button>
+                <button (click)="createLocation()" mat-raised-button class="save-btn"
+                    [disabled]="!addLocationForm.valid">Save</button>
                 <button routerLink="/locations" mat-raised-button class="cancel-btn">Cancel</button>
             </mat-card-actions>
         </form>
