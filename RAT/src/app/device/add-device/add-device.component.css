@@ -1,0 +1,108 @@
+input{ 
+    min-width: 150px;
+    width: 50%;
+    display: block;
+}
+
+.mat-form-field{
+    padding-bottom: 15px; 
+    color: grey;
+}
+
+.star{
+    color: red;
+}
+
+.mat-card-header{
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+.left-and-right{
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+   align-content: stretch;
+
+}
+.left-side{
+    display: flex;
+    flex-direction: column; 
+    flex-grow: 10;
+    width: 100%;
+    margin: 15px;
+}
+.right-side{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 10;
+    width: 100%;
+    margin: 15px;
+}
+.cancel-button {
+    color: white;
+    background-color: #3366ff;
+    width: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.save-button {
+    color: gray;
+    background-color: rgb(228, 226, 223);
+    width: 5%;
+    display: flex;
+    justify-content: center;
+}
+.buttons-container{
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
+}
+
+.mat-card-header {
+    font-weight: bold;
+    padding-bottom: 45px;
+}
+
+.mat-card {
+    margin-left: 30px;
+    width: 90%;
+    height: fit-content;
+}
+
+.input-text-field {
+    min-width: 150px;
+    width: 98%;
+    background-color: #edf1f7;
+    appearance: none;
+    border-radius: 5px;
+    padding-left: 17px; 
+    max-height: 35px;
+    margin-bottom: 10px;
+    padding-bottom: 15px; 
+}
+
+#image{
+    padding-top: 15px;
+}
+
+.field-name {
+    color: rgb(206, 217, 227);
+}
+
+.star {
+    color: red;
+}
+
+.title{
+    padding: 10px;
+}
+
+.matcard{
+    margin-top: 45px;
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+}

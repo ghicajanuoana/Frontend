@@ -1,0 +1,82 @@
+<mat-card class="mat-elevation-z10 card-container matcard">
+  <mat-card-title class="title">Add device</mat-card-title>
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <form class="mat-card-content" [formGroup]="addDeviceForm">
+      <div class="left-and-right">
+        <div class="left-side">
+          <span class="field-name">Name<span class="star"> *</span></span>
+          <mat-form-field floatLabel="never" class="input-text-field">
+            <mat-label for="name">Name</mat-label>
+            <input formControlName="name" matInput type="text" placeholder="Name" required>
+          </mat-form-field>
+
+          <span class="field-name">Serial number<span class="star"> *</span></span>
+          <mat-form-field floatLabel="never" class="input-text-field">
+            <mat-label for="serialNumber">Serial number</mat-label>
+            <input formControlName="serialNumber" matInput type="text" placeholder="Serial number" required>
+          </mat-form-field>
+
+          <span class="field-name">Type<span class="star"> *</span></span>
+          <mat-form-field floatLabel="never" class="input-text-field">
+            <mat-label for="deviceType">Select type</mat-label>
+            <mat-select matInput formControlName="deviceType" placeholder="Type">
+              <mat-option *ngFor="let deviceType of allDeviceTypes" [value]="deviceType">
+                {{ deviceType.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <span class="field-name">Location<span class="star"> *</span></span>
+          <mat-form-field floatLabel="never" class="input-text-field">
+            <mat-label for="location">Select location</mat-label>
+            <mat-select matInput formControlName="location" placeholder="Location">
+              <mat-option *ngFor="let location of allLocations" [value]="location">
+                {{ location.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <span class="field-name">Software Version</span>
+          <mat-form-field floatLabel="never" class="input-text-field">
+            <mat-label for="softwareVersion">Software Version</mat-label>
+            <input formControlName="softwareVersion" matInput type="text" placeholder="Software Version">
+          </mat-form-field>
+
+          <span class="field-name">Firmware Version</span>
+          <mat-form-field floatLabel="never" class="input-text-field">
+            <mat-label for="firmwareVersion">Firmware Version</mat-label>
+            <input formControlName="firmwareVersion" matInput type="text" placeholder="Firmware Version">
+          </mat-form-field>
+
+          <span class="field-name">Alias</span>
+          <mat-form-field floatLabel="never" class="input-text-field">
+            <mat-label for="alias">Alias</mat-label>
+            <input formControlName="alias" matInput type="text" placeholder="Alias">
+          </mat-form-field>
+
+          <span class="field-name">Comma separated email addresses for device alerts</span>
+          <mat-form-field floatLabel="never" class="input-text-field">
+            <mat-label for="emails">Emails</mat-label>
+            <input formControlName="emails" matInput type="email" placeholder="Emails">
+          </mat-form-field>
+        </div>
+        <div class="right-side">
+
+          <span class="field-name">Image</span>
+          <input formControlName="imagePath" type="file" class="input-text-field" id="image" multiple>
+
+          <span class="field-name">Description</span>
+          <mat-form-field floatLabel="never" class="input-text-field">
+            <mat-label for="description">Descriptions</mat-label>
+            <textarea formControlName="description" matInput placeholder="Description"
+              class="description-input"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+    <div class="buttons-container">
+      <button mat-raised-button class="save-button" [routerLink]="['/devices']" (click)="addDevice(addDeviceForm.value)"
+        [disabled]="!addDeviceForm.valid">SAVE</button>
+      <button mat-raised-button class="cancel-button" [routerLink]="['/devices']">CANCEL</button>
+    </div>
+  </mat-card-content>
+</mat-card>

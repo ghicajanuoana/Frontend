@@ -15,6 +15,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { DeviceComponent } from './devices/device/device.component';
 import { ConfigService } from './services/configuration.service';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { AddDeviceComponent } from './device/add-device/add-device.component';
+import { MatSelectModule } from '@angular/material/select';
 import { DeviceTypeComponent } from './devices/device-type/device-type.component';
 import { DeviceTypeService } from './services/device-type.service';
 import { MatIconModule } from '@angular/material/icon'; 
@@ -41,6 +43,8 @@ const appInitializer = (appConfig: ConfigService) => {
     LocationComponent,
     DeviceComponent,
     NavMenuComponent,
+    AddDeviceComponent,
+    NavMenuComponent,
     AddLocationComponent,
     DeviceTypeComponent,
     DialogDeviceTypeComponent
@@ -65,11 +69,10 @@ const appInitializer = (appConfig: ConfigService) => {
     ReactiveFormsModule,
     FormsModule,
     MatDividerModule,
+    MatSelectModule,
     MatDialogModule,
     MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    ReactiveFormsModule
+    MatInputModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [ConfigService] },

@@ -3,7 +3,7 @@ export class Location {
     country: string = "";
     city: string = "";
     emailAlertsActive: boolean = true;
-    name: string = '';
+    name: string ="";
     address: string = "";
     recipientEmail: string = "";
     contactEmail: string = "";

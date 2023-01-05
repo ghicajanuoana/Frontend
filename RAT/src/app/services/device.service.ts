@@ -10,7 +10,7 @@ export class DeviceService {
     protected apiURL: string = "";
     constructor(protected http: HttpClient, private config: ConfigService) {
         if (config.serverSettings) {
-            this.apiURL = `${config.serverSettings.webApiUrl}device`;
+            this.apiURL = `${config.serverSettings.webApiUrl}Device`;
         }
     }
 
@@ -23,6 +23,6 @@ export class DeviceService {
     }
 
     addDevice(device: Devices) {
-        return this.http.post(`${this.apiURL}/addDevice`, location, header)
+        return this.http.post(`${this.apiURL}/AddDevice`, device, header)
     }
 }

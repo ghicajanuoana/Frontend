@@ -46,7 +46,6 @@ export class AddLocationComponent implements OnInit {
         recipientEmail: this.addLocation.recipientEmail.value,
         contactEmail: this.addLocation.contactEmail.value,
       }
-
       this.locationService.addLocation(location).subscribe({
         next: () => { 
           this.locationService.addLocation(location);
