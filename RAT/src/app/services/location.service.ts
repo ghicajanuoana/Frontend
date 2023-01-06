@@ -25,4 +25,8 @@ export class LocationService {
   addLocation(location: Location) {
     return this.http.post(`${this.apiURL}/addLocation`, location, header)
   }
+
+  deleteLocation(id: number) {
+    return this.http.delete(`${this.apiURL}/${id}`, header)
+  }
 }

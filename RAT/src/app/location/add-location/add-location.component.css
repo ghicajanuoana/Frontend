@@ -3,6 +3,11 @@
     padding-bottom: 15px;
 }
 
+.page-container
+{
+    overflow-y: hidden;
+}
+
 .card-container {
     margin-left: 50px;
     width: 90%;

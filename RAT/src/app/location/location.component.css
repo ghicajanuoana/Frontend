@@ -25,10 +25,6 @@
   background-color: #edf1f7;
 }
 
-.mat-row:nth-child(odd) {
-  
-}
-
 .mat-header-cell {
   color: #1e6bb8;
   font-size: 15px;
