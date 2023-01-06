@@ -12,6 +12,7 @@
                     <mat-label>Account</mat-label>
                     <input matInput placeholder="Account" name="name" formControlName="name" type="text">
                     <mat-error *ngIf="addLocation.name.hasError">Please enter a name</mat-error>
+                    <mat-hint class="error-message" *ngIf="errorMessage == uniqueNameError">{{errorMessage}}</mat-hint>
                 </mat-form-field>
             </mat-card-content>
 

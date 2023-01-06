@@ -6,6 +6,7 @@ import { Location } from 'src/app/models/location.model';
 import { DeviceTypeService } from 'src/app/services/device-type.service';
 import { DeviceTypes } from 'src/app/models/device-type.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-device',
@@ -16,10 +17,13 @@ export class AddDeviceComponent implements OnInit {
 
   allLocations: Location[] = [];
   allDeviceTypes: DeviceTypes[] = [];
+  errorMessage: string = "";
+  readonly uniqueNameError: string = 'Device is not unique';
 
-  constructor(private formBuilder: FormBuilder,private deviceService: DeviceService, private locationService: LocationService, private deviceTypeService: DeviceTypeService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private deviceService: DeviceService,
+    private locationService: LocationService, private deviceTypeService: DeviceTypeService) {
   }
-  
+
   addDeviceForm = new FormGroup({
     name: new FormControl(''),
     serialNumber: new FormControl(''),
@@ -77,11 +81,13 @@ export class AddDeviceComponent implements OnInit {
   addDevice(device: Devices) {
     this.deviceService.addDevice(device).subscribe(
       {
-        next: () => { 
+        next: () => {
           this.deviceService.addDevice(device);
+          this.router.navigate(['/devices']);
         },
         error: (e) => {
           console.log(e);
+          this.errorMessage = e.error.Message;
         }
       }
     );

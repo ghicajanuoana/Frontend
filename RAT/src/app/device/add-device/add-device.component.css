@@ -1,44 +1,47 @@
-input{ 
+input {
     min-width: 150px;
     width: 50%;
     display: block;
 }
 
-.mat-form-field{
-    padding-bottom: 15px; 
+.mat-form-field {
+    padding-bottom: 15px;
     color: grey;
 }
 
-.star{
+.star {
     color: red;
 }
 
-.mat-card-header{
+.mat-card-header {
     font-weight: bold;
     padding-bottom: 15px;
 }
 
-.left-and-right{
-   display: flex;
-   flex-direction: row;
-   width: 100%;
-   align-content: stretch;
+.left-and-right {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-content: stretch;
 
 }
-.left-side{
-    display: flex;
-    flex-direction: column; 
-    flex-grow: 10;
-    width: 100%;
-    margin: 15px;
-}
-.right-side{
+
+.left-side {
     display: flex;
     flex-direction: column;
     flex-grow: 10;
     width: 100%;
     margin: 15px;
 }
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 10;
+    width: 100%;
+    margin: 15px;
+}
+
 .cancel-button {
     color: white;
     background-color: #3366ff;
@@ -54,7 +57,8 @@ input{
     display: flex;
     justify-content: center;
 }
-.buttons-container{
+
+.buttons-container {
     display: flex;
     flex-direction: row;
     margin-left: 15px;
@@ -77,13 +81,13 @@ input{
     background-color: #edf1f7;
     appearance: none;
     border-radius: 5px;
-    padding-left: 17px; 
+    padding-left: 17px;
     max-height: 35px;
     margin-bottom: 10px;
-    padding-bottom: 15px; 
+    padding-bottom: 15px;
 }
 
-#image{
+#image {
     padding-top: 15px;
 }
 
@@ -95,11 +99,11 @@ input{
     color: red;
 }
 
-.title{
+.title {
     padding: 10px;
 }
 
-.matcard{
+.matcard {
     margin-top: 45px;
 }
 

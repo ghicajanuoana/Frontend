@@ -16,6 +16,9 @@ export class AddLocationComponent implements OnInit {
   errors: any;
   lat?: number | undefined;
   lng?: number | undefined;
+  errorMessage: string = "";
+  readonly uniqueNameError: string = 'Invalid Location. Enter an unique name!';
+
   constructor(private formBuilder: FormBuilder, private locationService: LocationService, private router: Router) { }
 
   ngOnInit(): void {
@@ -27,8 +30,8 @@ export class AddLocationComponent implements OnInit {
       city: ["", Validators.required],
       address: ["", Validators.required],
       emailAlerts: [true, Validators.required],
-      latitude: [{value:this.lat, disabled: true }],
-      longitude: [{value:this.lng, disabled: true }]
+      latitude: [{ value: this.lat, disabled: true }],
+      longitude: [{ value: this.lng, disabled: true }]
     })
   }
 
@@ -56,6 +59,7 @@ export class AddLocationComponent implements OnInit {
         },
         error: (e) => {
           console.log(e);
+          this.errorMessage = e.error;
         }
       })
     }
