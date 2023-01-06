@@ -1,7 +1,7 @@
 <div mat-dialog-content>
   <mat-card-title class="dialog-title">Add device type</mat-card-title>
   <mat-divider></mat-divider>
-  <form class="form-custom" appearance="fill" #devicesForm="ngForm" (ngSubmit)="dialogCreate(devicesForm.value)">
+  <form class="form-custom" appearance="fill" #deviceForm="ngForm">
     <mat-label class="field-name">Name <span class="required-star"> *</span></mat-label>
     <br/>
     <mat-form-field floatLabel="never" class="input-text-field">
@@ -9,7 +9,7 @@
     </mat-form-field>
     <div *ngIf="showError" class="unique-name-error">Please enter an unique name</div>
     <div mat-dialog-actions class="dialog-buttons">
-      <button class="save-btn" mat-button type="submit" [disabled]="!devicesForm.valid">SAVE</button>
+      <button class="save-btn" mat-button type="submit" (click)="dialogCreate(deviceForm.value)" [disabled]="!deviceForm.valid">SAVE</button>
       <button class="cancel-btn" mat-button (click)="onCancelClick()">CANCEL</button>
     </div>
     <mat-divider></mat-divider>
