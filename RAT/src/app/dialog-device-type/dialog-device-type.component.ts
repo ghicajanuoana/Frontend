@@ -14,9 +14,9 @@ export class DialogDeviceTypeComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogDeviceTypeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DeviceTypes, 
+    @Inject(MAT_DIALOG_DATA) public data: DeviceTypes,
     public dialogService: DeviceTypeService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.dialogCreate;

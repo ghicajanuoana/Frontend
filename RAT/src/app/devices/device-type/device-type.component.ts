@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DeviceTypes } from 'src/app/models/device-type.model';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { DeviceTypeService } from 'src/app/services/device-type.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDeviceTypeComponent } from '../../dialog-device-type/dialog-device-type.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
+
 
 @Component({
   selector: 'app-device-type',
@@ -13,9 +16,11 @@ import { DialogDeviceTypeComponent } from '../../dialog-device-type/dialog-devic
 export class DeviceTypeComponent implements OnInit {
 
   deviceTypes: DeviceTypes[] = []
-  columnsToDisplay: string[] = ["name"];
-
+  columnsToDisplay: string[] = ["name", "actions"];
+  rowSelected: any;
   name!: string;
+  deviceFound: boolean = false;
+  currentDeviceType: any;
 
   constructor(public router: Router, public deviceTypeService: DeviceTypeService, public dialog: MatDialog) { }
 
@@ -29,7 +34,7 @@ export class DeviceTypeComponent implements OnInit {
         data: { name: this.name }
       });
 
-    dialogRef.afterClosed().subscribe(result => {     
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.getDeviceTypes();
       }
@@ -47,4 +52,42 @@ export class DeviceTypeComponent implements OnInit {
     })
   }
 
+  openConfDialog(device: any): void {
+    this.checkDeviceTypeIsUsed(device.deviceTypeId, device);
+  }
+
+  selectedRow(row: any) {
+    this.rowSelected = row;
+  }
+
+  checkDeviceTypeIsUsed(id: number, device: any): void {
+    this.deviceTypeService.checkDeleteDeviceTypeIsUsed(id).subscribe({
+      next: resp => {
+        this.deviceFound = false;
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+        dialogRef.componentInstance.message = "Are you sure you want to delete this device type?";
+        this.currentDeviceType = device;
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == true)
+            this.deleteDeviceType();
+        });
+      },
+      error: error => {
+        const dialogRef = this.dialog.open(DeleteConfirmationComponent);
+        dialogRef.componentInstance.message = "This device type is in use, please remove it from all devices!";
+        dialogRef.componentInstance.title = "Device type in use!"
+      }
+    });
+  }
+
+  deleteDeviceType(): void {
+    this.deviceTypeService.DeleteDeviceType(this.currentDeviceType.deviceTypeId).subscribe({
+      next: resp => {
+        this.getDeviceTypes();
+      },
+      error: error => {
+        console.log("device type not found");
+      }
+    });
+  }
 }

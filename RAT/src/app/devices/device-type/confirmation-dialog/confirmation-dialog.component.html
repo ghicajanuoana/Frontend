@@ -1,0 +1,13 @@
+<div mat-dialog-content>
+  <h2>Please confirm...</h2>
+  <mat-divider>
+  </mat-divider>
+  <div class="description">
+    <p>{{message}}</p>
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions align="center">
+    <button class="buttons" mat-button (click)="onCancelClick()">NO</button>
+    <button mat-raised-button color="warn" class="deleteButton" (click)="onClickSubmit()">YES</button>
+  </div>
+</div>

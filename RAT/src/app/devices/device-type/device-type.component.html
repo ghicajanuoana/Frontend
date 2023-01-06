@@ -1,16 +1,28 @@
-<div class="device-type-container">
-  <mat-card class="card-container">
-    <mat-card-title class="card-title">Device Types</mat-card-title>
-
+<div class="location-container">
+  <mat-card class="mat-elevation-z10 card-container">
+    <mat-card-title>Device types</mat-card-title>
+    <mat-divider></mat-divider>
     <mat-card-content>
-      <table mat-table [dataSource]="deviceTypes" class=" device-table">
+      <table mat-table [dataSource]="deviceTypes" class="mat-elevation-z8 device-table">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef class="field-name"> Name </th>
           <td class="table-data" mat-cell *matCellDef="let device"> {{device.name}} </td>
         </ng-container>
-
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="field-name"> Actions </th>
+          <td class="table-data" mat-cell *matCellDef="let device">
+            <div class="action-icons">
+              <div class="icon-edit">
+                <mat-icon>edit</mat-icon>
+              </div>
+              <div class="icon-delete">
+                <mat-icon (click)="openConfDialog(device)">delete</mat-icon>
+              </div>
+            </div>
+          </td>
+        </ng-container>
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="selectedRow(myRowData)"></tr>
       </table>
     </mat-card-content>
     <mat-divider></mat-divider>

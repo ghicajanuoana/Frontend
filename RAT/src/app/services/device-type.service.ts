@@ -21,4 +21,12 @@ export class DeviceTypeService {
   addDeviceType(deviceType: DeviceTypes) {
     return this.http.post(`${this.apiURL}/addDeviceTypes`, deviceType, header);
   }
+
+  checkDeleteDeviceTypeIsUsed(id:number) {
+    return this.http.get(`${this.apiURL}/checkDeviceType/${id}`, header);
+  }
+
+  DeleteDeviceType(id: number) {
+    return this.http.delete(`${this.apiURL}/deleteById/${id}`, header);
+  }
 }

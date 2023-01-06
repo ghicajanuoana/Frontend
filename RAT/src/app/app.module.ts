@@ -29,6 +29,8 @@ import { DialogDeviceTypeComponent } from './dialog-device-type/dialog-device-ty
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ConfirmationDialogComponent } from './devices/device-type/confirmation-dialog/confirmation-dialog.component';
+import { DeleteConfirmationComponent } from './devices/device-type/delete-confirmation/delete-confirmation.component';
 import { MapComponent } from './map/map.component';
 
 
@@ -49,6 +51,8 @@ const appInitializer = (appConfig: ConfigService) => {
     AddLocationComponent,
     DeviceTypeComponent,
     DialogDeviceTypeComponent,
+    DeleteConfirmationComponent,
+    ConfirmationDialogComponent,
     MapComponent
   ],
   imports: [
