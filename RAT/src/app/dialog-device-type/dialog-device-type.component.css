@@ -1,10 +1,22 @@
 .mat-dialog-content{
-    width: 300px;
-    height: 200px;
+    width: 320px;
+    height: 265px;
     position: center;
 }
-.buttons {
-  background-color: #3366ff;
-  color: white;
-  margin-top: 20px;
+
+.dialog-buttons {
+  margin-bottom: 20px;
+}
+
+.field-name {
+  margin-bottom: 7px;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.form-custom {
+  margin-right: 10px;
+  margin-top: 10px;
 }

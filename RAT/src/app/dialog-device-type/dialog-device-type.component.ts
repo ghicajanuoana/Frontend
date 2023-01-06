@@ -10,6 +10,8 @@ import { DeviceTypeService } from '../services/device-type.service';
 })
 export class DialogDeviceTypeComponent implements OnInit {
   showError: boolean = false;
+  dialogStatus: string = "closed";
+
   constructor(
     public dialogRef: MatDialogRef<DialogDeviceTypeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DeviceTypes, 
@@ -26,7 +28,9 @@ export class DialogDeviceTypeComponent implements OnInit {
 
   dialogCreate(deviceTypes: { id: number, name: string }) {
     this.dialogService.addDeviceType(this.data).subscribe({
-      next: resp => { },
+      next: resp => {
+        this.dialogRef.close(this.dialogStatus);
+       },
       error: error =>
       {console.log(error)
        if (error.status == 700) { this.showError = true; }
