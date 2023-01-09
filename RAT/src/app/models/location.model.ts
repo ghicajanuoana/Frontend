@@ -3,9 +3,9 @@ export class Location {
     country: string = "";
     city: string = "";
     emailAlertsActive: boolean = true;
-    name: string ="";
+    name: string = "";
     address: string = "";
-    recipientEmail: string = "";
+    emailRecipient: string = "";
     contactEmail: string = "";
     latitude?: number | undefined;
     longitude?: number | undefined;

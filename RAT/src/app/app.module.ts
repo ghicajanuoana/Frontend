@@ -19,12 +19,12 @@ import { AddDeviceComponent } from './device/add-device/add-device.component';
 import { MatSelectModule } from '@angular/material/select';
 import { DeviceTypeComponent } from './devices/device-type/device-type.component';
 import { DeviceTypeService } from './services/device-type.service';
-import { MatIconModule } from '@angular/material/icon'; 
-import { MatExpansionModule} from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AddLocationComponent } from './location/add-location/add-location.component';
+import { AddAndEditLocationComponent } from './location/add-edit-location/add-edit-location.component';
 import { DialogDeviceTypeComponent } from './dialog-device-type/dialog-device-type.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,7 +32,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ConfirmationDialogComponent } from './devices/device-type/confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from './devices/device-type/delete-confirmation/delete-confirmation.component';
 import { MapComponent } from './map/map.component';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 const appInitializer = (appConfig: ConfigService) => {
@@ -49,7 +49,7 @@ const appInitializer = (appConfig: ConfigService) => {
     NavMenuComponent,
     AddDeviceComponent,
     NavMenuComponent,
-    AddLocationComponent,
+    AddAndEditLocationComponent,
     DeviceTypeComponent,
     DialogDeviceTypeComponent,
     DeleteConfirmationComponent,
@@ -80,7 +80,6 @@ const appInitializer = (appConfig: ConfigService) => {
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatPaginator,
     MatPaginatorModule
   ],
   providers: [

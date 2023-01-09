@@ -19,11 +19,15 @@ export class LocationService {
   }
 
   getLocation(id: number) {
-    return this.http.get<Location>(`${this.apiURL}/getLocation/${id}`, header)
+    return this.http.get<Location>(`${this.apiURL}/${id}`, header)
   }
 
   addLocation(location: Location) {
-    return this.http.post(`${this.apiURL}/addLocation`, location, header)
+    return this.http.post<Location>(`${this.apiURL}/addLocation`, location, header)
+  }
+
+  updateLocation(location: Location) {
+    return this.http.put<Location>(`${this.apiURL}/updateLocation`, location, header)
   }
 
   deleteLocation(id: number) {

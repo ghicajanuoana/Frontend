@@ -32,7 +32,9 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> Actions </th>
           <td mat-cell *matCellDef="let location">
-            <button mat-icon-button><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button routerLink="/location/{{location.locationId}}">
+              <mat-icon>edit</mat-icon>
+            </button>
             <button mat-icon-button (click)="onDelete(location)"><mat-icon>delete</mat-icon></button>
           </td>
         </ng-container>
@@ -42,6 +44,6 @@
       </table>
     </mat-card-content>
     <mat-divider></mat-divider>
-    <button class="button-link" mat-raised-button routerLink="/add-location">ADD LOCATION</button>
+    <button class="button-link" mat-raised-button routerLink="/location">ADD LOCATION</button>
   </mat-card>
 </div>

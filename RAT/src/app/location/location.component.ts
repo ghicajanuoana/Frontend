@@ -13,12 +13,10 @@ import { LocationService } from '../services/location.service';
 export class LocationComponent implements OnInit {
 
   location: Location = new Location();
-
   locations: Location[] = [];
+  columnsToDisplay: string[] = ["name", "country", "city", "address", "contactEmail", "actions"];
 
   currentLocation: any;
-
-  columnsToDisplay: string[] = ["name", "country", "city", "address", "contactEmail", "actions"];
 
   constructor(private locationService: LocationService,
     private dialog: MatDialog) {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
@@ -10,9 +10,10 @@ export class MapComponent implements AfterViewInit {
 
   @Output() latitudeEvent = new EventEmitter<number>();
   @Output() longitudeEvent = new EventEmitter<number>();
+  @Input() lat: number | undefined;
+  @Input() lng: number | undefined;
+
   private map: any;
-  lat: number = 0;
-  lng: number = 0;
   currentLat: number = 0;
   currentLng: number = 0;
   marker: any;
@@ -50,6 +51,12 @@ export class MapComponent implements AfterViewInit {
         iconUrl: 'assets/images/marker.png'
       })
     };
+
+    if (this.lat != undefined && this.lng != undefined) {
+      this.marker = L.marker([this.lat, this.lng], { icon: icon.icon, draggable: true }).addTo(this.pinsLayer);
+      this.pinsLayer.addTo(this.map);
+      this.map.setView([this.lat, this.lng], 10);
+    }
 
     this.map.on('click', (e: any) => {
       this.pinsLayer.clearLayers();

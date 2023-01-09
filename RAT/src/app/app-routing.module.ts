@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddDeviceComponent } from './device/add-device/add-device.component';
-import { AddLocationComponent } from './location/add-location/add-location.component';
+import { AddAndEditLocationComponent } from './location/add-edit-location/add-edit-location.component';
 import { DeviceTypeComponent } from './devices/device-type/device-type.component';
 import { DeviceComponent } from './devices/device/device.component';
 import { LocationComponent } from './location/location.component';
@@ -29,8 +29,18 @@ const routes: Routes = [
     component: DeviceTypeComponent
   },
   {
-    path: "add-location",
-    component: AddLocationComponent
+    path: "location",
+    component: AddAndEditLocationComponent,
+    data: {
+      isEditMode: false
+    }
+  },
+  {
+    path: "location/:id",
+    component: AddAndEditLocationComponent,
+    data: {
+      isEditMode: true
+    }
   },
   {
     path: "**",

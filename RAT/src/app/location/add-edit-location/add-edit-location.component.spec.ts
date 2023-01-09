@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddLocationComponent } from './add-location.component';
+import { AddAndEditLocationComponent } from './add-edit-location.component';
 
 describe('AddLocationPageComponent', () => {
-  let component: AddLocationComponent;
-  let fixture: ComponentFixture<AddLocationComponent>;
+  let component: AddAndEditLocationComponent;
+  let fixture: ComponentFixture<AddAndEditLocationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddLocationComponent ]
+      declarations: [AddAndEditLocationComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddLocationComponent);
+    fixture = TestBed.createComponent(AddAndEditLocationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
