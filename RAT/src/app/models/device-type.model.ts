@@ -1,4 +1,4 @@
 export class DeviceTypes {
-    deviceTypeId: number = 0;
+    deviceTypeId?: number = 0;
     name: string = "";
 }

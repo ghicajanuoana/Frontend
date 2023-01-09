@@ -1,0 +1,8 @@
+.buttons-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.mat-raised-button.mat-primary{
+    background-color: #3366ff;
+}

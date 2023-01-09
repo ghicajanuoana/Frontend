@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Update device type</h2>
+
+<mat-dialog-content [formGroup]="updateForm">
+    <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name" [value]="deviceType.name">
+        <mat-error *ngIf="updateForm.invalid">Please enter a name</mat-error>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions class="buttons-container">
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary" (click)="save()" [disabled]="!updateForm.valid">Save</button>
+</mat-dialog-actions>

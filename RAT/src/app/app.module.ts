@@ -32,6 +32,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ConfirmationDialogComponent } from './devices/device-type/confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from './devices/device-type/delete-confirmation/delete-confirmation.component';
 import { MapComponent } from './map/map.component';
+import { DialogUpdateDeviceTypeComponent } from './devices/dialog-update-device-type/dialog-update-device-type.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 
@@ -54,7 +55,8 @@ const appInitializer = (appConfig: ConfigService) => {
     DialogDeviceTypeComponent,
     DeleteConfirmationComponent,
     ConfirmationDialogComponent,
-    MapComponent
+    MapComponent,
+    DialogUpdateDeviceTypeComponent
   ],
   imports: [
     BrowserModule,

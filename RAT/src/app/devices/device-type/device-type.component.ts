@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DeviceTypes } from 'src/app/models/device-type.model';
 import { Router, RouterModule } from '@angular/router';
 import { DeviceTypeService } from 'src/app/services/device-type.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogDeviceTypeComponent } from '../../dialog-device-type/dialog-device-type.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
+import { DialogUpdateDeviceTypeComponent } from '../dialog-update-device-type/dialog-update-device-type.component';
 
 
 @Component({
@@ -81,6 +82,7 @@ export class DeviceTypeComponent implements OnInit {
   }
 
   deleteDeviceType(): void {
+
     this.deviceTypeService.DeleteDeviceType(this.currentDeviceType.deviceTypeId).subscribe({
       next: resp => {
         this.getDeviceTypes();
@@ -89,5 +91,15 @@ export class DeviceTypeComponent implements OnInit {
         console.log("device type not found");
       }
     });
+  }
+
+  openUpdateDialog(deviceType: any): void {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(DialogUpdateDeviceTypeComponent, dialogConfig);
+    dialogRef.componentInstance.deviceType = deviceType;
   }
 }

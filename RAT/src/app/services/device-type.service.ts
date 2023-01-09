@@ -14,10 +14,6 @@ export class DeviceTypeService {
     }
   }
 
-  getAllDeviceTypes() {
-    return this.http.get<DeviceTypes[]>(`${this.apiURL}`, header)
-  }
-
   addDeviceType(deviceType: DeviceTypes) {
     return this.http.post(`${this.apiURL}/addDeviceTypes`, deviceType, header);
   }
@@ -28,5 +24,17 @@ export class DeviceTypeService {
 
   DeleteDeviceType(id: number) {
     return this.http.delete(`${this.apiURL}/deleteById/${id}`, header);
+  }
+
+  getAllDeviceTypes() {
+      return this.http.get<DeviceTypes[]>(`${this.apiURL}`, header)
+  }
+
+  getDeviceTypeById(id: number){
+      return this.http.get<DeviceTypes>(`${this.apiURL}/getDeviceType/${id}`,  header)
+  }
+
+  updateDeviceType(deviceType: DeviceTypes){
+      return this.http.put<DeviceTypes>(`${this.apiURL}/updateDeviceTypes`, deviceType, header)
   }
 }

@@ -13,7 +13,7 @@
           <td class="table-data" mat-cell *matCellDef="let device">
             <div class="action-icons">
               <div class="icon-edit">
-                <mat-icon>edit</mat-icon>
+                <mat-icon (click)="openUpdateDialog(device)">edit</mat-icon>
               </div>
               <div class="icon-delete">
                 <mat-icon (click)="openConfDialog(device)">delete</mat-icon>
