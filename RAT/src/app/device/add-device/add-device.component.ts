@@ -47,11 +47,11 @@ export class AddDeviceComponent implements OnInit {
       location: ["", Validators.required],
       deviceType: ["", Validators.required],
       serialNumber: ["", Validators.required],
-      softwareVersion: ["", Validators.required],
-      firmwareVersion: ["", Validators.required],
+      softwareVersion: [""],
+      firmwareVersion: [""],
       alias: [""],
       imagePath: [""],
-      description: ["", Validators.required],
+      description: [""],
 
     })
   }

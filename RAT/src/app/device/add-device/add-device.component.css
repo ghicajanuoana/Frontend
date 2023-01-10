@@ -48,6 +48,7 @@ input {
     width: 5%;
     display: flex;
     justify-content: center;
+    margin: 5px;
 }
 
 .save-button {
@@ -56,6 +57,7 @@ input {
     width: 5%;
     display: flex;
     justify-content: center;
+    margin: 5px;
 }
 
 .buttons-container {
@@ -78,7 +80,7 @@ input {
 .input-text-field {
     min-width: 150px;
     width: 98%;
-    background-color: #edf1f7;
+    background-color: #f7f9fc;
     appearance: none;
     border-radius: 5px;
     padding-left: 17px;
@@ -87,12 +89,27 @@ input {
     padding-bottom: 15px;
 }
 
+.description {
+    background-color: #f7f9fc;
+    margin-bottom: -34px;
+    padding-bottom: -15px;
+}
+
 #image {
     padding-top: 15px;
 }
 
 .field-name {
-    color: rgb(206, 217, 227);
+    color: rgb(93, 100, 106);
+}
+
+.field-name-desc {
+    
+   background-color: #f7f9fc;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding-bottom: -15px;
+    padding-left: 17px;
 }
 
 .star {
@@ -101,6 +118,8 @@ input {
 
 .title {
     padding: 10px;
+    font-size: 14px;
+    font-weight: bolder;
 }
 
 .matcard {

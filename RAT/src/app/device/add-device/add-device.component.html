@@ -66,18 +66,17 @@
           <input formControlName="imagePath" type="file" class="input-text-field" id="image" multiple>
 
           <span class="field-name">Description</span>
-          <mat-form-field floatLabel="never" class="input-text-field">
+          <mat-form-field floatLabel="never" class="field-name-desc">
             <mat-label for="description">Descriptions</mat-label>
-            <textarea formControlName="description" matInput placeholder="Description"
-              class="description-input"></textarea>
+            <textarea formControlName="description" matInput rows="4" cols="20" placeholder="Description" class="description"></textarea> 
           </mat-form-field>
         </div>
       </div>
     </form>
     <div class="buttons-container">
       <button mat-raised-button class="save-button" (click)="addDevice(addDeviceForm.value)"
-        [disabled]="!addDeviceForm.valid">SAVE</button>
-      <button mat-raised-button class="cancel-button" [routerLink]="['/devices']">CANCEL</button>
+        [disabled]="!addDeviceForm.valid">Save</button>
+      <button mat-raised-button class="cancel-button" [routerLink]="['/devices']">Cancel</button>
     </div>
   </mat-card-content>
 </mat-card>
