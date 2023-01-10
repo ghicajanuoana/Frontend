@@ -112,6 +112,8 @@ export class AddAndEditLocationComponent implements OnInit {
           latitude: resp.latitude,
           longitude: resp.longitude
         }
+        this.initLat = resp.latitude;
+        this.initLng = resp.longitude;
       },
       error: (e) => {
         console.log(e);
