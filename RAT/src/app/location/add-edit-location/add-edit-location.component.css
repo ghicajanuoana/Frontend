@@ -3,6 +3,10 @@
     padding-bottom: 15px;
 }
 
+.title{
+    padding: 10px;
+}
+
 .page-container
 {
     overflow-y: hidden;
@@ -24,11 +28,13 @@
 
 .input-text-field {
     min-width: 150px;
-    width: 100%;
+    width: 98%;
+    border-radius: 5px;
+    background-color: #f7f9fc;
 }
 
 .field-name {
-    color: grey;
+    color: rgb(93, 100, 106);
 }
 
 .star {
@@ -46,4 +52,8 @@
 
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
     background-color: rgb(46, 128, 252);
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
 }
