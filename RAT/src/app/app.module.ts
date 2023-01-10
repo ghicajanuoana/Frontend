@@ -47,7 +47,6 @@ const appInitializer = (appConfig: ConfigService) => {
     AppComponent,
     LocationComponent,
     DeviceComponent,
-    NavMenuComponent,
     AddDeviceComponent,
     NavMenuComponent,
     AddAndEditLocationComponent,

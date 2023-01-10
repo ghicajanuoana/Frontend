@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DeviceTypes } from 'src/app/models/device-type.model';
 import { Router, RouterModule } from '@angular/router';
 import { DeviceTypeService } from 'src/app/services/device-type.service';
@@ -6,15 +6,16 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogDeviceTypeComponent } from '../../dialog-device-type/dialog-device-type.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { DialogUpdateDeviceTypeComponent } from '../dialog-update-device-type/dialog-update-device-type.component';
-
 
 @Component({
   selector: 'app-device-type',
   templateUrl: './device-type.component.html',
   styleUrls: ['./device-type.component.css']
 })
-export class DeviceTypeComponent implements OnInit {
+export class DeviceTypeComponent implements OnInit,AfterViewInit {
 
   deviceTypes: DeviceTypes[] = []
   columnsToDisplay: string[] = ["name", "actions"];
@@ -22,12 +23,18 @@ export class DeviceTypeComponent implements OnInit {
   name!: string;
   deviceFound: boolean = false;
   currentDeviceType: any;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(public router: Router, public deviceTypeService: DeviceTypeService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getDeviceTypes();
   }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogDeviceTypeComponent,
@@ -45,7 +52,7 @@ export class DeviceTypeComponent implements OnInit {
   getDeviceTypes() {
     this.deviceTypeService.getAllDeviceTypes().subscribe({
       next: resp => {
-        this.deviceTypes = resp;
+        this.dataSource.data = resp;
       },
       error: error => {
         console.log(error)
