@@ -9,22 +9,27 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { DialogUpdateDeviceTypeComponent } from '../dialog-update-device-type/dialog-update-device-type.component';
+import { MatSort } from '@angular/material/sort';
+import { timeStamp } from 'console';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-device-type',
   templateUrl: './device-type.component.html',
   styleUrls: ['./device-type.component.css']
 })
-export class DeviceTypeComponent implements OnInit,AfterViewInit {
+export class DeviceTypeComponent implements OnInit, AfterViewInit {
 
   deviceTypes: DeviceTypes[] = []
   columnsToDisplay: string[] = ["name", "actions"];
+  columnsToDisplayFilter: string[] = ["name-filter", "action-filter"];
   rowSelected: any;
   name!: string;
   deviceFound: boolean = false;
   currentDeviceType: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(public router: Router, public deviceTypeService: DeviceTypeService, public dialog: MatDialog) { }
 
@@ -34,7 +39,8 @@ export class DeviceTypeComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
-   }
+    this.dataSource.sort = this.sort;
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogDeviceTypeComponent,
@@ -108,5 +114,10 @@ export class DeviceTypeComponent implements OnInit,AfterViewInit {
 
     const dialogRef = this.dialog.open(DialogUpdateDeviceTypeComponent, dialogConfig);
     dialogRef.componentInstance.deviceType = deviceType;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

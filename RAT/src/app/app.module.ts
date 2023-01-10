@@ -34,6 +34,7 @@ import { DeleteConfirmationComponent } from './devices/device-type/delete-confir
 import { MapComponent } from './map/map.component';
 import { DialogUpdateDeviceTypeComponent } from './devices/dialog-update-device-type/dialog-update-device-type.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 const appInitializer = (appConfig: ConfigService) => {
@@ -81,7 +82,8 @@ const appInitializer = (appConfig: ConfigService) => {
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [ConfigService] },

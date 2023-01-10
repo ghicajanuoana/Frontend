@@ -3,10 +3,19 @@
     <mat-card-title>Device types</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 device-table">
+      <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 device-table">
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef class="field-name"> Name </th>
+          <th mat-header-cell mat-sort-header *matHeaderCellDef class="field-name"> Name </th>
           <td class="table-data" mat-cell *matCellDef="let device"> {{device.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="name-filter">
+          <th mat-header-cell *matHeaderCellDef>
+            <input matInput placeholder="Name" class="filter-border" (keyup)="applyFilter($event)">
+          </th>
+        </ng-container>
+        <ng-container matColumnDef="action-filter">
+          <th mat-header-cell *matHeaderCellDef>
+          </th>
         </ng-container>
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef class="field-name"> Actions </th>
@@ -22,6 +31,7 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplayFilter"></tr>
         <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="selectedRow(myRowData)"></tr>
       </table>
     </mat-card-content>
