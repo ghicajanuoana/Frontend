@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from 'src/app/models/location.model';
 import { LocationService } from 'src/app/services/location.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-edit-location',
@@ -24,6 +25,7 @@ export class AddAndEditLocationComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private locationService: LocationService,
     private router: Router,
+    private toastr: ToastrService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -69,20 +71,24 @@ export class AddAndEditLocationComponent implements OnInit {
       if (!this.isEditMode) {
         this.locationService.addLocation(location).subscribe({
           next: () => {
+            this.toastr.success("Location successfully added!");
             this.locationService.addLocation(location);
             this.router.navigate(['/locations']);
           },
           error: (e) => {
+            this.toastr.error("Error, location name must be unique!");
             this.errorMessage = e.error;
           }
         });
       } else {
         this.locationService.updateLocation(location).subscribe({
           next: () => {
+            this.toastr.success("Location successfully updated!");
             this.locationService.updateLocation(this.location);
             this.router.navigate(['/locations']);
           },
           error: (e) => {
+            this.toastr.error("Error, location name must be unique!");
             this.errorMessage = e.error;
           }
         });

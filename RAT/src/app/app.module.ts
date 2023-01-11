@@ -35,6 +35,7 @@ import { MapComponent } from './map/map.component';
 import { DialogUpdateDeviceTypeComponent } from './devices/dialog-update-device-type/dialog-update-device-type.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { ToastrModule } from 'ngx-toastr';
 
 
 const appInitializer = (appConfig: ConfigService) => {
@@ -83,7 +84,8 @@ const appInitializer = (appConfig: ConfigService) => {
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [ConfigService] },
