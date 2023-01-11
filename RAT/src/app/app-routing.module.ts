@@ -5,6 +5,7 @@ import { AddAndEditLocationComponent } from './location/add-edit-location/add-ed
 import { DeviceTypeComponent } from './devices/device-type/device-type.component';
 import { DeviceComponent } from './devices/device/device.component';
 import { LocationComponent } from './location/location.component';
+import { DeviceReadingTypesComponent } from './device-reading-types/device-reading-types.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
     data: {
       isEditMode: true
     }
+  },
+  {
+    path: "device-reading-types",
+    component: DeviceReadingTypesComponent
   },
   {
     path: "**",

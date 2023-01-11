@@ -1,0 +1,27 @@
+<div mat-dialog-content>
+    <form class="form-custom" [formGroup]="addDeviceReadingTypeForm">
+        <mat-card-title class="dialog-title">Add device reading type</mat-card-title>
+        <mat-divider></mat-divider>
+        <div class="form-content">
+            <span class="field-name">Name<span class="required-star"> *</span></span>
+            <mat-form-field floatLabel="never" class="input-text-field">
+                <input matInput placeholder="Name" type="text" name="deviceReadingTypeName" formControlName="name"
+                    type="test" required>
+                <mat-error *ngIf="addDeviceReadingType.name.hasError">Please enter a name</mat-error>
+            </mat-form-field>
+
+            <div *ngIf="showError" class="unique-name-error">Please enter an unique name !</div>
+
+            <span class="field-name">Unit</span>
+            <mat-form-field floatLabel="never" class="input-text-field">
+                <input matInput placeholder="Unit" type="text" name="unit" formControlName="unit" type="text">
+            </mat-form-field>
+        </div>
+        <div mat-dialog-actions class="dialog-buttons">
+            <button class="save-btn" mat-raised-button (click)="createDeviceReadingType()"
+                [disabled]="!addDeviceReadingTypeForm.valid">SAVE</button>
+            <button class="cancel-btn" mat-raised-button (click)="onCancelClick()">CANCEL</button>
+        </div>
+        <mat-divider></mat-divider>
+    </form>
+</div>

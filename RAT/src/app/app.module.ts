@@ -35,6 +35,9 @@ import { MapComponent } from './map/map.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ToastrModule } from 'ngx-toastr';
+import { DeviceReadingTypesComponent } from './device-reading-types/device-reading-types.component';
+import { DeviceReadingTypeDialogComponent } from './device-reading-types/device-reading-type-dialog/device-reading-type-dialog.component';
+import { EditDeviceReadingTypeDialogComponent } from './device-reading-types/edit-dialog/edit-dialog.component';
 
 
 const appInitializer = (appConfig: ConfigService) => {
@@ -56,6 +59,9 @@ const appInitializer = (appConfig: ConfigService) => {
     DeleteConfirmationComponent,
     ConfirmationDialogComponent,
     MapComponent,
+    DeviceReadingTypesComponent,
+    DeviceReadingTypeDialogComponent,
+    EditDeviceReadingTypeDialogComponent
   ],
   imports: [
     BrowserModule,

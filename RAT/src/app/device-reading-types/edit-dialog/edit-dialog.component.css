@@ -1,0 +1,22 @@
+.mat-dialog-content {
+  width: 500px;
+  height: 400px;
+}
+
+.form-content {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-buttons {
+  margin-bottom: 20px;
+}
+
+.field-name {
+  margin-bottom: 7px;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
