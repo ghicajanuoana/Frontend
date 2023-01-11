@@ -25,14 +25,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddAndEditLocationComponent } from './location/add-edit-location/add-edit-location.component';
-import { DialogDeviceTypeComponent } from './dialog-device-type/dialog-device-type.component';
+import { DialogDeviceTypeComponent } from './devices/device-type/dialog-device-type/dialog-device-type.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ConfirmationDialogComponent } from './devices/device-type/confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from './devices/device-type/delete-confirmation/delete-confirmation.component';
 import { MapComponent } from './map/map.component';
-import { DialogUpdateDeviceTypeComponent } from './devices/dialog-update-device-type/dialog-update-device-type.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ToastrModule } from 'ngx-toastr';
@@ -57,7 +56,6 @@ const appInitializer = (appConfig: ConfigService) => {
     DeleteConfirmationComponent,
     ConfirmationDialogComponent,
     MapComponent,
-    DialogUpdateDeviceTypeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,17 +1,14 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DeviceTypes } from 'src/app/models/device-type.model';
-import { Router, RouterModule } from '@angular/router';
+import { Router} from '@angular/router';
 import { DeviceTypeService } from 'src/app/services/device-type.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogDeviceTypeComponent } from '../../dialog-device-type/dialog-device-type.component';
+import { MatDialog} from '@angular/material/dialog';
+import { DialogDeviceTypeComponent } from './dialog-device-type/dialog-device-type.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { DialogUpdateDeviceTypeComponent } from '../dialog-update-device-type/dialog-update-device-type.component';
 import { MatSort } from '@angular/material/sort';
-import { timeStamp } from 'console';
-import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-device-type',
@@ -42,10 +39,10 @@ export class DeviceTypeComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  openDialog(): void {
+  openAddDialog(): void {
     const dialogRef = this.dialog.open(DialogDeviceTypeComponent,
       {
-        data: { name: this.name }
+        data: { deviceType: { name: this.name }, isEditMode: false, dialogTitle: "Add Device Type" }
       });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -107,13 +104,16 @@ export class DeviceTypeComponent implements OnInit, AfterViewInit {
   }
 
   openUpdateDialog(deviceType: any): void {
-    const dialogConfig = new MatDialogConfig();
+    const dialogRef = this.dialog.open(DialogDeviceTypeComponent,
+      {
+        data: { deviceType: deviceType, isEditMode: true, dialogTitle: "Update Device Type" }
+      });
 
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-
-    const dialogRef = this.dialog.open(DialogUpdateDeviceTypeComponent, dialogConfig);
-    dialogRef.componentInstance.deviceType = deviceType;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getDeviceTypes();
+      }
+    });
   }
 
   applyFilter(event: Event) {
