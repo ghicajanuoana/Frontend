@@ -1,0 +1,57 @@
+<div class="device-container">
+    <mat-card class="mat-elevation-z10 card-container">
+        <mat-card-title>Device Thresholds</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <table mat-table [dataSource]="thresholds" class="mat-elevation-z8 width-table">
+                <ng-container matColumnDef="deviceType">
+                    <th mat-header-cell *matHeaderCellDef> Device Type </th>
+                    <td mat-cell *matCellDef="let threshold"> {{threshold.deviceType.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="readingType">
+                    <th mat-header-cell *matHeaderCellDef> Reading Type </th>
+                    <td mat-cell *matCellDef="let threshold"> {{threshold.deviceReadingType.name}} </td>
+                </ng-container>
+
+                <mat-divider [vertical]="true"></mat-divider>
+                
+                <ng-container matColumnDef="minValue">
+                    <th mat-header-cell *matHeaderCellDef> Min Value </th>
+                    <td mat-cell *matCellDef="let threshold"> {{threshold.minValue}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="warningValue">
+                    <th mat-header-cell *matHeaderCellDef> Warning Value </th>
+                    <td mat-cell *matCellDef="let threshold"> {{threshold.warningValue}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="criticalValue">
+                    <th mat-header-cell *matHeaderCellDef> Critical Value </th>
+                    <td mat-cell *matCellDef="let threshold"> {{threshold.criticalValue}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="maxValue">
+                    <th mat-header-cell *matHeaderCellDef> Max Value</th>
+                    <td mat-cell *matCellDef="let threshold"> {{threshold.maxValue}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef> Actions </th>
+                    <td mat-cell *matCellDef="let threshold">
+                        <button mat-icon-button>
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+            </table>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+    </mat-card>
+</div>

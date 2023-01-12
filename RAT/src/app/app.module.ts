@@ -33,11 +33,12 @@ import { ConfirmationDialogComponent } from './devices/device-type/confirmation-
 import { DeleteConfirmationComponent } from './devices/device-type/delete-confirmation/delete-confirmation.component';
 import { MapComponent } from './map/map.component';
 import { MatSortModule } from '@angular/material/sort';
-import { ToastrModule } from 'ngx-toastr';
 import { DeviceReadingTypesComponent } from './device-reading-types/device-reading-types.component';
 import { DeviceReadingTypeDialogComponent } from './device-reading-types/device-reading-type-dialog/device-reading-type-dialog.component';
 import { EditDeviceReadingTypeDialogComponent } from './device-reading-types/edit-dialog/edit-dialog.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ThresholdComponent } from './threshold/threshold.component';
+import { ToastrModule } from 'ngx-toastr';
 
 const appInitializer = (appConfig: ConfigService) => {
   return () => {
@@ -62,7 +63,8 @@ const appInitializer = (appConfig: ConfigService) => {
     DeviceReadingTypeDialogComponent,
     EditDeviceReadingTypeDialogComponent,
     DeleteConfirmationComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ThresholdComponent
   ],
   imports: [
     BrowserModule,

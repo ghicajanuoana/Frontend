@@ -2,17 +2,6 @@
   color: #1e6bb8;
 }
 
-.device-table {
-  width: 100%;
-}
-
-.card-container {
-  width: 90%;
-  margin: auto;
-  margin-bottom: 30px;
-  margin-top: 50px;
-}
-
 .card-title {
   font-size: 14px;
 }
@@ -44,10 +33,6 @@
 
 .table-data {
   cursor: pointer;
-}
-
-.mat-row:hover {
-  background-color: #ccc;
 }
 
 .addDevice {

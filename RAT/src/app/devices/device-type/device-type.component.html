@@ -3,7 +3,7 @@
     <mat-card-title>Device types</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content>
-      <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 device-table">
+      <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 width-table">
         <ng-container matColumnDef="name">
           <th mat-header-cell mat-sort-header *matHeaderCellDef class="field-name"> Name </th>
           <td class="table-data" mat-cell *matCellDef="let device"> {{device.name}} </td>
