@@ -7,6 +7,7 @@ import { DeviceComponent } from './devices/device/device.component';
 import { LocationComponent } from './location/location.component';
 import { ThresholdComponent } from './threshold/threshold.component';
 import { DeviceReadingTypesComponent } from './device-reading-types/device-reading-types.component';
+import { AddThresholdComponent } from './add-threshold/add-threshold.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: "device-reading-types",
     component: DeviceReadingTypesComponent
+  },
+  {
+    path: "add-threshold",
+    component: AddThresholdComponent
   },
   {
     path: "**",

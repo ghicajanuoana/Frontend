@@ -36,6 +36,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { DeviceReadingTypesComponent } from './device-reading-types/device-reading-types.component';
 import { DeviceReadingTypeDialogComponent } from './device-reading-types/device-reading-type-dialog/device-reading-type-dialog.component';
 import { EditDeviceReadingTypeDialogComponent } from './device-reading-types/edit-dialog/edit-dialog.component';
+import { AddThresholdComponent } from './add-threshold/add-threshold.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ThresholdComponent } from './threshold/threshold.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -62,6 +63,8 @@ const appInitializer = (appConfig: ConfigService) => {
     DeviceReadingTypesComponent,
     DeviceReadingTypeDialogComponent,
     EditDeviceReadingTypeDialogComponent,
+    DialogDeviceTypeComponent,
+    AddThresholdComponent,
     DeleteConfirmationComponent,
     ConfirmationDialogComponent,
     ThresholdComponent
@@ -92,7 +95,9 @@ const appInitializer = (appConfig: ConfigService) => {
     MatInputModule,
     MatPaginatorModule,
     MatSortModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ReactiveFormsModule
+
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [ConfigService] },

@@ -70,7 +70,7 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
   }
 
   getDeviceReadingTypes() {
-    this.deviceReadingTypeService.getAllDeviceTypes().subscribe({
+    this.deviceReadingTypeService.getAllDeviceReadingTypes().subscribe({
       next: resp => {
         this.deviceReadingTypes = resp;
         this.dataSource.data = resp;

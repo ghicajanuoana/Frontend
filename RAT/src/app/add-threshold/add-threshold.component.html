@@ -1,0 +1,56 @@
+<mat-card class="mat-elevation-z10 card-container matcard">
+  <mat-card-title class="title">Add threshold</mat-card-title>
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <form class="mat-card-content" [formGroup]="addThresholdForm">
+      <span class="field-name"> Device Type<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="deviceType">Select type</mat-label>
+        <mat-select matInput formControlName="deviceType" placeholder="Select Type">
+          <mat-option *ngFor="let deviceType of allDeviceTypes" [value]="deviceType.deviceTypeId">
+            {{ deviceType.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <span class="field-name"> Reading type<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="deviceReadingType">Select type</mat-label>
+        <mat-select matInput formControlName="deviceReadingType" placeholder="Reading Type">
+          <mat-option *ngFor="let deviceReadingType of allDeviceReadingTypes"
+            [value]="deviceReadingType.deviceReadingTypeId">
+            {{ deviceReadingType.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <span class="field-name">Min value<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="minValue">Min Value</mat-label>
+        <input formControlName="minValue" matInput type="text" placeholder="Min value">
+      </mat-form-field>
+
+      <span class="field-name">Warning value<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="warningValue">Warning Value</mat-label>
+        <input formControlName="warningValue" matInput type="text" placeholder="Warning value">
+      </mat-form-field>
+
+      <span class="field-name">Critical value<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="criticalValue">Critical Value</mat-label>
+        <input formControlName="criticalValue" matInput type="text" placeholder="Critical value">
+      </mat-form-field>
+
+      <span class="field-name">Max value<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="maxValue">Max Value</mat-label>
+        <input formControlName="maxValue" matInput type="text" placeholder="Max value">
+      </mat-form-field>
+
+    </form>
+    <div class="buttons-container">
+      <button mat-raised-button class="save-button" (click)="addThreshold()"
+        [disabled]="!addThresholdForm.valid">SAVE</button>
+      <button mat-raised-button class="cancel-button" [routerLink]="['/thresholds']">CANCEL</button>
+    </div>
+  </mat-card-content>
+</mat-card>

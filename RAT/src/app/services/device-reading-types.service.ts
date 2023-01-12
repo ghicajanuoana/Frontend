@@ -16,7 +16,7 @@ export class DeviceReadingTypesService {
     }
   }
 
-  getAllDeviceTypes() {
+  getAllDeviceReadingTypes() {
     return this.http.get<DeviceReadingType[]>(`${this.apiURL}/getAllDeviceReadingTypes`, header)
   }
 

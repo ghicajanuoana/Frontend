@@ -15,7 +15,7 @@
                 </ng-container>
 
                 <mat-divider [vertical]="true"></mat-divider>
-                
+
                 <ng-container matColumnDef="minValue">
                     <th mat-header-cell *matHeaderCellDef> Min Value </th>
                     <td mat-cell *matCellDef="let threshold"> {{threshold.minValue}} </td>
@@ -52,6 +52,7 @@
                 <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
             </table>
         </mat-card-content>
+        <button class="button-link" mat-raised-button routerLink="/add-threshold">ADD THRESHOLD</button>
         <mat-divider></mat-divider>
     </mat-card>
 </div>

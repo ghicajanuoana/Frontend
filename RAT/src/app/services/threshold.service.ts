@@ -8,7 +8,7 @@ import { header } from "./global.service";
 export class ThresholdsService {
 
     protected apiURL: string = "";
-    
+
     constructor(protected http: HttpClient, private config: ConfigService) {
         if (config.serverSettings) {
             this.apiURL = `${config.serverSettings.webApiUrl}Threshold`;
@@ -17,5 +17,9 @@ export class ThresholdsService {
 
     getAllThresholds() {
         return this.http.get<Threshold[]>(`${this.apiURL}/getAllThresholds`, header)
+    }
+
+    addThreshold(threshold: Threshold) {
+        return this.http.post(`${this.apiURL}/addThreshold`, threshold, header)
     }
 }
