@@ -20,7 +20,6 @@ export class AddAndEditLocationComponent implements OnInit {
   initLat?: number | undefined;
   initLng?: number | undefined;
   errorMessage: string = "";
-  readonly uniqueNameError: string = 'Invalid Location. Enter an unique name!';
 
   constructor(private formBuilder: FormBuilder,
     private locationService: LocationService,
@@ -89,7 +88,6 @@ export class AddAndEditLocationComponent implements OnInit {
           },
           error: (e) => {
             this.toastr.error("Error, location name must be unique!");
-            this.errorMessage = e.error;
           }
         });
       }

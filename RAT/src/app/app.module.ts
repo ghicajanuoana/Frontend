@@ -15,7 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { DeviceComponent } from './devices/device/device.component';
 import { ConfigService } from './services/configuration.service';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { AddDeviceComponent } from './device/add-device/add-device.component';
+import { AddDeviceComponent } from './devices/add-device/add-device.component';
 import { MatSelectModule } from '@angular/material/select';
 import { DeviceTypeComponent } from './devices/device-type/device-type.component';
 import { DeviceTypeService } from './services/device-type.service';

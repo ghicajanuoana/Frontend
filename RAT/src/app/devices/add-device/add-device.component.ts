@@ -7,6 +7,7 @@ import { DeviceTypeService } from 'src/app/services/device-type.service';
 import { DeviceTypes } from 'src/app/models/device-type.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-device',
@@ -18,9 +19,8 @@ export class AddDeviceComponent implements OnInit {
   allLocations: Location[] = [];
   allDeviceTypes: DeviceTypes[] = [];
   errorMessage: string = "";
-  readonly uniqueNameError: string = 'Device is not unique';
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private deviceService: DeviceService,
+  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router, private deviceService: DeviceService,
     private locationService: LocationService, private deviceTypeService: DeviceTypeService) {
   }
 
@@ -82,12 +82,12 @@ export class AddDeviceComponent implements OnInit {
     this.deviceService.addDevice(device).subscribe(
       {
         next: () => {
+          this.toastr.success("Device successfully added!");
           this.deviceService.addDevice(device);
           this.router.navigate(['/devices']);
         },
         error: (e) => {
-          console.log(e);
-          this.errorMessage = e.error.Message;
+          this.toastr.error(e.error.Message);
         }
       }
     );

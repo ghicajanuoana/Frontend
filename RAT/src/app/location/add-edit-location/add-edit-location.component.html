@@ -10,8 +10,7 @@
             <mat-form-field floatLabel="never" class="input-text-field">
                 <mat-label>Account</mat-label>
                 <input matInput placeholder="Account" name="name" formControlName="name" type="text" [(ngModel)]="location.name">
-                <mat-error *ngIf="addLocation.name.hasError"></mat-error>
-                <mat-hint class="error-message" *ngIf="errorMessage == uniqueNameError">{{errorMessage}}</mat-hint>
+                 <mat-error *ngIf="addLocation.name.hasError"></mat-error>               
             </mat-form-field>
         </mat-card-content>
 

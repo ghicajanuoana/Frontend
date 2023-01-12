@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddDeviceComponent } from './device/add-device/add-device.component';
+import { AddDeviceComponent } from './devices/add-device/add-device.component';
 import { AddAndEditLocationComponent } from './location/add-edit-location/add-edit-location.component';
 import { DeviceTypeComponent } from './devices/device-type/device-type.component';
 import { DeviceComponent } from './devices/device/device.component';

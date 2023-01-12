@@ -9,7 +9,6 @@
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="name">Name</mat-label>
             <input formControlName="name" matInput type="text" placeholder="Name" required>
-            <mat-hint class="error-message" *ngIf="errorMessage == uniqueNameError">{{errorMessage}}</mat-hint>
           </mat-form-field>
 
           <span class="field-name">Serial number<span class="star"> *</span></span>
