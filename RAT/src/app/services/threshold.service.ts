@@ -22,4 +22,8 @@ export class ThresholdsService {
     addThreshold(threshold: Threshold) {
         return this.http.post(`${this.apiURL}/addThreshold`, threshold, header)
     }
+
+    deleteThreshold(id: number) {
+        return this.http.delete(`${this.apiURL}/${id}`, header);
+    }
 }
