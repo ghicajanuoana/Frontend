@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Location } from "../models/location.model";
 import { ConfigService } from "./configuration.service";
 import { header } from "./global.service";
+import { LocationPaged } from "../models/paged-list.model";
+import { LocationParams } from "../models/locationparameters.model";
 
 @Injectable({ providedIn: 'root' })
 export class LocationService {
@@ -32,5 +34,12 @@ export class LocationService {
 
   deleteLocation(id: number) {
     return this.http.delete(`${this.apiURL}/${id}`, header)
+  }
+
+  getAllLocationsPaged(locationParameters:LocationParams){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("pageNumber", String(locationParameters.pageNumber));
+    queryParams = queryParams.append("pageSize", String(locationParameters.pageSize));
+    return this.http.get<LocationPaged>(`${this.apiURL}/getLocationsPagedAndFiltered?${queryParams}`, header)
   }
 }
