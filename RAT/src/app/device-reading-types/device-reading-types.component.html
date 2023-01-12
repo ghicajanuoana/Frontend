@@ -45,7 +45,7 @@
                 <mat-icon>edit</mat-icon>
               </a>
               <a mat-icon-button>
-                <mat-icon>delete</mat-icon>
+                <mat-icon (click)="openConfirmationDialog(row)">delete</mat-icon>
               </a>
             </td>
           </ng-container>

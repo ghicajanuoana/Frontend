@@ -32,13 +32,12 @@ import { MatInputModule } from '@angular/material/input';
 import { ConfirmationDialogComponent } from './devices/device-type/confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from './devices/device-type/delete-confirmation/delete-confirmation.component';
 import { MapComponent } from './map/map.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ToastrModule } from 'ngx-toastr';
 import { DeviceReadingTypesComponent } from './device-reading-types/device-reading-types.component';
 import { DeviceReadingTypeDialogComponent } from './device-reading-types/device-reading-type-dialog/device-reading-type-dialog.component';
 import { EditDeviceReadingTypeDialogComponent } from './device-reading-types/edit-dialog/edit-dialog.component';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const appInitializer = (appConfig: ConfigService) => {
   return () => {
@@ -61,7 +60,9 @@ const appInitializer = (appConfig: ConfigService) => {
     MapComponent,
     DeviceReadingTypesComponent,
     DeviceReadingTypeDialogComponent,
-    EditDeviceReadingTypeDialogComponent
+    EditDeviceReadingTypeDialogComponent,
+    DeleteConfirmationComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

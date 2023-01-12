@@ -27,4 +27,12 @@ export class DeviceReadingTypesService {
   updateDeviceReadingType(deviceReadingType: DeviceReadingType) {
     return this.http.put(`${this.apiURL}/updateDeviceReadingType`, deviceReadingType, header);
   }
+
+  checkDeleteDeviceReadingTypeIsUsed(id:number) {
+    return this.http.get(`${this.apiURL}/checkDeviceReadingType/${id}`, header);
+  }
+
+  deleteDeviceReadingType(id: number) {
+    return this.http.delete(`${this.apiURL}/${id}`, header);
+  }
 }

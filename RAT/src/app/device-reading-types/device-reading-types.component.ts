@@ -9,6 +9,8 @@ import { DeviceReadingType } from '../models/device-reading-types';
 import { DeviceReadingTypesService } from '../services/device-reading-types.service';
 import { DeviceReadingTypeDialogComponent } from './device-reading-type-dialog/device-reading-type-dialog.component';
 import { EditDeviceReadingTypeDialogComponent } from './edit-dialog/edit-dialog.component';
+import { ConfirmationDialogComponent } from '../devices/device-type/confirmation-dialog/confirmation-dialog.component';
+import { DeleteConfirmationComponent } from '../devices/device-type/delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-device-reading-types',
@@ -78,6 +80,44 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
       }
     });
     this.dataSource.data.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  openConfirmationDialog(deviceReadingType: any): void {
+    this.checkDeviceTypeIsUsed(deviceReadingType.deviceReadingTypeId, deviceReadingType);
+  }
+
+  checkDeviceTypeIsUsed(id: number, device: any): void {
+    this.deviceReadingTypeService.checkDeleteDeviceReadingTypeIsUsed(id).subscribe({
+      next: resp => {
+        if (resp == false){
+          const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+          dialogRef.componentInstance.message = "Are you sure you want to delete this device reading type?";
+          dialogRef.afterClosed().subscribe(result => {
+            if (result == true)
+              this.deleteDeviceReadingType(device);
+          });
+        }
+        else{
+          const dialogRef = this.dialog.open(DeleteConfirmationComponent);
+          dialogRef.componentInstance.message = "This device reading type is in use, please remove it from all devices!";
+          dialogRef.componentInstance.title = "Device reading type in use!"
+        }
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
+  }
+
+  deleteDeviceReadingType(deviceReadingType:DeviceReadingType): void {
+    this.deviceReadingTypeService.deleteDeviceReadingType(deviceReadingType.deviceReadingTypeId as number).subscribe({
+      next: resp => {
+        this.getDeviceReadingTypes();
+      },
+      error: error => {
+        console.log("Device reading type not found");
+      }
+    });
   }
 
   openEditDialog(deviceReadingType: any): void {
