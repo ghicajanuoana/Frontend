@@ -24,6 +24,7 @@ export class AddThresholdComponent implements OnInit {
     private deviceReadingTypesService: DeviceReadingTypesService,
     private deviceTypeService: DeviceTypeService,
     private thresholdService: ThresholdsService) { }
+    numRegex = /^-?\d*[.,]?\d{0,2}$/;
 
   ngOnInit(): void {
     this.getAllDeviceTypes();
@@ -31,10 +32,10 @@ export class AddThresholdComponent implements OnInit {
     this.addThresholdForm = this.formBuilder.group({
       deviceType: ["", Validators.required],
       deviceReadingType: ["", Validators.required],
-      minValue: ["", Validators.required],
-      warningValue: ["", Validators.required],
-      criticalValue: ["", Validators.required],
-      maxValue: ["", Validators.required],
+      minValue: ["", [Validators.required, Validators.pattern(this.numRegex)]],
+      warningValue: ["", [Validators.required, Validators.pattern(this.numRegex)]],
+      criticalValue: ["", [Validators.required, Validators.pattern(this.numRegex)]],
+      maxValue: ["", [Validators.required, Validators.pattern(this.numRegex)]],
     })
   }
 
