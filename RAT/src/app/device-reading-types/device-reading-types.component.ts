@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { DeviceReadingType } from '../models/device-reading-types';
 import { DeviceReadingTypesService } from '../services/device-reading-types.service';
 import { DeviceReadingTypeDialogComponent } from './device-reading-type-dialog/device-reading-type-dialog.component';
-import { EditDeviceReadingTypeDialogComponent } from './edit-dialog/edit-dialog.component';
 import { ConfirmationDialogComponent } from '../devices/device-type/confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from '../devices/device-type/delete-confirmation/delete-confirmation.component';
 
@@ -30,6 +29,7 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   name!: string;
+  unit!: string;
 
   filteredValues = {
     name: '',
@@ -59,14 +59,30 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
     this.dataSource.filterPredicate = this.customFilterPredicate();
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DeviceReadingTypeDialogComponent)
+  openAddDialog(): void {
+    const dialogRef = this.dialog.open(DeviceReadingTypeDialogComponent,
+      {
+        data: { deviceReadingType:{ name:this.name, unit:this.unit}, isEditMode: false, dialogTitle:"Add device reading type"}
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === this.dialogStatus) {
-        this.getDeviceReadingTypes();
-      }
-    });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.getDeviceReadingTypes();
+        }
+      });
+  }
+
+  openUpdateDialog(deviceReadingType: DeviceReadingType): void{
+    const dialogRef = this.dialog.open(DeviceReadingTypeDialogComponent,
+      {
+        data: { deviceReadingType: deviceReadingType, isEditMode: true, dialogTitle:"Edit device reading type"}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.getDeviceReadingTypes();
+        }
+      });
   }
 
   getDeviceReadingTypes() {
@@ -118,11 +134,6 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
         console.log("Device reading type not found");
       }
     });
-  }
-
-  openEditDialog(deviceReadingType: any): void {
-    const dialogRef = this.dialog.open(EditDeviceReadingTypeDialogComponent)
-    dialogRef.componentInstance.deviceReadingType = deviceReadingType;
   }
 
   customFilterPredicate() {

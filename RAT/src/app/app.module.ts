@@ -35,7 +35,6 @@ import { MapComponent } from './map/map.component';
 import { MatSortModule } from '@angular/material/sort';
 import { DeviceReadingTypesComponent } from './device-reading-types/device-reading-types.component';
 import { DeviceReadingTypeDialogComponent } from './device-reading-types/device-reading-type-dialog/device-reading-type-dialog.component';
-import { EditDeviceReadingTypeDialogComponent } from './device-reading-types/edit-dialog/edit-dialog.component';
 import { AddThresholdComponent } from './add-threshold/add-threshold.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ThresholdComponent } from './threshold/threshold.component';
@@ -62,7 +61,6 @@ const appInitializer = (appConfig: ConfigService) => {
     MapComponent,
     DeviceReadingTypesComponent,
     DeviceReadingTypeDialogComponent,
-    EditDeviceReadingTypeDialogComponent,
     DialogDeviceTypeComponent,
     AddThresholdComponent,
     DeleteConfirmationComponent,

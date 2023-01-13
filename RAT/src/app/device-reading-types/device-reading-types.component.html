@@ -41,7 +41,7 @@
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Action</th>
             <td mat-cell *matCellDef="let row;">
-              <a mat-icon-button (click)="openEditDialog(row)">
+              <a mat-icon-button (click)="openUpdateDialog(row)">
                 <mat-icon>edit</mat-icon>
               </a>
               <a mat-icon-button>
@@ -54,7 +54,7 @@
         <tr mat-header-row *matHeaderRowDef="['name-filter-box', 'unit-filter-box', 'empty-cell']"></tr>
         <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
       </table>
-      <button class="buttons" mat-raised-button (click)="openDialog()">ADD DEVICE READING TYPE</button>
+      <button class="buttons" mat-raised-button (click)="openAddDialog()">ADD DEVICE READING TYPE</button>
     </mat-card-content>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </mat-card>

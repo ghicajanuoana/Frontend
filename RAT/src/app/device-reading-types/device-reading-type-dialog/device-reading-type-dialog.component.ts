@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { DeviceReadingType } from 'src/app/models/device-reading-types';
 import { DeviceReadingTypesService } from 'src/app/services/device-reading-types.service';
 
@@ -18,13 +19,15 @@ export class DeviceReadingTypeDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DeviceReadingTypeDialogComponent>,
     public deviceReadingTypeService: DeviceReadingTypesService,
-    private formBuilder: FormBuilder
+    private toastr:ToastrService,
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: {deviceReadingType: DeviceReadingType, isEditMode:boolean, dialogTitle: string}
   ) { }
 
   ngOnInit(): void {
     this.addDeviceReadingTypeForm = this.formBuilder.group({
-      name: ["", Validators.required],
-      unit: [""]
+      name: [this.data.deviceReadingType.name, Validators.required],
+      unit: [this.data.deviceReadingType.unit]
     })
   }
 
@@ -36,23 +39,31 @@ export class DeviceReadingTypeDialogComponent implements OnInit {
     return this.addDeviceReadingTypeForm.controls;
   }
 
-  createDeviceReadingType() {
-    if (this.addDeviceReadingTypeForm.valid) {
-      let deviceReadingType: DeviceReadingType = {
-        name: this.addDeviceReadingType.name.value,
-        unit: this.addDeviceReadingType.unit.value
-      }
-
+  dialogSave(deviceReadingType: {deviceReadingTypeId:number, name: string, unit: string}){
+    if (!this.data.isEditMode) {
       this.deviceReadingTypeService.addDeviceReadingType(deviceReadingType).subscribe({
-        next: () => {
-          this.deviceReadingTypeService.addDeviceReadingType(deviceReadingType);
+        next:resp => {
           this.dialogRef.close(this.dialogStatus);
+          this.toastr.success("Device reading type succesfully added!");
         },
-        error: (e) => {
-          if (e.status == 400) { this.showError = true; }
+        error:error => {
+          console.log(error);
+        },
+      })
+    }
+    else {
+      this.data.deviceReadingType.name = deviceReadingType.name;
+      this.data.deviceReadingType.unit = deviceReadingType.unit;
+      this.deviceReadingTypeService.updateDeviceReadingType(this.data.deviceReadingType).subscribe({
+        next: resp => {
+            this.dialogRef.close(this.dialogStatus);
+            this.deviceReadingTypeService.getAllDeviceReadingTypes();
+            this.toastr.success("Device reading type successfully updated!");
+        },
+        error: error => {
+          console.log(error);
         }
       })
     }
   }
 }
-
