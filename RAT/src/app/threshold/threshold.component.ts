@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Threshold } from '../models/threshold.model';
 import { ThresholdsService } from '../services/threshold.service';
 import { ConfirmationDialogComponent } from '../devices/device-type/confirmation-dialog/confirmation-dialog.component';
@@ -11,10 +13,15 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ThresholdComponent implements OnInit {
 
-  thresholds: Threshold[] = []
   columnsToDisplay: string[] = ["deviceType", "readingType", "minValue", "warningValue", "criticalValue", "maxValue", "actions"];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  thresholds: MatTableDataSource<any> = new MatTableDataSource<Threshold>();
 
   constructor(public thresholdService: ThresholdsService, public dialog: MatDialog) { }
+
+  ngAfterViewInit(): void {
+    this.thresholds.paginator = this.paginator;
+  }
 
   ngOnInit(): void {
     this.getThresholds();
@@ -23,7 +30,7 @@ export class ThresholdComponent implements OnInit {
   getThresholds() {
     this.thresholdService.getAllThresholds().subscribe({
       next: resp => {
-        this.thresholds = resp;
+        this.thresholds.data = resp;
       },
       error: error => {
         console.log(error)

@@ -52,7 +52,8 @@
                 <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
             </table>
         </mat-card-content>
-        <button class="button-link" mat-raised-button routerLink="/add-threshold">ADD THRESHOLD</button>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         <mat-divider></mat-divider>
+        <button class="button-link" mat-raised-button routerLink="/add-threshold">ADD THRESHOLD</button>
     </mat-card>
 </div>
