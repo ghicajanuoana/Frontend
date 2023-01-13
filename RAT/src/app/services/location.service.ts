@@ -3,8 +3,8 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Location } from "../models/location.model";
 import { ConfigService } from "./configuration.service";
 import { header } from "./global.service";
-import { LocationPaged } from "../models/paged-list.model";
-import { LocationParams } from "../models/locationparameters.model";
+import { LocationParameters } from "../models/location-parameters.model";
+import { PagedList } from "../models/paged-list.model";
 
 @Injectable({ providedIn: 'root' })
 export class LocationService {
@@ -18,6 +18,20 @@ export class LocationService {
 
   getAllLocations() {
     return this.http.get<Location[]>(`${this.apiURL}/getAllLocations`, header)
+  }
+
+  getLocationsPagedAndFiltered(locationParameters: LocationParameters) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("pageNumber", String(locationParameters.pageNumber));
+    queryParams = queryParams.append("pageSize", locationParameters.pageSize);
+    queryParams = queryParams.append("name", String(locationParameters.name));
+    queryParams = queryParams.append("country", String(locationParameters.country));
+    queryParams = queryParams.append("city", String(locationParameters.city));
+    queryParams = queryParams.append("address", String(locationParameters.address));
+    queryParams = queryParams.append("contactEmail", String(locationParameters.contactEmail));
+    queryParams = queryParams.append("orderBy", String(locationParameters.orderBy));
+    queryParams = queryParams.append("orderDescending", String(locationParameters.orderDescending));
+    return this.http.get<PagedList>(`${this.apiURL}/getLocationsPagedAndFiltered?${queryParams}`, header)
   }
 
   getLocation(id: number) {
@@ -34,12 +48,5 @@ export class LocationService {
 
   deleteLocation(id: number) {
     return this.http.delete(`${this.apiURL}/${id}`, header)
-  }
-
-  getAllLocationsPaged(locationParameters:LocationParams){
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append("pageNumber", String(locationParameters.pageNumber));
-    queryParams = queryParams.append("pageSize", String(locationParameters.pageSize));
-    return this.http.get<LocationPaged>(`${this.apiURL}/getLocationsPagedAndFiltered?${queryParams}`, header)
   }
 }

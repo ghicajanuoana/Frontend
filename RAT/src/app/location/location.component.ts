@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmationDialogComponent } from '../devices/device-type/confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from '../devices/device-type/delete-confirmation/delete-confirmation.component';
 import { Location } from '../models/location.model';
-import { LocationParams } from '../models/locationparameters.model';
 import { LocationService } from '../services/location.service';
+import { LocationParameters } from '../models/location-parameters.model';
 
 @Component({
   selector: 'app-location',
@@ -16,43 +16,54 @@ import { LocationService } from '../services/location.service';
 export class LocationComponent implements OnInit {
 
   location: Location = new Location();
-  locations: Location[] = [];
   columnsToDisplay: string[] = ["name", "country", "city", "address", "contactEmail", "actions"];
-  locationsParameters: LocationParams;
+  locations: MatTableDataSource<any> = new MatTableDataSource<any>();
+  locationParameters: LocationParameters = new LocationParameters();
   currentLocation: any;
+  orderBy = "Name";
+  orderDescending = false;
   pageIndex = 0;
   pageSize = 5;
   length: number
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  dataSource: MatTableDataSource<any> = new MatTableDataSource()
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private locationService: LocationService,
-    private dialog: MatDialog) {
-    this.locationsParameters = {
-      pageSize: this.pageSize,
-      pageNumber: this.pageIndex
-    }
+  constructor(private locationService: LocationService, private dialog: MatDialog) {
+    this.locationParameters.pageNumber = this.pageIndex;
+    this.locationParameters.pageSize = this.pageSize;
+    this.locationParameters.orderBy = this.orderBy;
+    this.locationParameters.orderDescending = this.orderDescending;
   }
 
   ngOnInit(): void {
-    this.getAllLocations();
+    this.getLocations();
   }
 
-  getAllLocations() {
-    this.locationService.getAllLocationsPaged(this.locationsParameters)
+  getLocations() {
+    this.locationService.getLocationsPagedAndFiltered(this.locationParameters)
       .subscribe((response) => {
-        this.dataSource.data = response.data;
+        this.locations.data = response.data;
         this.pageIndex = response.currentPage;
         this.pageSize = response.pageSize;
         this.length = response.totalCount;
       });
   }
 
+  sortData(headerName: string) {
+    if (headerName) {
+      this.locationParameters.orderDescending = this.locationParameters.orderDescending === false ? true : false;
+      this.locationParameters.orderBy = headerName;
+      this.getLocations();
+    }
+  }
+
+  isSorting(name: string) {
+    return this.locationParameters.orderBy === name;
+  };
+
   pageChangeEvent(event: PageEvent) {
-    this.locationsParameters.pageSize = event.pageSize;
-    this.locationsParameters.pageNumber = event.pageIndex;
-    this.getAllLocations();
+    this.locationParameters.pageSize = event.pageSize;
+    this.locationParameters.pageNumber = event.pageIndex;
+    this.getLocations();
   }
 
   onDelete(location: any): void {
@@ -80,7 +91,7 @@ export class LocationComponent implements OnInit {
     this.locationService.deleteLocation(this.currentLocation.locationId).subscribe(
       {
         next: resp => {
-          this.getAllLocations();
+          this.getLocations();
         },
         error: error => {
           console.log("device type not found");
@@ -89,6 +100,3 @@ export class LocationComponent implements OnInit {
     );
   }
 }
-
-
-

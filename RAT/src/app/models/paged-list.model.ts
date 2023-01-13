@@ -1,4 +1,4 @@
-export class LocationPaged {
+export class PagedList {
    currentPage: number = 0;
    totalPages: number = 0;
    pageSize: number = 0;
