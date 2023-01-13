@@ -66,14 +66,22 @@ export class MapComponent implements AfterViewInit {
       this.latitudeEvent.emit(this.lat);
       this.lng = e.latlng.lng;
       this.longitudeEvent.emit(this.lng);
+      this.marker.on('drag', (e: any) => {
+          this.lat = e.latlng.lat;
+          this.latitudeEvent.emit(this.lat);
+          this.lng = e.latlng.lng;
+          this.longitudeEvent.emit(this.lng);
+      })
+    });
 
+    if (this.marker != undefined) {
       this.marker.on('drag', (e: any) => {
         this.lat = e.latlng.lat;
         this.latitudeEvent.emit(this.lat);
         this.lng = e.latlng.lng;
         this.longitudeEvent.emit(this.lng);
       })
-    });
+    }
   }
 
   getCurrentPosition(): Promise<any> {

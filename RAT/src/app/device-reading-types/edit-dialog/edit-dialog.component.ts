@@ -46,7 +46,6 @@ export class EditDeviceReadingTypeDialogComponent implements OnInit {
         this.dialogRef.close(this.dialogStatus);
       },
       error: (e) => {
-        if (e.status == 400) { this.showError = true; }
       }
     })
 
