@@ -9,12 +9,14 @@
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="name">Name</mat-label>
             <input formControlName="name" matInput type="text" placeholder="Name" required>
+            <mat-error *ngIf="addDeviceControls.name.hasError">Please enter a valid device name</mat-error>
           </mat-form-field>
 
           <span class="field-name">Serial number<span class="star"> *</span></span>
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="serialNumber">Serial number</mat-label>
             <input formControlName="serialNumber" matInput type="text" placeholder="Serial number" required>
+            <mat-error *ngIf="addDeviceControls.serialNumber.hasError">Please enter a valid serial number</mat-error>
           </mat-form-field>
 
           <span class="field-name">Type<span class="star"> *</span></span>
@@ -22,7 +24,8 @@
             <mat-label for="deviceType">Select type</mat-label>
             <mat-select matInput formControlName="deviceType" placeholder="Type">
               <mat-option *ngFor="let deviceType of allDeviceTypes" [value]="deviceType">
-                {{ deviceType.name }}</mat-option>
+                {{ deviceType.name }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -53,10 +56,11 @@
             <input formControlName="alias" matInput type="text" placeholder="Alias">
           </mat-form-field>
 
-          <span class="field-name">Comma separated email addresses for device alerts</span>
+          <span class="field-name">Comma separated email addresses for device alerts<span class="star"> *</span></span>
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="emails">Emails</mat-label>
-            <input formControlName="emails" matInput type="email" placeholder="Emails">
+            <input formControlName="emails" matInput matInput placeholder="Emails" type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
+            <mat-error *ngIf="addDeviceControls.emails.hasError">Please enter a valid email</mat-error>
           </mat-form-field>
         </div>
         <div class="right-side">

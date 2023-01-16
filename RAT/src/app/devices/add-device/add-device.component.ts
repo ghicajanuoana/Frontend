@@ -43,7 +43,7 @@ export class AddDeviceComponent implements OnInit {
     this.getAllDeviceTypes();
     this.addDeviceForm = this.formBuilder.group({
       name: ["", Validators.required],
-      emails: ["", Validators.email],
+      emails: ["", Validators.email, Validators.required],
       location: ["", Validators.required],
       deviceType: ["", Validators.required],
       serialNumber: ["", Validators.required],
@@ -54,6 +54,10 @@ export class AddDeviceComponent implements OnInit {
       description: [""],
 
     })
+  }
+
+  get addDeviceControls(): any {
+    return this.addDeviceForm.controls;
   }
 
   private getAllLocations(): void {
