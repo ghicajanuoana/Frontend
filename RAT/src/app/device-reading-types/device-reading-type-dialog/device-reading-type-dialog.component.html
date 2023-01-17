@@ -10,11 +10,10 @@
                 <mat-error *ngIf="addDeviceReadingType.name.hasError">Please enter a name</mat-error>
             </mat-form-field>
 
-            <div *ngIf="showError" class="unique-name-error">Please enter an unique name !</div>
-
-            <span class="field-name">Unit</span>
+            <span class="field-name">Unit<span class="required-star"> *</span></span>
             <mat-form-field floatLabel="never" class="input-text-field">
-                <input matInput placeholder="Unit" type="text" name="unit" formControlName="unit" type="text">
+                <input matInput placeholder="Unit" type="text" name="unit" formControlName="unit" type="text" required>
+                <mat-error *ngIf="addDeviceReadingType.unit.hasError">Please enter a unit</mat-error>
             </mat-form-field>
         </div>
         <div mat-dialog-actions class="dialog-buttons">
