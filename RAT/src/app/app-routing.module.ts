@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddDeviceComponent } from './devices/add-device/add-device.component';
+import { AddEditDeviceComponent } from './devices/add-edit-device/add-edit-device.component';
 import { AddAndEditLocationComponent } from './location/add-edit-location/add-edit-location.component';
 import { DeviceTypeComponent } from './devices/device-type/device-type.component';
 import { DeviceComponent } from './devices/device/device.component';
@@ -18,10 +18,6 @@ const routes: Routes = [
   {
     path: "locations",
     component: LocationComponent
-  },
-  {
-    path: "device-add",
-    component: AddDeviceComponent
   },
   {
     path: "devices",
@@ -48,6 +44,20 @@ const routes: Routes = [
   {
     path: "thresholds",
     component: ThresholdComponent
+  },
+  {
+    path: "device/:id",
+    component: AddEditDeviceComponent,
+    data: {
+      isEditMode: true
+    }
+  },
+  {
+    path: "device",
+    component: AddEditDeviceComponent,
+    data: {
+      isEditMode: false
+    }
   },
   {
     path: "device-reading-types",

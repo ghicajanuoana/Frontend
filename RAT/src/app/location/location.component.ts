@@ -94,7 +94,7 @@ export class LocationComponent implements OnInit {
           this.getLocations();
         },
         error: error => {
-          console.log("device type not found");
+          console.log("location not found");
         }
       }
     );

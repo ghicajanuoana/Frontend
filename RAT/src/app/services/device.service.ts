@@ -19,7 +19,7 @@ export class DeviceService {
     }
 
     getDevice(id: number) {
-        return this.http.get<Devices>(`${this.apiURL}/getDevice/${id}`, header)
+        return this.http.get<Devices>(`${this.apiURL}/${id}`, header)
     }
 
     addDevice(device: Devices) {
@@ -28,5 +28,9 @@ export class DeviceService {
 
     deleteDevice(id: number) {
         return this.http.delete(`${this.apiURL}/${id}`, header)
+    }
+
+    updateDevice(device: Devices) {
+        return this.http.put<Devices>(`${this.apiURL}/updateDevice`, device, header)
     }
 }

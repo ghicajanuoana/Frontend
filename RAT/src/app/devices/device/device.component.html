@@ -37,7 +37,7 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> Actions </th>
           <td mat-cell *matCellDef="let device">
-            <button mat-icon-button>
+            <button mat-icon-button routerLink="/device/{{device.deviceId}}">
               <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button (click)="onDelete(device)">
@@ -51,6 +51,6 @@
       </table>
     </mat-card-content>
     <mat-divider></mat-divider>
-    <button class="button-link" mat-raised-button routerLink="/device-add">ADD DEVICE</button>
+    <button class="button-link" mat-raised-button routerLink="/device">ADD DEVICE</button>
   </mat-card>
 </div>
