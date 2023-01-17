@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Devices } from '../../models/device.model';
 import { DeviceService } from '../../services/device.service';
 import { ConfirmationDialogComponent } from '../device-type/confirmation-dialog/confirmation-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-device',
@@ -18,7 +19,7 @@ export class DeviceComponent implements OnInit {
 
   columnsToDisplay: string[] = ["name", "serialNumber", "description", "imagePath", "deviceType", "location", "actions"];
 
-  constructor(public router: Router, public deviceService: DeviceService, public dialog: MatDialog) { }
+  constructor(public router: Router, public deviceService: DeviceService, public dialog: MatDialog, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getDevices();
@@ -54,8 +55,10 @@ export class DeviceComponent implements OnInit {
     this.deviceService.deleteDevice(this.currentDevice.deviceId).subscribe({
       next: resp => {
         this.getDevices();
+        this.toastr.info(resp);
       },
       error: error => {
+        this.toastr.error(error);
       }
     });
   }

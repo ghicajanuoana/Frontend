@@ -10,6 +10,7 @@ import { DeviceReadingTypesService } from '../services/device-reading-types.serv
 import { DeviceReadingTypeDialogComponent } from './device-reading-type-dialog/device-reading-type-dialog.component';
 import { ConfirmationDialogComponent } from '../devices/device-type/confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from '../devices/device-type/delete-confirmation/delete-confirmation.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-device-reading-types',
@@ -36,7 +37,7 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
     unit: ''
   };
 
-  constructor(public router: Router, public deviceReadingTypeService: DeviceReadingTypesService, public dialog: MatDialog) { }
+  constructor(public router: Router, public deviceReadingTypeService: DeviceReadingTypesService, public dialog: MatDialog, private toastr: ToastrService) { }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -129,9 +130,10 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
     this.deviceReadingTypeService.deleteDeviceReadingType(deviceReadingType.deviceReadingTypeId as number).subscribe({
       next: resp => {
         this.getDeviceReadingTypes();
+        this.toastr.info(resp);
       },
       error: error => {
-        console.log("Device reading type not found");
+        this.toastr.error(error);
       }
     });
   }

@@ -9,6 +9,7 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-device-type',
@@ -28,7 +29,7 @@ export class DeviceTypeComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public router: Router, public deviceTypeService: DeviceTypeService, public dialog: MatDialog) { }
+  constructor(public router: Router, public deviceTypeService: DeviceTypeService, public dialog: MatDialog, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getDeviceTypes();
@@ -92,13 +93,13 @@ export class DeviceTypeComponent implements OnInit, AfterViewInit {
   }
 
   deleteDeviceType(): void {
-
-    this.deviceTypeService.DeleteDeviceType(this.currentDeviceType.deviceTypeId).subscribe({
+    this.deviceTypeService.deleteDeviceType(this.currentDeviceType.deviceTypeId).subscribe({
       next: resp => {
         this.getDeviceTypes();
+        this.toastr.info(resp);
       },
       error: error => {
-        console.log("device type not found");
+        this.toastr.error(error);
       }
     });
   }

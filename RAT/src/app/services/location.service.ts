@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Location } from "../models/location.model";
 import { ConfigService } from "./configuration.service";
 import { header } from "./global.service";
@@ -47,6 +47,7 @@ export class LocationService {
   }
 
   deleteLocation(id: number) {
-    return this.http.delete(`${this.apiURL}/${id}`, header)
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    return this.http.delete(`${this.apiURL}/${id}`, { headers, responseType: 'text'})
   }
 }

@@ -7,6 +7,7 @@ import { DeleteConfirmationComponent } from '../devices/device-type/delete-confi
 import { Location } from '../models/location.model';
 import { LocationService } from '../services/location.service';
 import { LocationParameters } from '../models/location-parameters.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-location',
@@ -27,7 +28,7 @@ export class LocationComponent implements OnInit {
   length: number
   pageSizeOptions: number[] = [5, 10, 25, 100];
 
-  constructor(private locationService: LocationService, private dialog: MatDialog) {
+  constructor(private locationService: LocationService, private dialog: MatDialog, private toastr: ToastrService) {
     this.locationParameters.pageNumber = this.pageIndex;
     this.locationParameters.pageSize = this.pageSize;
     this.locationParameters.orderBy = this.orderBy;
@@ -92,9 +93,10 @@ export class LocationComponent implements OnInit {
       {
         next: resp => {
           this.getLocations();
+          this.toastr.info(resp);
         },
         error: error => {
-          console.log("location not found");
+          this.toastr.error(error);
         }
       }
     );

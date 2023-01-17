@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeviceReadingType } from '../models/device-reading-types';
 import { ConfigService } from './configuration.service';
@@ -33,6 +33,7 @@ export class DeviceReadingTypesService {
   }
 
   deleteDeviceReadingType(id: number) {
-    return this.http.delete(`${this.apiURL}/${id}`, header);
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    return this.http.delete(`${this.apiURL}/${id}`, { headers, responseType: 'text'});
   }
 }

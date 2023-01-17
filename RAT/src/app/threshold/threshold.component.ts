@@ -7,6 +7,7 @@ import { ConfirmationDialogComponent } from '../devices/device-type/confirmation
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-threshold',
@@ -37,7 +38,7 @@ export class ThresholdComponent implements OnInit, AfterViewInit {
     maxValue: ''
   };
 
-  constructor(public thresholdService: ThresholdsService, public dialog: MatDialog) { }
+  constructor(public thresholdService: ThresholdsService, public dialog: MatDialog, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getThresholds();
@@ -115,9 +116,10 @@ export class ThresholdComponent implements OnInit, AfterViewInit {
     this.thresholdService.deleteThreshold(thresholdId).subscribe({
       next: resp => {
         this.getThresholds();
+        this.toastr.info(resp);
       },
       error: error => {
-        console.log(error);
+        this.toastr.error(error);
       }
     });
   }

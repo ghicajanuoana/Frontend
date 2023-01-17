@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http"
+import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 import { DeviceTypes } from "../models/device-type.model";
 import { ConfigService } from "./configuration.service"
@@ -22,8 +22,9 @@ export class DeviceTypeService {
     return this.http.get(`${this.apiURL}/checkDeviceType/${id}`, header);
   }
 
-  DeleteDeviceType(id: number) {
-    return this.http.delete(`${this.apiURL}/deleteById/${id}`, header);
+  deleteDeviceType(id: number) {
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    return this.http.delete(`${this.apiURL}/deleteById/${id}`, { headers, responseType: 'text'});
   }
 
   getAllDeviceTypes() {
