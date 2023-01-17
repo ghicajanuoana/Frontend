@@ -1,0 +1,22 @@
+.form-field {
+  border: solid 2px #dbdfe4;
+  max-width: 90%;
+  max-height: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 2px;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.card-container {
+  width: 97%;
+  margin: auto;
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
