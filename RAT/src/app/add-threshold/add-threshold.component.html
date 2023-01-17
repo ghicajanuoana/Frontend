@@ -32,21 +32,21 @@
       <span class="field-name">Warning value<span class="required-star"> *</span></span>
       <mat-form-field floatLabel="never" class="input-text-field">
         <mat-label for="warningValue">Warning Value</mat-label>
-        <input formControlName="warningValue" matInput type="text" placeholder="Warning value">
+        <input autocomplete="off" formControlName="warningValue" matInput type="text" placeholder="Warning value">
         <mat-error *ngIf="addThresholdForm.get('warningValue')!.hasError">Please input a valid value</mat-error>
       </mat-form-field>
 
       <span class="field-name">Critical value<span class="required-star"> *</span></span>
       <mat-form-field floatLabel="never" class="input-text-field">
         <mat-label for="criticalValue">Critical Value</mat-label>
-        <input formControlName="criticalValue" matInput type="text" placeholder="Critical value">
+        <input autocomplete="off" formControlName="criticalValue" matInput type="text" placeholder="Critical value">
         <mat-error *ngIf="addThresholdForm.get('criticalValue')!.hasError">Please input a valid value</mat-error>
       </mat-form-field>
 
       <span class="field-name">Max value<span class="required-star"> *</span></span>
       <mat-form-field floatLabel="never" class="input-text-field">
         <mat-label for="maxValue">Max Value</mat-label>
-        <input formControlName="maxValue" matInput type="text" placeholder="Max value">
+        <input autocomplete="off" formControlName="maxValue" matInput type="text" placeholder="Max value">
         <mat-error *ngIf="addThresholdForm.get('maxValue')!.hasError">Please input a valid value</mat-error>
       </mat-form-field>
 

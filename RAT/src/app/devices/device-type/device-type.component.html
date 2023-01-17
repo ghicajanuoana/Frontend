@@ -10,7 +10,7 @@
         </ng-container>
         <ng-container matColumnDef="name-filter">
           <th mat-header-cell *matHeaderCellDef>
-            <input matInput placeholder="Name" class="filter-border" (keyup)="applyFilter($event)">
+            <input autocomplete="off" matInput placeholder="Name" class="filter-border" (keyup)="applyFilter($event)">
           </th>
         </ng-container>
         <ng-container matColumnDef="action-filter">

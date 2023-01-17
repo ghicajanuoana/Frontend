@@ -8,7 +8,7 @@
             <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
               <div fxLayout fxLayoutAlign="center center">
                 <mat-form-field floatLabel="never" class="form-field">
-                  <input matInput type="text" [formControl]="nameFilter" placeholder="Name">
+                  <input autocomplete="off" matInput type="text" [formControl]="nameFilter" placeholder="Name">
                 </mat-form-field>
               </div>
             </th>
@@ -18,7 +18,7 @@
             <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
               <div fxLayout fxLayoutAlign="center center">
                 <mat-form-field floatLabel="never" class="form-field">
-                  <input matInput type="text" [formControl]="unitFilter" placeholder="Unit">
+                  <input autocomplete="off" matInput type="text" [formControl]="unitFilter" placeholder="Unit">
                 </mat-form-field>
               </div>
             </th>
