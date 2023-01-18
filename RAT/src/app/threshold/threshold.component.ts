@@ -93,7 +93,7 @@ export class ThresholdComponent implements OnInit, AfterViewInit {
         this.dataSource.data = resp;
       },
       error: error => {
-        console.log(error)
+        this.toastr.error(error.message);
       }
     });
   }
@@ -119,7 +119,7 @@ export class ThresholdComponent implements OnInit, AfterViewInit {
         this.toastr.info(resp);
       },
       error: error => {
-        this.toastr.error(error);
+        this.toastr.error(error.message);
       }
     });
   }

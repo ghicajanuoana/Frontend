@@ -41,13 +41,12 @@ export class DeviceReadingTypeDialogComponent implements OnInit {
   dialogSave(deviceReadingType: { deviceReadingTypeId: number, name: string, unit: string }) {
     if (!this.data.isEditMode) {
       this.deviceReadingTypeService.addDeviceReadingType(deviceReadingType).subscribe({
-        next: resp => {
+        next: () => {
           this.dialogRef.close(this.dialogStatus);
           this.toastr.success("Device reading type succesfully added!");
         },
         error: error => {
-          console.log(error);
-          if (error.status == 400) {
+          if (error.status === 700) {
             this.toastr.error(error.error)
           }
         },
@@ -57,15 +56,14 @@ export class DeviceReadingTypeDialogComponent implements OnInit {
       this.data.deviceReadingType.name = deviceReadingType.name;
       this.data.deviceReadingType.unit = deviceReadingType.unit;
       this.deviceReadingTypeService.updateDeviceReadingType(this.data.deviceReadingType).subscribe({
-        next: resp => {
+        next: () => {
           this.dialogRef.close(this.dialogStatus);
           this.deviceReadingTypeService.getAllDeviceReadingTypes();
           this.toastr.success("Device reading type succesfully saved!");
         },
         error: error => {
-          console.log(error);
-          if (error.status == 400) {
-            this.toastr.error(error.error)
+          if (error.status === 702 || error.status === 700) {
+            this.toastr.error(error.error);
           }
         }
       })

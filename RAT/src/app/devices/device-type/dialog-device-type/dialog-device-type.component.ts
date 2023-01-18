@@ -34,14 +34,13 @@ export class DialogDeviceTypeComponent {
     deviceTypes.name = this.deviceTypeName;
     if (!this.data.isEditMode) {
       this.deviceTypeService.addDeviceType(deviceTypes).subscribe({
-        next: resp => {
+        next: () => {
           this.toastr.success("Device type successfully added!");
           this.dialogRef.close(this.dialogStatus);
         },
         error: error => {
-          console.log(error)
           if (error.status == 700) {
-            this.toastr.error("Error, device type name must be unique!");
+            this.toastr.error(error.error);
           }
         }
       })
@@ -49,13 +48,13 @@ export class DialogDeviceTypeComponent {
     else {
       deviceTypes.deviceTypeId = this.deviceTypeId;
       this.deviceTypeService.updateDeviceType(deviceTypes).subscribe({
-        next: resp => {
+        next: () => {
           this.toastr.success("Device type successfully updated!");
           this.dialogRef.close(this.dialogStatus);
         },
         error: error => {
-          if (error.status == 409) {
-            this.toastr.error("Error, device type name must be unique!");
+          if (error.status === 702 || error.status === 700) {
+            this.toastr.error(error.error);
           }
         }
       })

@@ -5,7 +5,7 @@ import { LocationService } from 'src/app/services/location.service';
 import { Location } from 'src/app/models/location.model';
 import { DeviceTypeService } from 'src/app/services/device-type.service';
 import { DeviceTypes } from 'src/app/models/device-type.model';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -26,7 +26,7 @@ export class AddEditDeviceComponent implements OnInit {
   constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router, private deviceService: DeviceService,
     private locationService: LocationService, private deviceTypeService: DeviceTypeService, private route: ActivatedRoute) {
   }
-  
+
   ngOnInit(): void {
     this.deviceId = this.route.snapshot.paramMap.get('id');
     this.isEditMode = this.route.snapshot.data['isEditMode'];
@@ -56,7 +56,7 @@ export class AddEditDeviceComponent implements OnInit {
         this.allLocations = resp;
       },
       error: error => {
-        console.log(error);
+        this.toastr.error(error.message);
       }
     })
   }
@@ -67,7 +67,7 @@ export class AddEditDeviceComponent implements OnInit {
         this.allDeviceTypes = resp;
       },
       error: error => {
-        console.log(error);
+        this.toastr.error(error.message);
       }
     })
   }
@@ -100,7 +100,9 @@ export class AddEditDeviceComponent implements OnInit {
               this.router.navigate(['/devices']);
             },
             error: (e) => {
-              this.toastr.error(e.errorMessage);
+              if (e.status === 702 || e.status === 700) {
+                this.toastr.error(e.error);
+              }
             }
           }
         )
@@ -113,7 +115,9 @@ export class AddEditDeviceComponent implements OnInit {
               this.router.navigate(['/devices']);
             },
             error: (e) => {
-              this.toastr.error(e.errorMessage);
+              if (e.status === 700) {
+                this.toastr.error(e.error);
+              }
             }
           }
         );
@@ -127,7 +131,9 @@ export class AddEditDeviceComponent implements OnInit {
         this.device = resp;
       },
       error: (e) => {
-        this.toastr.error("Device not found");
+        if (e.status === 702) {
+          this.toastr.error(e.error);
+        }
       }
     });
   }

@@ -96,7 +96,7 @@ export class LocationComponent implements OnInit {
           this.toastr.info(resp);
         },
         error: error => {
-          this.toastr.error(error);
+          this.toastr.error(error.message);
         }
       }
     );

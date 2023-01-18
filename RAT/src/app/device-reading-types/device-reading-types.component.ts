@@ -37,7 +37,10 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
     unit: ''
   };
 
-  constructor(public router: Router, public deviceReadingTypeService: DeviceReadingTypesService, public dialog: MatDialog, private toastr: ToastrService) { }
+  constructor(public router: Router,
+    public deviceReadingTypeService: DeviceReadingTypesService,
+    public dialog: MatDialog,
+    private toastr: ToastrService) { }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -63,27 +66,27 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
   openAddDialog(): void {
     const dialogRef = this.dialog.open(DeviceReadingTypeDialogComponent,
       {
-        data: { deviceReadingType:{ name:this.name, unit:this.unit}, isEditMode: false, dialogTitle:"Add device reading type"}
+        data: { deviceReadingType: { name: this.name, unit: this.unit }, isEditMode: false, dialogTitle: "Add device reading type" }
       });
 
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.getDeviceReadingTypes();
-        }
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getDeviceReadingTypes();
+      }
+    });
   }
 
-  openUpdateDialog(deviceReadingType: DeviceReadingType): void{
+  openUpdateDialog(deviceReadingType: DeviceReadingType): void {
     const dialogRef = this.dialog.open(DeviceReadingTypeDialogComponent,
       {
-        data: { deviceReadingType: deviceReadingType, isEditMode: true, dialogTitle:"Edit device reading type"}
+        data: { deviceReadingType: deviceReadingType, isEditMode: true, dialogTitle: "Edit device reading type" }
       });
 
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.getDeviceReadingTypes();
-        }
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getDeviceReadingTypes();
+      }
+    });
   }
 
   getDeviceReadingTypes() {
@@ -93,7 +96,7 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
         this.dataSource.data = resp;
       },
       error: error => {
-        console.log(error)
+        this.toastr.error(error.message);
       }
     });
     this.dataSource.data.sort((a, b) => a.name.localeCompare(b.name));
@@ -106,7 +109,7 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
   checkDeviceTypeIsUsed(id: number, device: any): void {
     this.deviceReadingTypeService.checkDeleteDeviceReadingTypeIsUsed(id).subscribe({
       next: resp => {
-        if (resp == false){
+        if (resp == false) {
           const dialogRef = this.dialog.open(ConfirmationDialogComponent);
           dialogRef.componentInstance.message = "Are you sure you want to delete this device reading type?";
           dialogRef.afterClosed().subscribe(result => {
@@ -114,26 +117,28 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
               this.deleteDeviceReadingType(device);
           });
         }
-        else{
+        else {
           const dialogRef = this.dialog.open(DeleteConfirmationComponent);
           dialogRef.componentInstance.message = "This device reading type is in use, please remove it from all devices!";
           dialogRef.componentInstance.title = "Device reading type in use!"
         }
       },
       error: error => {
-        console.log(error);
+        this.toastr.error(error.error);
       }
     });
   }
 
-  deleteDeviceReadingType(deviceReadingType:DeviceReadingType): void {
+  deleteDeviceReadingType(deviceReadingType: DeviceReadingType): void {
     this.deviceReadingTypeService.deleteDeviceReadingType(deviceReadingType.deviceReadingTypeId as number).subscribe({
       next: resp => {
         this.getDeviceReadingTypes();
         this.toastr.info(resp);
       },
       error: error => {
-        this.toastr.error(error);
+        if (error.status === 701) {
+          this.toastr.error(error.error);
+        }
       }
     });
   }

@@ -75,8 +75,9 @@ export class AddAndEditLocationComponent implements OnInit {
             this.router.navigate(['/locations']);
           },
           error: (e) => {
-            this.toastr.error("Error, location name must be unique!");
-            this.errorMessage = e.error;
+            if (e.status === 700) {
+              this.toastr.error(e.error);
+            }
           }
         });
       } else {
@@ -87,7 +88,9 @@ export class AddAndEditLocationComponent implements OnInit {
             this.router.navigate(['/locations']);
           },
           error: (e) => {
-            this.toastr.error("Error, location name must be unique!");
+            if (e.status === 702 || e.status === 700) {
+              this.toastr.error(e.error);
+            }
           }
         });
       }
@@ -120,7 +123,9 @@ export class AddAndEditLocationComponent implements OnInit {
         this.initLng = resp.longitude;
       },
       error: (e) => {
-        console.log(e);
+        if (e.status === 702) {
+          this.toastr.error(e.error);
+        }
       }
     });
   }

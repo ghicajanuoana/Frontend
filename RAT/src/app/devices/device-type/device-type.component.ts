@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DeviceTypes } from 'src/app/models/device-type.model';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { DeviceTypeService } from 'src/app/services/device-type.service';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogDeviceTypeComponent } from './dialog-device-type/dialog-device-type.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
@@ -59,7 +59,7 @@ export class DeviceTypeComponent implements OnInit, AfterViewInit {
         this.dataSource.data = resp;
       },
       error: error => {
-        console.log(error)
+        this.toastr.error(error.message);
       }
     })
   }
@@ -74,7 +74,7 @@ export class DeviceTypeComponent implements OnInit, AfterViewInit {
 
   checkDeviceTypeIsUsed(id: number, device: any): void {
     this.deviceTypeService.checkDeleteDeviceTypeIsUsed(id).subscribe({
-      next: resp => {
+      next: () => {
         this.deviceFound = false;
         const dialogRef = this.dialog.open(ConfirmationDialogComponent);
         dialogRef.componentInstance.message = "Are you sure you want to delete this device type?";
@@ -84,7 +84,7 @@ export class DeviceTypeComponent implements OnInit, AfterViewInit {
             this.deleteDeviceType();
         });
       },
-      error: error => {
+      error: () => {
         const dialogRef = this.dialog.open(DeleteConfirmationComponent);
         dialogRef.componentInstance.message = "This device type is in use, please remove it from all devices!";
         dialogRef.componentInstance.title = "Device type in use!"
@@ -99,7 +99,7 @@ export class DeviceTypeComponent implements OnInit, AfterViewInit {
         this.toastr.info(resp);
       },
       error: error => {
-        this.toastr.error(error);
+        this.toastr.error(error.error.Message);
       }
     });
   }

@@ -7,6 +7,7 @@ import { DeviceReadingType } from '../models/device-reading-types';
 import { DeviceReadingTypesService } from '../services/device-reading-types.service';
 import { ThresholdsService } from '../services/threshold.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-threshold',
@@ -18,13 +19,15 @@ export class AddThresholdComponent implements OnInit {
   allDeviceTypes: DeviceTypes[] = [];
   allDeviceReadingTypes: DeviceReadingType[] = [];
   addThresholdForm!: FormGroup;
+  numRegex = /^-?\d*[.,]?\d{0,2}$/;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private deviceReadingTypesService: DeviceReadingTypesService,
     private deviceTypeService: DeviceTypeService,
-    private thresholdService: ThresholdsService) { }
-    numRegex = /^-?\d*[.,]?\d{0,2}$/;
+    private thresholdService: ThresholdsService,
+    private toastr: ToastrService) { }
+
 
   ngOnInit(): void {
     this.getAllDeviceTypes();
@@ -45,7 +48,7 @@ export class AddThresholdComponent implements OnInit {
         this.allDeviceTypes = resp;
       },
       error: error => {
-        console.log(error);
+        this.toastr.error(error.message);
       }
     })
   }
@@ -56,7 +59,7 @@ export class AddThresholdComponent implements OnInit {
         this.allDeviceReadingTypes = resp;
       },
       error: error => {
-        console.log(error);
+        this.toastr.error(error.message);
       }
     })
   }
@@ -81,7 +84,9 @@ export class AddThresholdComponent implements OnInit {
           this.router.navigate(['/thresholds']);
         },
         error: (e) => {
-          console.log(e);
+          if (e.status === 700) {
+            this.toastr.error(e.error);
+          }
         }
       }
     );

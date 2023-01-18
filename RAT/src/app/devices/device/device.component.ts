@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Devices } from '../../models/device.model';
 import { DeviceService } from '../../services/device.service';
 import { ConfirmationDialogComponent } from '../device-type/confirmation-dialog/confirmation-dialog.component';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-device',
@@ -19,7 +19,10 @@ export class DeviceComponent implements OnInit {
 
   columnsToDisplay: string[] = ["name", "serialNumber", "description", "imagePath", "deviceType", "location", "actions"];
 
-  constructor(public router: Router, public deviceService: DeviceService, public dialog: MatDialog, private toastr: ToastrService) { }
+  constructor(public router: Router,
+    public deviceService: DeviceService,
+    public dialog: MatDialog,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getDevices();
@@ -31,7 +34,7 @@ export class DeviceComponent implements OnInit {
         this.devices = resp;
       },
       error: error => {
-        console.log(error)
+        this.toastr.error(error.message);
       }
     })
     this.devices.sort((a, b) => a.name.localeCompare(b.name));
@@ -58,7 +61,7 @@ export class DeviceComponent implements OnInit {
         this.toastr.info(resp);
       },
       error: error => {
-        this.toastr.error(error);
+        this.toastr.error(error.error.Message);
       }
     });
   }
