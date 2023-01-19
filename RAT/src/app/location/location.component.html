@@ -1,55 +1,55 @@
-<div class="location-container">
+<div>
   <mat-card class="mat-elevation-z10 card-container">
-    <mat-card-title>Locations</mat-card-title>
+    <mat-card-title class="title">Locations</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content>
-      <table mat-table [dataSource]="locations" class="mat-elevation-z8 location-table">
+      <table mat-table [dataSource]="locations" class="mat-elevation-z8 width-table">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef (click)="sortData('Name')"> Name
-            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('Name')"
-              class="sort-arrow">arrow_downward</mat-icon>
-            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('Name')"
-              class="sort-arrow">arrow_upward</mat-icon>
+            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('Name')" class="sort-arrow">arrow_downward
+            </mat-icon>
+            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('Name')" class="sort-arrow">arrow_upward
+            </mat-icon>
           </th>
           <td mat-cell *matCellDef="let location"> {{location.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="country">
           <th mat-header-cell *matHeaderCellDef (click)="sortData('Country')"> Country
-            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('Country')"
-              class="sort-arrow">arrow_downward</mat-icon>
-            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('Country')"
-              class="sort-arrow">arrow_upward</mat-icon>
+            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('Country')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('Country')" class="sort-arrow">
+              arrow_upward</mat-icon>
           </th>
           <td mat-cell *matCellDef="let location"> {{location.country}} </td>
         </ng-container>
         <mat-divider [vertical]="true"></mat-divider>
         <ng-container matColumnDef="city">
           <th mat-header-cell *matHeaderCellDef (click)="sortData('City')"> City
-            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('City')"
-              class="sort-arrow">arrow_downward</mat-icon>
-            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('City')"
-              class="sort-arrow">arrow_upward</mat-icon>
+            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('City')" class="sort-arrow">arrow_downward
+            </mat-icon>
+            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('City')" class="sort-arrow">arrow_upward
+            </mat-icon>
           </th>
           <td mat-cell *matCellDef="let location"> {{location.city}} </td>
         </ng-container>
 
         <ng-container matColumnDef="address">
           <th mat-header-cell *matHeaderCellDef (click)="sortData('Address')"> Address
-            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('Address')"
-              class="sort-arrow">arrow_downward</mat-icon>
-            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('Address')"
-              class="sort-arrow">arrow_upward</mat-icon>
+            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('Address')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('Address')" class="sort-arrow">
+              arrow_upward</mat-icon>
           </th>
           <td mat-cell *matCellDef="let location"> {{location.address}} </td>
         </ng-container>
 
         <ng-container matColumnDef="contactEmail">
           <th mat-header-cell *matHeaderCellDef (click)="sortData('ContactEmail')"> Contact Email
-            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('ContactEmail')"
-              class="sort-arrow">arrow_downward</mat-icon>
-            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('ContactEmail')"
-              class="sort-arrow">arrow_upward</mat-icon>
+            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('ContactEmail')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('ContactEmail')" class="sort-arrow">
+              arrow_upward</mat-icon>
           </th>
           <td mat-cell *matCellDef="let location"> {{location.contactEmail}} </td>
         </ng-container>
@@ -58,8 +58,8 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
             <div fxLayout fxLayoutAlign="center center">
               <mat-form-field floatLabel="never" class="form-field">
-                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.name"
-                  (keyup)="getLocations()" placeholder="Name">
+                <input autocomplete="off" class="input-text-field" matInput type="text"
+                  [(ngModel)]="locationParameters.name" (keyup)="getLocations()" placeholder="Name">
               </mat-form-field>
             </div>
           </th>
@@ -69,8 +69,8 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
             <div fxLayout fxLayoutAlign="center center">
               <mat-form-field floatLabel="never" class="form-field">
-                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.country"
-                  (keyup)="getLocations()" placeholder="Country">
+                <input autocomplete="off" class="input-text-field" matInput type="text"
+                  [(ngModel)]="locationParameters.country" (keyup)="getLocations()" placeholder="Country">
               </mat-form-field>
             </div>
           </th>
@@ -80,8 +80,8 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
             <div fxLayout fxLayoutAlign="center center">
               <mat-form-field floatLabel="never" class="form-field">
-                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.city"
-                  (keyup)="getLocations()" placeholder="City">
+                <input autocomplete="off" class="input-text-field" matInput type="text"
+                  [(ngModel)]="locationParameters.city" (keyup)="getLocations()" placeholder="City">
               </mat-form-field>
             </div>
           </th>
@@ -91,8 +91,8 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
             <div fxLayout fxLayoutAlign="center center">
               <mat-form-field floatLabel="never" class="form-field">
-                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.address"
-                  (keyup)="getLocations()" placeholder="Address">
+                <input autocomplete="off" class="input-text-field" matInput type="text"
+                  [(ngModel)]="locationParameters.address" (keyup)="getLocations()" placeholder="Address">
               </mat-form-field>
             </div>
           </th>
@@ -102,8 +102,8 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
             <div fxLayout fxLayoutAlign="center center">
               <mat-form-field floatLabel="never" class="form-field">
-                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.contactEmail"
-                  (keyup)="getLocations()" placeholder="Contact Email">
+                <input autocomplete="off" class="input-text-field" matInput type="text"
+                  [(ngModel)]="locationParameters.contactEmail" (keyup)="getLocations()" placeholder="Contact Email">
               </mat-form-field>
             </div>
           </th>

@@ -1,66 +1,9 @@
-.title {
-    color: blue;
-    font-size: 30px;
-    margin-top: 100px;
-}
-
-.location-table {
-    width: 100%;
-}
-
-.card-container {
-    width: 90%;
-    margin: auto;
-    margin-bottom: 30px;
-    margin-top: 50px;
-}
-
-.button-link {
-  background-color: #3366ff;
-  color: white;
-  margin-top:20px;
-}
-
-.mat-row:nth-child(even) {
-  background-color: #edf1f7;
-}
-
-.mat-header-cell {
-  color: #1e6bb8;
-  font-size: 15px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.12);
-  border-left: 0.5px solid rgba(0, 0, 0, 0.12);
-  padding-left: 10px;
-  align-items: center;
-}
-
-.mat-cell {
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
-  border-top: 0.5px solid rgba(0, 0, 0, 0.12);
-  border-left: 0.5px solid rgba(0, 0, 0, 0.12);
+.sort-arrow {
+  transform: scale(0.7);
   vertical-align: middle;
-  padding-left:10px;
 }
 
-.mat-card-content{
-    margin-top:30px;
-    margin-bottom:30px;
-}
-
-.mat-card-title
-{
-    padding-bottom:10px;
-}
-
-.mat-row:hover {
-  background-color: #dadee3;
-}
-
-::ng-deep .mat-form-field-underline {
-    display: none;
-}
-
-.form-field {
+.mat-form-field {
   border: solid 2px #dbdfe4;
   max-width: 90%;
   max-height: 30px;
@@ -69,9 +12,4 @@
   align-items: center;
   padding-left: 10px;
   padding-top: 5px;
-}
-
-.sort-arrow {
-  transform: scale(0.7);
-  vertical-align: middle;
 }

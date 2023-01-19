@@ -1,38 +1,43 @@
 <mat-card class="mat-elevation-z10 card-container matcard">
   <mat-card-title class="title">{{!isEditMode ? 'Add' : 'Edit'}} device</mat-card-title>
+  <mat-divider></mat-divider>
   <mat-card-content>
-    <mat-divider></mat-divider>
-    <form class="mat-card-content" [formGroup]="addEditDeviceForm">
+    <form [formGroup]="addEditDeviceForm">
       <div class="left-and-right">
         <div class="left-side">
-          <span class="field-name">Name<span class="star"> *</span></span>
+          <span class="field-name">Name<span class="required-star"> *</span></span>
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="name">Name</mat-label>
-            <input autocomplete="off" formControlName="name" matInput type="text" placeholder="Name" required [(ngModel)]="device.name">
+            <input autocomplete="off" formControlName="name" matInput type="text" placeholder="Name" required
+              [(ngModel)]="device.name">
             <mat-error *ngIf="addEditDeviceControls.name.hasError">Please enter a valid device name</mat-error>
           </mat-form-field>
 
-          <span class="field-name">Serial number<span class="star"> *</span></span>
+          <span class="field-name">Serial number<span class="required-star"> *</span></span>
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="serialNumber">Serial number</mat-label>
-            <input autocomplete="off" formControlName="serialNumber" matInput type="text" placeholder="Serial number" required [(ngModel)]="device.serialNumber">
-            <mat-error *ngIf="addEditDeviceControls.serialNumber.hasError">Please enter a valid serial number</mat-error>
+            <input autocomplete="off" formControlName="serialNumber" matInput type="text" placeholder="Serial number"
+              required [(ngModel)]="device.serialNumber">
+            <mat-error *ngIf="addEditDeviceControls.serialNumber.hasError">Please enter a valid serial number
+            </mat-error>
           </mat-form-field>
 
-          <span class="field-name">Type<span class="star"> *</span></span>
+          <span class="field-name">Type<span class="required-star"> *</span></span>
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="deviceType">Select type</mat-label>
-            <mat-select matInput formControlName="deviceType" placeholder="Type" [compareWith]="compareObjects" [(ngModel)]="device.deviceType">
+            <mat-select matInput formControlName="deviceType" placeholder="Type" [compareWith]="compareObjects"
+              [(ngModel)]="device.deviceType">
               <mat-option *ngFor="let deviceType of allDeviceTypes" [value]="deviceType">
                 {{ deviceType.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
-          <span class="field-name">Location<span class="star"> *</span></span>
+          <span class="field-name">Location<span class="required-star"> *</span></span>
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="location">Select location</mat-label>
-            <mat-select matInput formControlName="location" placeholder="Location" [compareWith]="compareObjects" [(ngModel)]="device.location">
+            <mat-select matInput formControlName="location" placeholder="Location" [compareWith]="compareObjects"
+              [(ngModel)]="device.location">
               <mat-option *ngFor="let location of allLocations" [value]="location">
                 {{ location.name }}</mat-option>
             </mat-select>
@@ -41,45 +46,53 @@
           <span class="field-name">Software Version</span>
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="softwareVersion">Software Version</mat-label>
-            <input autocomplete="off" formControlName="softwareVersion" matInput type="text" placeholder="Software Version" [(ngModel)]="device.softwareVersion">
+            <input autocomplete="off" formControlName="softwareVersion" matInput type="text"
+              placeholder="Software Version" [(ngModel)]="device.softwareVersion">
           </mat-form-field>
 
           <span class="field-name">Firmware Version</span>
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="firmwareVersion">Firmware Version</mat-label>
-            <input autocomplete="off" formControlName="firmwareVersion" matInput type="text" placeholder="Firmware Version" [(ngModel)]="device.firmwareVersion">
+            <input autocomplete="off" formControlName="firmwareVersion" matInput type="text"
+              placeholder="Firmware Version" [(ngModel)]="device.firmwareVersion">
           </mat-form-field>
 
           <span class="field-name">Alias</span>
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="alias">Alias</mat-label>
-            <input autocomplete="off" formControlName="alias" matInput type="text" placeholder="Alias" [(ngModel)]="device.alias">
+            <input autocomplete="off" formControlName="alias" matInput type="text" placeholder="Alias"
+              [(ngModel)]="device.alias">
           </mat-form-field>
 
-          <span class="field-name">Comma separated email addresses for device alerts<span class="star"> *</span></span>
+          <span class="field-name">Comma separated email addresses for device alerts<span class="required-star">
+              *</span></span>
           <mat-form-field floatLabel="never" class="input-text-field">
             <mat-label for="emails">Emails</mat-label>
-            <input autocomplete="off" formControlName="emails" matInput matInput placeholder="Emails" type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required  [(ngModel)]="device.emails">
+            <input autocomplete="off" formControlName="emails" matInput matInput placeholder="Emails" type="email"
+              pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required [(ngModel)]="device.emails">
             <mat-error *ngIf="addEditDeviceControls.emails.hasError">Please enter a valid email</mat-error>
           </mat-form-field>
         </div>
         <div class="right-side">
 
           <span class="field-name">Image</span>
-          <input autocomplete="off" formControlName="imagePath" type="file" class="input-text-field" id="image" multiple [(ngModel)]="device.imagePath">
+          <input autocomplete="off" formControlName="imagePath" type="file" class="input-text-field" id="image" multiple
+            [(ngModel)]="device.imagePath">
 
           <span class="field-name">Description</span>
           <mat-form-field floatLabel="never" class="field-name-desc">
             <mat-label for="description">Descriptions</mat-label>
-            <textarea formControlName="description" matInput rows="4" cols="20" placeholder="Description" class="description" [(ngModel)]="device.description"></textarea> 
+            <textarea formControlName="description" matInput rows="4" cols="20" placeholder="Description"
+              class="description" [(ngModel)]="device.description"></textarea>
           </mat-form-field>
         </div>
       </div>
+      <mat-card-actions class="buttons-container">
+        <button mat-raised-button class="save-btn" (click)="addOrEditDevice()"
+          [disabled]="!addEditDeviceForm.valid">SAVE</button>
+        <button mat-raised-button class="cancel-btn" [routerLink]="['/devices']">CANCEL</button>
+      </mat-card-actions>
     </form>
-    <div class="buttons-container">
-      <button mat-raised-button class="save-button" (click)="addOrEditDevice()"
-        [disabled]="!addEditDeviceForm.valid">Save</button>
-      <button mat-raised-button class="cancel-button" [routerLink]="['/devices']">Cancel</button>
-    </div>
+
   </mat-card-content>
 </mat-card>

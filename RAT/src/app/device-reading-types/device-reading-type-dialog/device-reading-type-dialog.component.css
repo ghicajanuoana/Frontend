@@ -20,3 +20,11 @@
 ::ng-deep .mat-form-field-underline {
     display: none;
 }
+
+.cancel-btn {
+    background-color: #0095FF;
+    color: white;
+    width: 7%;
+    display: flex;
+    justify-content: center;
+}

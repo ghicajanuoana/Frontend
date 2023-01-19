@@ -1,22 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .width-table {
   width: 100%;
-  margin-bottom:20px;
 }
 
 .card-container {
-  width: 90%;
+  width: 94%;
   margin: auto;
   margin-bottom: 30px;
   margin-top: 50px;
 }
 
 .button-link {
-  background-color: #3366ff;
+  background-color: #0095FF;
   color: white;
   margin-top: 20px !important;
 }
@@ -31,6 +37,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-top: 0.5px solid rgba(0, 0, 0, 0.12);
   border-left: 0.5px solid rgba(0, 0, 0, 0.12) !important;
   padding-left: 10px !important;
+  padding-right: 10px;
 }
 
 .mat-cell {
@@ -39,15 +46,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-left: 0.5px solid rgba(0, 0, 0, 0.12) !important;
   vertical-align: middle;
   padding-left: 10px !important;
+  padding-right: 10px;
 }
 
-.mat-card-content {
-  margin-top: 30px;
-  margin-bottom: 30px !important;
+.mat-card-header {
+  font-weight: bold;
+  padding-bottom: 15px;
 }
 
 .mat-card-title {
-  padding-bottom: 10px;
+  font-size: 18px;
+  padding: 6px;
+  padding-left: 20px;
+}
+
+.mat-card-content {
+  margin-top: 15px;
+  margin-bottom: 10px !important;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .mat-row:hover {
@@ -61,42 +78,79 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .dialog-title {
-    font-weight: 500;
-    font-size: 20px;
-    padding-bottom: 20px;
-    margin-top: 10px;
+  font-weight: 500;
+  font-size: 20px;
+  padding-bottom: 20px;
+  margin-top: 10px;
 }
 
 .input-text-field {
-    min-width: 150px;
-    width: 98%;
-    background-color: #F7F9FC;
-    appearance: none;
-    border-radius: 5px;
-    padding-left: 17px;
-    max-height: 35px;
-    margin-bottom: 10px;
-    padding-bottom: 15px;
+  min-width: 150px;
+  width: 98%;
+  background-color: #F7F9FC;
+  appearance: none;
+  border-radius: 5px;
+  padding-left: 17px;
+  max-height: 35px;
+  margin-bottom: 10px;
+  padding-bottom: 15px;
 }
 
 .cancel-btn {
-    background-color: #0095FF;
-    color: white;
+  background-color: #0095FF;
+  color: white;
+  width: 7%;
+  display: flex;
+  justify-content: center;
 }
 
 .save-btn {
-    background-color: #E4E7ED;
+  background-color: white;
+  color: gray;
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  margin-left: 15px !important;
+}
+
+.mat-card-content {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .unique-name-error {
-    margin-bottom: 5px;
-    color: red;
+  margin-bottom: 5px;
+  color: red;
 }
 
 .required-star {
-    color: red;
+  color: red;
 }
 
 .error-message {
-    color: red;
+  color: red;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 15px;
+}
+
+.mat-select-arrow-wrapper {
+  margin-right: 12px;
+}
+
+.mat-form-field-underline {
+  display: none;
+}
+
+.field-name {
+  color: rgb(140, 145, 149);
+  font-size: smaller;
+  font-weight: bold;
+}
+
+.table-filter .mat-form-field-infix {
+  width: unset;
 }
