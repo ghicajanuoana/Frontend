@@ -8,6 +8,7 @@ import { LocationComponent } from './location/location.component';
 import { ThresholdComponent } from './threshold/threshold.component';
 import { DeviceReadingTypesComponent } from './device-reading-types/device-reading-types.component';
 import { AddThresholdComponent } from './add-threshold/add-threshold.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: "locations",
     component: LocationComponent
+  },
+  {
+    path: "users",
+    component: UserComponent
   },
   {
     path: "devices",

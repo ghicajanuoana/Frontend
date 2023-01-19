@@ -39,6 +39,7 @@ import { AddThresholdComponent } from './add-threshold/add-threshold.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ThresholdComponent } from './threshold/threshold.component';
 import { ToastrModule } from 'ngx-toastr';
+import { UserComponent } from './user/user.component';
 
 const appInitializer = (appConfig: ConfigService) => {
   return () => {
@@ -65,7 +66,8 @@ const appInitializer = (appConfig: ConfigService) => {
     AddThresholdComponent,
     DeleteConfirmationComponent,
     ConfirmationDialogComponent,
-    ThresholdComponent
+    ThresholdComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
