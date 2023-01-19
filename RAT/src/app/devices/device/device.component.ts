@@ -5,6 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Devices } from '../../models/device.model';
 import { DeviceService } from '../../services/device.service';
 import { ConfirmationDialogComponent } from '../device-type/confirmation-dialog/confirmation-dialog.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { DeviceParameters } from 'src/app/models/device-parameters.model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-device',
@@ -13,31 +16,60 @@ import { ConfirmationDialogComponent } from '../device-type/confirmation-dialog/
 })
 export class DeviceComponent implements OnInit {
 
-  devices: Devices[] = []
-
   currentDevice: any;
-
   columnsToDisplay: string[] = ["name", "serialNumber", "description", "imagePath", "deviceType", "location", "actions"];
+  devices: MatTableDataSource<any> = new MatTableDataSource<any>();
+  deviceParameters: DeviceParameters = new DeviceParameters();
+  orderBy = "Name";
+  orderDescending = false;
+  pageIndex = 0;
+  pageSize = 5;
+  length: number
+  pageSizeOptions: number[] = [5, 10, 25, 100];
 
-  constructor(public router: Router,
-    public deviceService: DeviceService,
-    public dialog: MatDialog,
-    private toastr: ToastrService) { }
+  constructor(public router: Router, public deviceService: DeviceService, public dialog: MatDialog, private toastr: ToastrService) {
+    this.deviceParameters.pageNumber = this.pageIndex;
+    this.deviceParameters.pageSize = this.pageSize;
+    this.deviceParameters.orderBy = this.orderBy;
+    this.deviceParameters.orderDescending = this.orderDescending;
+  }
 
   ngOnInit(): void {
     this.getDevices();
   }
 
   getDevices() {
-    this.deviceService.getAllDevices().subscribe({
-      next: resp => {
-        this.devices = resp;
-      },
-      error: error => {
-        this.toastr.error(error.message);
-      }
-    })
-    this.devices.sort((a, b) => a.name.localeCompare(b.name));
+    this.deviceService.getDevicesPagedAndFiltered(this.deviceParameters)
+      .subscribe((response) => {
+        this.devices.data = response.data;
+        this.pageIndex = response.currentPage;
+        this.pageSize = response.pageSize;
+        this.length = response.totalCount;
+      });
+  }
+
+  filterDevices() {
+    this.deviceParameters.pageNumber = 0;
+    this.pageIndex = 0;
+    this.getDevices();
+  }
+
+  sortData(headerName: string) {
+    if (headerName) {
+      this.deviceParameters.orderDescending = this.deviceParameters.orderDescending === false ? true : false;
+      this.deviceParameters.orderBy = headerName;
+      this.getDevices();
+    }
+  }
+
+  isSorting(name: string) {
+    return this.deviceParameters.orderBy === name;
+  };
+
+  pageChangeEvent(event: PageEvent) {
+    this.deviceParameters.pageSize = event.pageSize;
+    this.deviceParameters.pageNumber = event.pageIndex;
+    this.getDevices();
   }
 
   onDelete(device: any): void {

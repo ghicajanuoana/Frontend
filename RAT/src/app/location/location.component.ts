@@ -16,7 +16,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LocationComponent implements OnInit {
 
-  location: Location = new Location();
   columnsToDisplay: string[] = ["name", "country", "city", "address", "contactEmail", "actions"];
   locations: MatTableDataSource<any> = new MatTableDataSource<any>();
   locationParameters: LocationParameters = new LocationParameters();
@@ -47,6 +46,12 @@ export class LocationComponent implements OnInit {
         this.pageSize = response.pageSize;
         this.length = response.totalCount;
       });
+  }
+
+  filterLocations() {
+    this.locationParameters.pageNumber = 0;
+    this.pageIndex = 0;
+    this.getLocations();
   }
 
   sortData(headerName: string) {

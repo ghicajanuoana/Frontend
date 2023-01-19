@@ -1,0 +1,15 @@
+.sort-arrow {
+  transform: scale(0.7);
+  vertical-align: middle;
+}
+
+.mat-form-field {
+  border: solid 2px #dbdfe4;
+  max-width: 90%;
+  max-height: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-top: 5px;
+}

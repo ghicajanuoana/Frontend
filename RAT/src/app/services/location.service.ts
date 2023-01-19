@@ -22,15 +22,15 @@ export class LocationService {
 
   getLocationsPagedAndFiltered(locationParameters: LocationParameters) {
     let queryParams = new HttpParams();
-    queryParams = queryParams.append("pageNumber", String(locationParameters.pageNumber));
-    queryParams = queryParams.append("pageSize", locationParameters.pageSize);
+    queryParams = queryParams.append("pagingFilteringParameters.pageNumber", String(locationParameters.pageNumber));
+    queryParams = queryParams.append("pagingFilteringParameters.pageSize", locationParameters.pageSize);
     queryParams = queryParams.append("name", String(locationParameters.name));
     queryParams = queryParams.append("country", String(locationParameters.country));
     queryParams = queryParams.append("city", String(locationParameters.city));
     queryParams = queryParams.append("address", String(locationParameters.address));
     queryParams = queryParams.append("contactEmail", String(locationParameters.contactEmail));
-    queryParams = queryParams.append("orderBy", String(locationParameters.orderBy));
-    queryParams = queryParams.append("orderDescending", String(locationParameters.orderDescending));
+    queryParams = queryParams.append("pagingFilteringParameters.orderBy", String(locationParameters.orderBy));
+    queryParams = queryParams.append("pagingFilteringParameters.orderDescending", String(locationParameters.orderDescending));
     return this.http.get<PagedList>(`${this.apiURL}/getLocationsPagedAndFiltered?${queryParams}`, header)
   }
 
@@ -48,6 +48,6 @@ export class LocationService {
 
   deleteLocation(id: number) {
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    return this.http.delete(`${this.apiURL}/${id}`, { headers, responseType: 'text'})
+    return this.http.delete(`${this.apiURL}/${id}`, { headers, responseType: 'text' })
   }
 }

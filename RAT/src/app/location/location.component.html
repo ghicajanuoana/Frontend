@@ -58,8 +58,8 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
             <div fxLayout fxLayoutAlign="center center">
               <mat-form-field floatLabel="never" class="form-field">
-                <input autocomplete="off" class="input-text-field" matInput type="text"
-                  [(ngModel)]="locationParameters.name" (keyup)="getLocations()" placeholder="Name">
+                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.name"
+                  (keyup)="filterLocations()" placeholder="Name">
               </mat-form-field>
             </div>
           </th>
@@ -69,8 +69,8 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
             <div fxLayout fxLayoutAlign="center center">
               <mat-form-field floatLabel="never" class="form-field">
-                <input autocomplete="off" class="input-text-field" matInput type="text"
-                  [(ngModel)]="locationParameters.country" (keyup)="getLocations()" placeholder="Country">
+                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.country"
+                  (keyup)="filterLocations()" placeholder="Country">
               </mat-form-field>
             </div>
           </th>
@@ -80,8 +80,8 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
             <div fxLayout fxLayoutAlign="center center">
               <mat-form-field floatLabel="never" class="form-field">
-                <input autocomplete="off" class="input-text-field" matInput type="text"
-                  [(ngModel)]="locationParameters.city" (keyup)="getLocations()" placeholder="City">
+                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.city"
+                  (keyup)="filterLocations()" placeholder="City">
               </mat-form-field>
             </div>
           </th>
@@ -91,8 +91,8 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
             <div fxLayout fxLayoutAlign="center center">
               <mat-form-field floatLabel="never" class="form-field">
-                <input autocomplete="off" class="input-text-field" matInput type="text"
-                  [(ngModel)]="locationParameters.address" (keyup)="getLocations()" placeholder="Address">
+                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.address"
+                  (keyup)="filterLocations()" placeholder="Address">
               </mat-form-field>
             </div>
           </th>
@@ -102,8 +102,8 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
             <div fxLayout fxLayoutAlign="center center">
               <mat-form-field floatLabel="never" class="form-field">
-                <input autocomplete="off" class="input-text-field" matInput type="text"
-                  [(ngModel)]="locationParameters.contactEmail" (keyup)="getLocations()" placeholder="Contact Email">
+                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.contactEmail"
+                  (keyup)="filterLocations()" placeholder="Contact Email">
               </mat-form-field>
             </div>
           </th>
