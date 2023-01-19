@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { DeviceReadingType } from 'src/app/models/device-reading-types';
@@ -12,33 +11,33 @@ import { DeviceReadingTypesService } from 'src/app/services/device-reading-types
 })
 export class DeviceReadingTypeDialogComponent implements OnInit {
 
-  addDeviceReadingTypeForm!: FormGroup;
   dialogStatus: string = "closed";
+  deviceReadingTypeName: string;
+  deviceReadingTypeUnit: string;
+  deviceReadingTypeId: any;
 
   constructor(
     public dialogRef: MatDialogRef<DeviceReadingTypeDialogComponent>,
     public deviceReadingTypeService: DeviceReadingTypesService,
     private toastr: ToastrService,
-    private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: { deviceReadingType: DeviceReadingType, isEditMode: boolean, dialogTitle: string }
   ) { }
 
   ngOnInit(): void {
-    this.addDeviceReadingTypeForm = this.formBuilder.group({
-      name: [this.data.deviceReadingType.name, Validators.required],
-      unit: [this.data.deviceReadingType.unit]
-    })
+    this.deviceReadingTypeName = this.data.deviceReadingType.name;
+    this.deviceReadingTypeUnit = this.data.deviceReadingType.unit;
+    this.deviceReadingTypeId = this.data.deviceReadingType.deviceReadingTypeId;
   }
 
   onCancelClick(): void {
     this.dialogRef.close('closed');
   }
 
-  get addDeviceReadingType(): any {
-    return this.addDeviceReadingTypeForm.controls;
-  }
-
   dialogSave(deviceReadingType: { deviceReadingTypeId: number, name: string, unit: string }) {
+
+    deviceReadingType.name = this.deviceReadingTypeName;
+    deviceReadingType.unit = this.deviceReadingTypeUnit;
+
     if (!this.data.isEditMode) {
       this.deviceReadingTypeService.addDeviceReadingType(deviceReadingType).subscribe({
         next: () => {
@@ -53,12 +52,10 @@ export class DeviceReadingTypeDialogComponent implements OnInit {
       })
     }
     else {
-      this.data.deviceReadingType.name = deviceReadingType.name;
-      this.data.deviceReadingType.unit = deviceReadingType.unit;
-      this.deviceReadingTypeService.updateDeviceReadingType(this.data.deviceReadingType).subscribe({
+      deviceReadingType.deviceReadingTypeId = this.deviceReadingTypeId;
+      this.deviceReadingTypeService.updateDeviceReadingType(deviceReadingType).subscribe({
         next: () => {
           this.dialogRef.close(this.dialogStatus);
-          this.deviceReadingTypeService.getAllDeviceReadingTypes();
           this.toastr.success("Device reading type succesfully saved!");
         },
         error: error => {

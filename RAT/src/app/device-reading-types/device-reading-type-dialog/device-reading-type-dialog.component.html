@@ -1,24 +1,20 @@
 <div mat-dialog-content>
-    <form class="form-custom" [formGroup]="addDeviceReadingTypeForm">
-        <mat-card-title class="dialog-title">{{this.data.dialogTitle}}</mat-card-title>
-        <mat-divider></mat-divider>
-        <div class="form-content">
-            <span class="field-name">Name<span class="required-star"> *</span></span>
-            <mat-form-field floatLabel="never" class="input-text-field">
-                <input matInput placeholder="Name" type="text" name="deviceReadingTypeName" formControlName="name"
-                    type="test" required>
-                <mat-error *ngIf="addDeviceReadingType.name.hasError">Please enter a name</mat-error>
-            </mat-form-field>
-
-            <span class="field-name">Unit<span class="required-star"> *</span></span>
-            <mat-form-field floatLabel="never" class="input-text-field">
-                <input matInput placeholder="Unit" type="text" name="unit" formControlName="unit" type="text" required>
-                <mat-error *ngIf="addDeviceReadingType.unit.hasError">Please enter a unit</mat-error>
-            </mat-form-field>
-        </div>
+    <mat-card-title class="dialog-title">{{this.data.dialogTitle}}</mat-card-title>
+    <mat-divider></mat-divider>
+    <form class="form-custom" appearance="fill" #deviceReadingTypeForm="ngForm">
+        <span class="field-name">Name<span class="required-star"> *</span></span>
+        <mat-form-field floatLabel="never" class="input-text-field">
+            <input matInput placeholder="Name" type="text" name="deviceReadingTypeName"
+                [(ngModel)]="deviceReadingTypeName" required>
+        </mat-form-field>
+        <span class="field-name">Unit<span class="required-star"> *</span></span>
+        <mat-form-field floatLabel="never" class="input-text-field">
+            <input matInput placeholder="Unit" type="text" name="deviceReadingTypeUnit"
+                [(ngModel)]="deviceReadingTypeUnit" type="text" required>
+        </mat-form-field>
         <div mat-dialog-actions class="dialog-buttons">
-            <button class="save-btn" mat-raised-button (click)="dialogSave(addDeviceReadingTypeForm.value)"
-                [disabled]="!addDeviceReadingTypeForm.valid">SAVE</button>
+            <button class="save-btn" mat-raised-button (click)="dialogSave(deviceReadingTypeForm.value)"
+                [disabled]="!deviceReadingTypeForm.valid">SAVE</button>
             <button class="cancel-btn" mat-raised-button (click)="onCancelClick()">CANCEL</button>
         </div>
         <mat-divider></mat-divider>

@@ -33,6 +33,7 @@ export class DeviceTypeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getDeviceTypes();
+    this.dataSource.sortingDataAccessor = (data, sortHeaderId) => data[sortHeaderId].toLocaleLowerCase();
   }
 
   ngAfterViewInit(): void {

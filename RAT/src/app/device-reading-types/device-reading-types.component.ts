@@ -61,6 +61,7 @@ export class DeviceReadingTypesComponent implements OnInit, AfterViewInit {
     });
 
     this.dataSource.filterPredicate = this.customFilterPredicate();
+    this.dataSource.sortingDataAccessor = (data, sortHeaderId) => data[sortHeaderId].toLocaleLowerCase();
   }
 
   openAddDialog(): void {
