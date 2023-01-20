@@ -25,6 +25,14 @@ export class ThresholdsService {
 
     deleteThreshold(id: number) {
         const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-        return this.http.delete(`${this.apiURL}/${id}`, { headers, responseType: 'text'});
+        return this.http.delete(`${this.apiURL}/${id}`, { headers, responseType: 'text' });
+    }
+
+    getThreshold(id: number) {
+        return this.http.get<Threshold>(`${this.apiURL}/${id}`, header);
+    }
+
+    updateThreshold(threshold: Threshold) {
+        return this.http.put<Threshold>(`${this.apiURL}/updateThreshold`, threshold, header)
     }
 }

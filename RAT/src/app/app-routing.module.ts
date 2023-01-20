@@ -70,7 +70,17 @@ const routes: Routes = [
   },
   {
     path: "add-threshold",
-    component: AddThresholdComponent
+    component: AddThresholdComponent,
+    data: {
+      isEditMode: false
+    }
+  },
+  {
+    path: "add-threshold/:id",
+    component: AddThresholdComponent,
+    data: {
+      isEditMode: true
+    }
   },
   {
     path: "**",

@@ -8,6 +8,7 @@ import { DeviceReadingTypesService } from '../services/device-reading-types.serv
 import { ThresholdsService } from '../services/threshold.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-threshold',
@@ -20,18 +21,29 @@ export class AddThresholdComponent implements OnInit {
   allDeviceReadingTypes: DeviceReadingType[] = [];
   addThresholdForm!: FormGroup;
   numRegex = /^-?\d*[.,]?\d{0,2}$/;
+  isEditMode: boolean;
+  threshold: Threshold = new Threshold();
+  thresholdId: any;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private deviceReadingTypesService: DeviceReadingTypesService,
     private deviceTypeService: DeviceTypeService,
     private thresholdService: ThresholdsService,
+    private route: ActivatedRoute,
     private toastr: ToastrService) { }
 
-
   ngOnInit(): void {
+    this.thresholdId = this.route.snapshot.paramMap.get('id');
+    this.isEditMode = this.route.snapshot.data['isEditMode'];
+
+    if (this.isEditMode) {
+      this.getThresholdById();
+    }
+
     this.getAllDeviceTypes();
     this.getAllDeviceReadingTypes();
+
     this.addThresholdForm = this.formBuilder.group({
       deviceType: ["", Validators.required],
       deviceReadingType: ["", Validators.required],
@@ -68,27 +80,54 @@ export class AddThresholdComponent implements OnInit {
     return this.addThresholdForm.controls;
   }
 
-  addThreshold() {
-    let threshold: Threshold = {
-      deviceTypeId: this.thresholdForm.deviceType.value,
-      deviceReadingTypeId: this.thresholdForm.deviceReadingType.value,
-      minValue: this.thresholdForm.minValue.value,
-      warningValue: this.thresholdForm.warningValue.value,
-      criticalValue: this.thresholdForm.criticalValue.value,
-      maxValue: this.thresholdForm.maxValue.value
-    }
-
-    this.thresholdService.addThreshold(threshold).subscribe(
-      {
-        next: () => {
-          this.router.navigate(['/thresholds']);
-        },
-        error: (e) => {
-          if (e.status === 700) {
-            this.toastr.error(e.error);
-          }
-        }
+  addOrEditThreshold() {
+    if (this.addThresholdForm.valid) {
+      this.threshold = {
+        id: !this.isEditMode ? 0 : this.thresholdId,
+        deviceType: this.thresholdForm.deviceType.value,
+        deviceReadingType: this.thresholdForm.deviceReadingType.value,
+        minValue: this.thresholdForm.minValue.value,
+        warningValue: this.thresholdForm.warningValue.value,
+        criticalValue: this.thresholdForm.criticalValue.value,
+        maxValue: this.thresholdForm.maxValue.value
       }
-    );
+      if (this.isEditMode) {
+        this.thresholdService.updateThreshold(this.threshold).subscribe(
+          {
+            next: () => {
+              this.router.navigate(['/thresholds']);
+            },
+            error: (e) => {
+              this.toastr.error(e.error);
+            }
+          });
+      }
+      else {
+        this.thresholdService.addThreshold(this.threshold).subscribe(
+          {
+            next: () => {
+              this.router.navigate(['/thresholds']);
+            },
+            error: (e) => {
+              this.toastr.error(e.error);
+            }
+          });
+      }
+    }
+  }
+
+  getThresholdById() {
+    this.thresholdService.getThreshold(this.thresholdId).subscribe({
+      next: resp => {
+        this.threshold = resp;
+      },
+      error: (e) => {
+        this.toastr.error(e.error);
+      }
+    });
+  }
+
+  compareObjects(o1: any, o2: any) {
+    return (o1.name == o2.name && o1.id == o2.id) ? true : false;
   }
 }
