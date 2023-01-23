@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-add-edit-device',
@@ -31,7 +32,7 @@ export class AddEditDeviceComponent implements OnInit {
   displayImage: any;
   imageURL: any;
 
-  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router, private deviceService: DeviceService,
+    constructor(private toastr: ToastrService, private navigation: NavigationService, private formBuilder: FormBuilder, private router: Router, private deviceService: DeviceService,
     private locationService: LocationService, private deviceTypeService: DeviceTypeService, private route: ActivatedRoute, public dialog: MatDialog) {
   }
 
@@ -55,6 +56,10 @@ export class AddEditDeviceComponent implements OnInit {
       alias: [""],
       description: [""]
     })
+  }
+  
+  back(): void {
+    this.navigation.back()
   }
 
   private getAllLocations(): void {
@@ -136,7 +141,7 @@ export class AddEditDeviceComponent implements OnInit {
           {
             next: () => {
               this.toastr.success("Device successfully updated!");
-              this.router.navigate(['/devices']);
+              this.back();
             },
             error: (e) => {
               if (e.status === 702 || e.status === 700) {
@@ -151,7 +156,7 @@ export class AddEditDeviceComponent implements OnInit {
           {
             next: () => {
               this.toastr.success("Device successfully added!");
-              this.router.navigate(['/devices']);
+              this.back();
             },
             error: (e) => {
               if (e.status === 700) {

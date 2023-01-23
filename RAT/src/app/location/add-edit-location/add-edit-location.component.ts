@@ -4,6 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from 'src/app/models/location.model';
 import { LocationService } from 'src/app/services/location.service';
 import { ToastrService } from 'ngx-toastr';
+import { DeviceService } from 'src/app/services/device.service';
+import { Devices } from 'src/app/models/device.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/devices/device-type/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-add-edit-location',
@@ -20,12 +24,17 @@ export class AddAndEditLocationComponent implements OnInit {
   initLat?: number | undefined;
   initLng?: number | undefined;
   errorMessage: string = "";
+  allDevices: Devices[] = [];
+  currentDevice: any;
+  columnsToDisplay: string[] = ["name", "serialNumber", "description", "imagePath", "deviceType", "location", "actions"];
 
   constructor(private formBuilder: FormBuilder,
     private locationService: LocationService,
+    private deviceService: DeviceService,
     private router: Router,
     private toastr: ToastrService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.locationId = this.route.snapshot.paramMap.get('id');
@@ -33,8 +42,9 @@ export class AddAndEditLocationComponent implements OnInit {
 
     if (this.isEditMode) {
       this.getLocationById();
+      this.getAllDevicesByLocationId();
     }
-
+    
     this.addEditLocationForm = this.formBuilder.group({
       contactEmail: ["", Validators.email],
       emailRecipient: ["", Validators.email],
@@ -102,6 +112,17 @@ export class AddAndEditLocationComponent implements OnInit {
   longitudeHandler($event: any) {
     this.initLng = $event;
   }
+  
+  getAllDevicesByLocationId(): void {
+    this.deviceService.getAllDevicesByLocationId(this.locationId).subscribe({
+      next: resp => {
+        this.allDevices = resp;
+      },
+      error: error => {
+        this.toastr.error(error.message);
+      }
+    })
+  }
 
   getLocationById() {
     this.locationService.getLocation(this.locationId).subscribe({
@@ -124,6 +145,32 @@ export class AddAndEditLocationComponent implements OnInit {
         if (e.status === 702) {
           this.toastr.error(e.error);
         }
+      }
+    });
+  }
+
+  onDelete(device: any): void {
+    this.deleteDevice(device.deviceId, device);
+  }
+
+  deleteDevice(id: number, device: any): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+    dialogRef.componentInstance.message = "Are you sure you want to delete this device ?";
+    this.currentDevice = device;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == true)
+        this.deleteDeviceConfirmed();
+    });
+  }
+
+  deleteDeviceConfirmed(): void {
+    this.deviceService.deleteDevice(this.currentDevice.deviceId).subscribe({
+      next: resp => {
+        this.getAllDevicesByLocationId();
+        this.toastr.info(resp);
+      },
+      error: error => {
+        this.toastr.error(error.error.Message);
       }
     });
   }

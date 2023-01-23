@@ -87,4 +87,8 @@ export class DeviceService {
         formData.append('Description', String(device.description));
         return this.http.put<Devices>(`${this.apiURL}/updateDevice`, formData)
     }
+
+    getAllDevicesByLocationId(id: number) {
+        return this.http.get<Devices[]>(`${this.apiURL}/getDevicesByLocationId/${id}`, header)
+    }
 }
