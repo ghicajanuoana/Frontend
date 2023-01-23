@@ -71,7 +71,6 @@ export class AddAndEditLocationComponent implements OnInit {
         this.locationService.addLocation(location).subscribe({
           next: () => {
             this.toastr.success("Location successfully added!");
-            this.locationService.addLocation(location);
             this.router.navigate(['/locations']);
           },
           error: (e) => {
@@ -84,7 +83,6 @@ export class AddAndEditLocationComponent implements OnInit {
         this.locationService.updateLocation(location).subscribe({
           next: () => {
             this.toastr.success("Location successfully updated!");
-            this.locationService.updateLocation(this.location);
             this.router.navigate(['/locations']);
           },
           error: (e) => {

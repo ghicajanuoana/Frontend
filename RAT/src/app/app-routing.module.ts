@@ -11,6 +11,7 @@ import { AddThresholdComponent } from './add-threshold/add-threshold.component';
 import { UserComponent } from './user/user.component';
 import { MaintenanceComponent } from './devices/maintenance/maintenance.component';
 import { AddDeviceMaintenanceComponent } from './add-device-maintenance/add-device-maintenance.component';
+import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,13 @@ const routes: Routes = [
     }
   },
   {
+    path: "user/:id",
+    component: AddEditUserComponent,
+    data: {
+      isEditMode: true
+    }
+  },
+  {
     path: "device",
     component: AddEditDeviceComponent,
     data: {
@@ -91,6 +99,13 @@ const routes: Routes = [
   {
     path: "maintenance",
     component: MaintenanceComponent
+  },
+  {
+    path: "user",
+    component: AddEditUserComponent,
+    data: {
+      isEditMode: false
+    }
   },
   {
     path: "**",

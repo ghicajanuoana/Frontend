@@ -46,6 +46,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ImageDialogComponent } from './devices/image-dialog/image-dialog.component';
 import { MaintenanceComponent } from './devices/maintenance/maintenance.component';
+import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
 
 const appInitializer = (appConfig: ConfigService) => {
   return () => {
@@ -76,7 +77,8 @@ const appInitializer = (appConfig: ConfigService) => {
     UserComponent,
     AddDeviceMaintenanceComponent,
     ImageDialogComponent,
-    MaintenanceComponent
+    MaintenanceComponent,
+    AddEditUserComponent
   ],
   imports: [
     BrowserModule,

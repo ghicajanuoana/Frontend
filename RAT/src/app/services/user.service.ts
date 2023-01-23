@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from '../models/user.model';
 import { header } from './global.service';
 import { UserAdd } from '../models/useradd.model';
@@ -28,5 +28,13 @@ export class UserService {
 
   updateUser(user: UserAdd) {
     return this.http.put<UserAdd>(`${this.apiURL}/updateUser`, user, header)
+  }
+
+  addUser(user: UserAdd) {
+    return this.http.post<UserAdd>(`${this.apiURL}/addUser`, user, header)
+  }
+
+  getUser(id: number) {
+    return this.http.get<UserAdd>(`${this.apiURL}/${id}`, header)
   }
 }
