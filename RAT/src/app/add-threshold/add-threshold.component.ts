@@ -95,6 +95,7 @@ export class AddThresholdComponent implements OnInit {
         this.thresholdService.updateThreshold(this.threshold).subscribe(
           {
             next: () => {
+              this.toastr.success("Threshold successfully edited!");
               this.router.navigate(['/thresholds']);
             },
             error: (e) => {
@@ -106,6 +107,7 @@ export class AddThresholdComponent implements OnInit {
         this.thresholdService.addThreshold(this.threshold).subscribe(
           {
             next: () => {
+              this.toastr.success("Threshold successfully added!");
               this.router.navigate(['/thresholds']);
             },
             error: (e) => {
