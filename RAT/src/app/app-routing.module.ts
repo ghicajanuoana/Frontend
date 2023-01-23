@@ -9,6 +9,7 @@ import { ThresholdComponent } from './threshold/threshold.component';
 import { DeviceReadingTypesComponent } from './device-reading-types/device-reading-types.component';
 import { AddThresholdComponent } from './add-threshold/add-threshold.component';
 import { UserComponent } from './user/user.component';
+import { MaintenanceComponent } from './devices/maintenance/maintenance.component';
 
 const routes: Routes = [
   {
@@ -81,6 +82,10 @@ const routes: Routes = [
     data: {
       isEditMode: true
     }
+  },
+  {
+    path: "maintenance",
+    component: MaintenanceComponent
   },
   {
     path: "**",

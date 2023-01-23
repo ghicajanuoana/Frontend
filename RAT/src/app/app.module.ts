@@ -41,6 +41,7 @@ import { ThresholdComponent } from './threshold/threshold.component';
 import { ToastrModule } from 'ngx-toastr';
 import { UserComponent } from './user/user.component';
 import { ImageDialogComponent } from './devices/image-dialog/image-dialog.component';
+import { MaintenanceComponent } from './devices/maintenance/maintenance.component';
 
 const appInitializer = (appConfig: ConfigService) => {
   return () => {
@@ -69,7 +70,8 @@ const appInitializer = (appConfig: ConfigService) => {
     ConfirmationDialogComponent,
     ThresholdComponent,
     UserComponent,
-    ImageDialogComponent
+    ImageDialogComponent,
+    MaintenanceComponent
   ],
   imports: [
     BrowserModule,

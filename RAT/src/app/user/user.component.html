@@ -16,7 +16,7 @@
 
           <ng-container matColumnDef="isActive">
             <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let user"> <input type="checkbox" [checked]="user.isActive" ([ngModel])="user.isActive" (click)="validate(user)"></td>
+            <td mat-cell *matCellDef="let user"> <input type="checkbox" [checked]="user.isActive" [(ngModel)]="user.isActive" (click)="validate(user)"></td>
           </ng-container>
           <mat-divider [vertical]="true"></mat-divider>
           <ng-container matColumnDef="actions">

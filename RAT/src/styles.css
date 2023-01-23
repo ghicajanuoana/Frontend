@@ -154,3 +154,15 @@ body {
 .table-filter .mat-form-field-infix {
   width: unset;
 }
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.medium {
+  color: #FFBF00;
+}
