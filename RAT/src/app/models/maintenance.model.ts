@@ -1,8 +1,6 @@
-import { Devices } from "./device.model";
 
-export class Maintenance{
-    id?: number = 0;
-    device?: Devices = new Devices();
+export class Maintenance {
+    id?: number;
     deviceId: number = 0;
     description?: string;
     outcome?: string;

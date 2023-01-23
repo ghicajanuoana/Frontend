@@ -1,0 +1,39 @@
+<mat-card class="mat-elevation-z10 card-container matcard">
+  <mat-card-title class="title">Schedule Maintenance</mat-card-title>
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <form class="mat-card-content" [formGroup]="addMaintenanceForm">
+      <span class="field-name">Device<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="device">Select device</mat-label>
+        <mat-select matInput formControlName="device" placeholder="Select device">
+          <mat-option *ngFor="let device of allDevices" [value]="device.deviceId">
+            {{ device.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <span class="field-name">Scheduled Date<span class="required-star"> *</span></span>
+      <mat-form-field style="flex: 1; margin-right: 10px" class="input-text-field">
+        <mat-label>Scheduled Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="scheduledDate" placeholder="Scheduled Date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+
+      <span class="field-name">Description</span>
+      <mat-form-field floatLabel="never" class="field-name-desc">
+        <mat-label for="description">Description</mat-label>
+        <textarea formControlName="description" matInput placeholder="Description" rows="5" class="description"></textarea>
+      </mat-form-field>
+
+    </form>
+    <mat-card-actions class="buttons-container">
+      <button mat-raised-button class="save-btn" (click)="addMaintenance()"
+              [disabled]="!addMaintenanceForm.valid">
+        SAVE
+      </button>
+      <button mat-raised-button class="cancel-btn" [routerLink]="['/maintenance']">CANCEL</button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>

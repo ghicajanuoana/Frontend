@@ -40,6 +40,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ThresholdComponent } from './threshold/threshold.component';
 import { ToastrModule } from 'ngx-toastr';
 import { UserComponent } from './user/user.component';
+import { AddDeviceMaintenanceComponent } from './add-device-maintenance/add-device-maintenance.component';
+import { MaintenanceService } from './services/maintenance.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { ImageDialogComponent } from './devices/image-dialog/image-dialog.component';
 import { MaintenanceComponent } from './devices/maintenance/maintenance.component';
 
@@ -70,6 +74,7 @@ const appInitializer = (appConfig: ConfigService) => {
     ConfirmationDialogComponent,
     ThresholdComponent,
     UserComponent,
+    AddDeviceMaintenanceComponent,
     ImageDialogComponent,
     MaintenanceComponent
   ],
@@ -100,13 +105,16 @@ const appInitializer = (appConfig: ConfigService) => {
     MatPaginatorModule,
     MatSortModule,
     ToastrModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [ConfigService] },
     LocationService,
     DeviceTypeService,
+    MaintenanceService,
     ConfigService
   ],
   bootstrap: [AppComponent]

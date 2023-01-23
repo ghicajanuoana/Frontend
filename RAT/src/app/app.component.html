@@ -28,27 +28,32 @@
                 <mat-divider></mat-divider>
 
                 <mat-expansion-panel (click)="showNavbar($event)" [hideToggle]="!opened" [expanded]="!opened == false"
-                    [class.mat-elevation-z0]="true">
-                    <mat-expansion-panel-header class="sidenav-list-items disable_ripple text-format">
-                        <mat-icon fontSet="material-icons-outlined" class="icon">smartphone</mat-icon>
-                        <span *ngIf="opened" class="align-text">Devices</span>
-                    </mat-expansion-panel-header>
-                    <mat-divider></mat-divider>
-                    <mat-list-item [routerLink]="['devices']" class="sidenav-list-items disable_ripple text-format">List
-                    </mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item [routerLink]="['device']" class="sidenav-list-items disable_ripple text-format">Add device</mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item [routerLink]="['device-types']"
-                        class="sidenav-list-items disable_ripple text-format">Device types</mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item [routerLink]="['maintenance']"
-                        class="sidenav-list-items disable_ripple text-format">Maintenance</mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item class="sidenav-list-items disable_ripple text-format">Alerts</mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item class="sidenav-list-items disable_ripple text-format">Logs</mat-list-item>
-                    <mat-divider></mat-divider>
+                                     [class.mat-elevation-z0]="true">
+                 
+                  <mat-expansion-panel-header class="sidenav-list-items disable_ripple text-format">
+                    <mat-icon fontSet="material-icons-outlined" class="icon">smartphone</mat-icon>
+                    <span *ngIf="opened" class="align-text">Devices</span>
+                  </mat-expansion-panel-header>
+                  <mat-divider></mat-divider>
+                  <mat-list-item [routerLink]="['devices']" class="sidenav-list-items disable_ripple text-format">
+                    List
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item [routerLink]="['device']" class="sidenav-list-items disable_ripple text-format">Add device</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item [routerLink]="['device-types']"
+                                 class="sidenav-list-items disable_ripple text-format">Device types</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item [routerLink]="['maintenance']"
+                                 class="sidenav-list-items disable_ripple text-format">Maintenance</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item [routerLink]="['add-device-maintenances']"
+                                 class="sidenav-list-items disable_ripple text-format">Add Maintenance</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item class="sidenav-list-items disable_ripple text-format">Alerts</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item class="sidenav-list-items disable_ripple text-format">Logs</mat-list-item>
+                  <mat-divider></mat-divider>
                 </mat-expansion-panel>
                 <mat-divider></mat-divider>
 

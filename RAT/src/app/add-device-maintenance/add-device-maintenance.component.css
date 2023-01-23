@@ -1,0 +1,21 @@
+
+.description {
+  background-color: #f7f9fc;
+  margin-bottom: -34px;
+  padding-bottom: -15px;
+}
+
+.mat-form-field {
+  padding-bottom: 15px;
+  color: grey;
+}
+
+.field-name-desc {
+  background-color: #f7f9fc;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding-bottom: -15px;
+  padding-left: 17px;
+  width: 98%;
+  border-radius: 5px;
+}
