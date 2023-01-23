@@ -43,3 +43,39 @@
   padding-bottom: 15px;
   color: grey;
 }
+
+.image {
+  max-width: 100%;
+}
+
+.image-edit-mode:hover {
+  cursor: pointer;
+}
+
+.image-edit-mode {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 200px;
+}
+
+.image-preview {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.remove-file-selected{
+  background-color: #FF3D71;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  right:0;
+}
+
+.remove-file-existent {
+  background-color: #FF3D71;
+  color: white;
+}

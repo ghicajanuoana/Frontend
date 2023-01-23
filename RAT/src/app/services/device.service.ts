@@ -39,7 +39,25 @@ export class DeviceService {
     }
 
     addDevice(device: Devices) {
-        return this.http.post(`${this.apiURL}/AddDevice`, device, header)
+        const formData = new FormData();
+        formData.append('Name', device.name);
+        formData.append('SerialNumber', device.serialNumber);
+        formData.append('DeviceType.DeviceTypeId', device.deviceType.deviceTypeId);
+        formData.append('DeviceType.Name', device.deviceType.name);
+        formData.append('Location.LocationId', device.location.locationId);
+        formData.append('Location.Name', device.location.name);
+        formData.append('Location.City', device.location.city);
+        formData.append('Location.Address', device.location.address);
+        formData.append('Location.Country', device.location.country);
+        formData.append('Location.IsLocationUsed', device.location.isLocationUsed);
+        formData.append('SoftwareVersion', String(device.softwareVersion));
+        formData.append('FirmwareVersion', String(device.firmwareVersion));
+        formData.append('SerialNumber', String(device.serialNumber));
+        formData.append('Alias', String(device.alias));
+        formData.append('Emails', String(device.emails));
+        formData.append('ImageFile', device.imageFile);
+        formData.append('Description', String(device.description));
+        return this.http.post(`${this.apiURL}/AddDevice`, formData)
     }
 
     deleteDevice(id: number) {
@@ -48,6 +66,25 @@ export class DeviceService {
     }
 
     updateDevice(device: Devices) {
-        return this.http.put<Devices>(`${this.apiURL}/updateDevice`, device, header)
+        const formData = new FormData();
+        formData.append('DeviceId', String(device.deviceId));
+        formData.append('Name', device.name);
+        formData.append('SerialNumber', device.serialNumber);
+        formData.append('DeviceType.DeviceTypeId', device.deviceType.deviceTypeId);
+        formData.append('DeviceType.Name', device.deviceType.name);
+        formData.append('Location.LocationId', device.location.locationId);
+        formData.append('Location.Name', device.location.name);
+        formData.append('Location.City', device.location.city);
+        formData.append('Location.Address', device.location.address);
+        formData.append('Location.Country', device.location.country);
+        formData.append('Location.IsLocationUsed', device.location.isLocationUsed);
+        formData.append('SoftwareVersion', String(device.softwareVersion));
+        formData.append('FirmwareVersion', String(device.firmwareVersion));
+        formData.append('SerialNumber', String(device.serialNumber));
+        formData.append('Alias', String(device.alias));
+        formData.append('Emails', String(device.emails));
+        device.imageFile ? formData.append('ImageFile', device.imageFile) : formData.append('ImageBytes', device.imageBytes);
+        formData.append('Description', String(device.description));
+        return this.http.put<Devices>(`${this.apiURL}/updateDevice`, formData)
     }
 }

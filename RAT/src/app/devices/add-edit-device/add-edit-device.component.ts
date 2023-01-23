@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DeviceService } from 'src/app/services/device.service';
 import { Devices } from 'src/app/models/device.model';
 import { LocationService } from 'src/app/services/location.service';
@@ -8,6 +8,8 @@ import { DeviceTypes } from 'src/app/models/device-type.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 
 @Component({
   selector: 'app-add-edit-device',
@@ -16,15 +18,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddEditDeviceComponent implements OnInit {
 
+  @ViewChild("input", { static: false }) inputRef: ElementRef;
   allLocations: Location[] = [];
   allDeviceTypes: DeviceTypes[] = [];
   isEditMode: boolean;
   deviceId: any;
   device: Devices = new Devices();
   addEditDeviceForm: FormGroup;
+  targetFile: File;
+  isTargetFile: boolean = false;
+  isExistentImageRemoved: boolean = false;
+  displayImage: any;
+  imageURL: any;
 
   constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router, private deviceService: DeviceService,
-    private locationService: LocationService, private deviceTypeService: DeviceTypeService, private route: ActivatedRoute) {
+    private locationService: LocationService, private deviceTypeService: DeviceTypeService, private route: ActivatedRoute, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -45,8 +53,7 @@ export class AddEditDeviceComponent implements OnInit {
       softwareVersion: [""],
       firmwareVersion: [""],
       alias: [""],
-      imagePath: [""],
-      description: [""],
+      description: [""]
     })
   }
 
@@ -76,6 +83,37 @@ export class AddEditDeviceComponent implements OnInit {
     return this.addEditDeviceForm.controls;
   }
 
+  onFileSelected(event: Event) {
+    const element = event.currentTarget as HTMLInputElement;
+    if (element.files) {
+      this.targetFile = element.files[0];
+      this.isTargetFile = true;
+      var reader = new FileReader();
+      reader.readAsDataURL(this.targetFile);
+      reader.onload = () => {
+        this.imageURL = reader.result;
+      }
+    }
+  }
+
+  onFileReset() {
+    this.inputRef.nativeElement.value = "";
+    this.imageURL = null;
+    if (this.isEditMode) {
+      this.device.imageBytes = '';
+      this.isExistentImageRemoved = true;
+    }
+    this.isTargetFile = false;
+  }
+
+  openImageDialog() {
+    const dialogRef = this.dialog.open(ImageDialogComponent, {
+      data: {
+        image: this.device.imageBytes
+      }
+    });
+  }
+
   addOrEditDevice() {
     if (this.addEditDeviceForm.valid) {
       this.device = {
@@ -88,8 +126,9 @@ export class AddEditDeviceComponent implements OnInit {
         softwareVersion: this.addEditDeviceControls.softwareVersion.value,
         firmwareVersion: this.addEditDeviceControls.firmwareVersion.value,
         alias: this.addEditDeviceControls.alias.value,
-        imagePath: this.addEditDeviceControls.imagePath.value,
-        description: this.addEditDeviceControls.description.value
+        description: this.addEditDeviceControls.description.value,
+        imageFile: this.targetFile,
+        imageBytes: this.device.imageBytes
       }
 
       if (this.isEditMode) {

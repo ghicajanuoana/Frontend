@@ -13,3 +13,11 @@
   padding-left: 10px;
   padding-top: 5px;
 }
+
+.image {
+  max-width: 150px;
+}
+
+.image:hover {
+  cursor: pointer;
+}

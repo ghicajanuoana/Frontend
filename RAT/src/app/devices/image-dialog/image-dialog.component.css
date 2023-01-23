@@ -1,0 +1,9 @@
+.image-container {
+  max-width: 120vh !important;
+  max-height: 120vh !important;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+

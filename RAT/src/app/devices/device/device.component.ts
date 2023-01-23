@@ -8,6 +8,7 @@ import { ConfirmationDialogComponent } from '../device-type/confirmation-dialog/
 import { MatTableDataSource } from '@angular/material/table';
 import { DeviceParameters } from 'src/app/models/device-parameters.model';
 import { PageEvent } from '@angular/material/paginator';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 
 @Component({
   selector: 'app-device',
@@ -36,6 +37,16 @@ export class DeviceComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDevices();
+  }
+
+  openImageDialog(index: number) {
+    let tableItem = this.devices.data[index];
+    const dialogRef = this.dialog.open(ImageDialogComponent, {
+      data: {
+        image: tableItem.imageBytes
+      }
+    });
+    console.log(tableItem)
   }
 
   getDevices() {

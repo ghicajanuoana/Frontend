@@ -73,11 +73,19 @@
             <mat-error *ngIf="addEditDeviceControls.emails.hasError">Please enter a valid email</mat-error>
           </mat-form-field>
         </div>
-        <div class="right-side">
 
+        <div class="right-side">
           <span class="field-name">Image</span>
-          <input autocomplete="off" formControlName="imagePath" type="file" class="input-text-field" id="image" multiple
-            [(ngModel)]="device.imagePath">
+          <input #input autocomplete="off" type="file" (change)="onFileSelected($event)" id="image"
+            class="input-text-field">
+          <span class="image-preview" *ngIf="isTargetFile || isEditMode">
+            <img class="image-edit-mode" *ngIf="isEditMode && this.device.imageBytes && !isTargetFile"
+              src="{{'data:image/jpg;base64,' + device.imageBytes}}" (click)="openImageDialog()" />
+            <img class="image" *ngIf="targetFile" [src]="imageURL">
+            <button *ngIf="isTargetFile || this.device.imageBytes" mat-button
+              [ngClass]="{'remove-file-selected': isTargetFile, 'remove-file-existent': this.device.imageBytes}"
+              (click)="onFileReset()">REMOVE</button>
+          </span>
 
           <span class="field-name">Description</span>
           <mat-form-field floatLabel="never" class="field-name-desc">
