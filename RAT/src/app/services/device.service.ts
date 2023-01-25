@@ -91,4 +91,20 @@ export class DeviceService {
     getAllDevicesByLocationId(id: number) {
         return this.http.get<Devices[]>(`${this.apiURL}/getDevicesByLocationId/${id}`, header)
     }
+
+    exportToCSV(deviceParameters: DeviceParameters) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append("pagingFilteringParameters.pageNumber", String(deviceParameters.pageNumber));
+        queryParams = queryParams.append("pagingFilteringParameters.pageSize", deviceParameters.pageSize);
+        queryParams = queryParams.append("name", String(deviceParameters.name));
+        queryParams = queryParams.append("serialNumber", String(deviceParameters.serialNumber));
+        queryParams = queryParams.append("description", String(deviceParameters.description));
+        queryParams = queryParams.append("deviceType", String(deviceParameters.deviceType));
+        queryParams = queryParams.append("location", String(deviceParameters.location));
+        queryParams = queryParams.append("pagingFilteringParameters.orderBy", String(deviceParameters.orderBy));
+        queryParams = queryParams.append("pagingFilteringParameters.orderDescending", String(deviceParameters.orderDescending));
+        const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+        const responseType = 'blob' as 'json';
+        return this.http.get<any>(`${this.apiURL}/exportToCSV?${queryParams}`, { headers, responseType });
+    }
 }

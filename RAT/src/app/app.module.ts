@@ -47,6 +47,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ImageDialogComponent } from './devices/image-dialog/image-dialog.component';
 import { MaintenanceComponent } from './devices/maintenance/maintenance.component';
 import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 const appInitializer = (appConfig: ConfigService) => {
   return () => {
@@ -109,8 +110,8 @@ const appInitializer = (appConfig: ConfigService) => {
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
-
+    MatNativeDateModule,
+    MatTableExporterModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [ConfigService] },

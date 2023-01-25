@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Devices } from '../../models/device.model';
 import { DeviceService } from '../../services/device.service';
 import { ConfirmationDialogComponent } from '../device-type/confirmation-dialog/confirmation-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { DeviceParameters } from 'src/app/models/device-parameters.model';
 import { PageEvent } from '@angular/material/paginator';
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
+import { MatTableExporterDirective } from 'mat-table-exporter';
 
 @Component({
   selector: 'app-device',
@@ -27,6 +27,7 @@ export class DeviceComponent implements OnInit {
   pageSize = 5;
   length: number
   pageSizeOptions: number[] = [5, 10, 25, 100];
+  @ViewChild(MatTableExporterDirective, { static: true }) exporter: MatTableExporterDirective;
 
   constructor(public router: Router, public deviceService: DeviceService, public dialog: MatDialog, private toastr: ToastrService) {
     this.deviceParameters.pageNumber = this.pageIndex;
@@ -105,6 +106,29 @@ export class DeviceComponent implements OnInit {
       },
       error: error => {
         this.toastr.error(error.error.Message);
+      }
+    });
+  }
+
+  exportTable(): void {
+    this.exporter.exportTable('csv', { fileName: 'Devices' });
+  }
+
+  exportToCSV(): void {
+    this.deviceService.exportToCSV(this.deviceParameters).subscribe({
+      next: data => {
+        const downloadedFile = new Blob([data], { type: data.type });
+        const a = document.createElement('a');
+        a.setAttribute('style', 'display:none;');
+        document.body.appendChild(a);
+        a.download = "Devices.csv";
+        a.href = URL.createObjectURL(downloadedFile);
+        a.target = '_blank';
+        a.click();
+        document.body.removeChild(a);
+      },
+      error: error => {
+        console.log(error);
       }
     });
   }
