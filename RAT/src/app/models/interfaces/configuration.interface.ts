@@ -1,4 +1,5 @@
 export interface IConfiguration {
     webApiUrl: string;
-    production: boolean
+    signalRUrl: string;
+    production: boolean;
 }

@@ -23,6 +23,7 @@ export class ConfigService {
             .finally(() => {
                 if (this.serverSettings != undefined) {
                     this.serverSettings.webApiUrl = this.normalizeUrl(this.serverSettings.webApiUrl);
+                    this.serverSettings.signalRUrl = this.normalizeUrl(this.serverSettings.signalRUrl);
                 }
             });
     }

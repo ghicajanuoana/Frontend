@@ -7,6 +7,17 @@
             <div>
                 SMEDIX Remote Analytics
             </div>
+            <div class="bell-style">
+                <button [disabled]="alerts == null" 
+                        mat-icon-button 
+                        [matBadge]="alerts >= 100 ? '99+' : alerts > 0 ? alerts : null" 
+                        matBadgeColor="warn" 
+                        [disableRipple]="true" 
+                        [matBadgeHidden]="alerts > 0 ? false : true" 
+                        (click)="goToAlerts()">
+                    <mat-icon fontSet="material-icons-outlined" class="bell-icon">notifications</mat-icon>    
+                </button>                
+            </div>
         </mat-toolbar-row>
     </mat-toolbar>
 </header>

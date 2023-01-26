@@ -40,6 +40,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ThresholdComponent } from './threshold/threshold.component';
 import { ToastrModule } from 'ngx-toastr';
 import { UserComponent } from './user/user.component';
+import { MatBadgeModule } from '@angular/material/badge';
 import { AddDeviceMaintenanceComponent } from './add-device-maintenance/add-device-maintenance.component';
 import { MaintenanceService } from './services/maintenance.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -82,6 +83,7 @@ const appInitializer = (appConfig: ConfigService) => {
     AddEditUserComponent
   ],
   imports: [
+    MatBadgeModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

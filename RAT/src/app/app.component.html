@@ -1,4 +1,4 @@
-<app-nav-menu (showNavbarEvent)="showNavbar($event)"></app-nav-menu>
+<app-nav-menu (showNavbarEvent)="showNavbar($event)" [alerts]="unreadAlerts"></app-nav-menu>
 <div class="main-container">
     <mat-sidenav-container class="side-container">
         <mat-sidenav mode="side" [opened]="true" [ngClass]="opened ? 'openedSideNav' : 'closedSideNav'">

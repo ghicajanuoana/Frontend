@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,15 +9,21 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export class NavMenuComponent implements OnInit {
   isSidenavOpened = true;
-  @Output() showNavbarEvent = new EventEmitter<boolean>()
+  @Output() showNavbarEvent = new EventEmitter<boolean>();
+  @Input() alerts: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+
   }
 
   showNavbar() {
     this.isSidenavOpened = !this.isSidenavOpened;
     this.showNavbarEvent.emit(this.isSidenavOpened);
+  }
+
+  goToAlerts() {
+    this.router.navigate(['/alerts']);
   }
 }

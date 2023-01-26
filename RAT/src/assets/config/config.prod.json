@@ -1,4 +1,5 @@
 {
     "production": true,
-    "webApiUrl": "https://remoteanalyticsapi.azurewebsites.net/api"
+    "webApiUrl": "https://remoteanalyticsapi.azurewebsites.net/api",
+    "signalRUrl": "https://remoteanalyticsapi.azurewebsites.net/hubs"
 }
