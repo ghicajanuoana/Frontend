@@ -52,6 +52,10 @@ export class UserService {
     return this.http.get<UserAdd>(`${this.apiURL}/${id}`, header)
   }
 
+  getUserById(id: number) {
+    return this.http.get<User>(`${this.apiURL}/${id}`, header)
+  }
+
   addUser(user: UserAdd) {
     return this.http.post<UserAdd>(`${this.apiURL}/addUser`, user, header)
   }

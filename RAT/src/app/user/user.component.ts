@@ -5,7 +5,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogComponent } from '../devices/device-type/confirmation-dialog/confirmation-dialog.component';
+import { Role } from '../models/role.model';
 import { UserParameters } from '../models/user-parameters.model';
+import { User } from '../models/user.model';
+import { UserAdd } from '../models/useradd.model';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -23,8 +26,22 @@ export class UserComponent implements OnInit {
   orderDescending = false;
   pageIndex = 0;
   pageSize = 5;
-  length: number
+  length: number;
   pageSizeOptions: number[] = [5, 10, 25, 100];
+  editing: boolean;
+  statusUpdate: boolean;
+  verify: boolean;
+  u?: string = "";
+  r?: Role;
+  uId?: number;
+  a?: boolean;
+  userverify: User;
+  RoleTypes: any[] = [
+    { roleType: 'Admin', value: 1 },
+    { roleType: 'Agent', value: 2 },
+    { roleType: 'Operator', value: 3 },
+    { roleType: 'Observer', value: 4 }
+  ];
 
   constructor(public router: Router,
     public userService: UserService,
@@ -92,6 +109,45 @@ export class UserComponent implements OnInit {
             this.toastr.error(error.error.Message);
           }
         });
+      }
+    });
+  }
+
+  verifyUpdate(user: User) {
+    this.userService.getUserById(user.userId).subscribe()
+    this.u = user.username;
+    this.r = user.role;
+    this.uId = user.userId;
+    this.a = user.isActive;
+  }
+
+  updateEditableField(user: User) {
+    this.editing = false;
+    let userUpdated: UserAdd = {
+      userId: user.userId,
+      username: user.username,
+      roleId: user.role?.id,
+      isActive: user.isActive
+    }
+
+    if (this.u == user.username && this.r == user.role && this.uId == user.userId && this.a == user.isActive)
+      this.verify = false;
+    else
+      this.verify = true;
+
+    if (this.statusUpdate == true) {
+      userUpdated.isActive = !user.isActive;
+      this.statusUpdate = false;
+    }
+
+    this.userService.updateUser(userUpdated).subscribe({
+      next: () => {
+        if (this.verify == true)
+          this.toastr.success("User successfully updated!");
+        this.getUsers();
+      },
+      error: error => {
+        this.toastr.error(error.error.Message);
       }
     });
   }
