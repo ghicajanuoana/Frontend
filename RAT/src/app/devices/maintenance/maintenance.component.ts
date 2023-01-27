@@ -3,6 +3,9 @@ import { Maintenance } from 'src/app/models/maintenance.model';
 import { MaintenanceService } from 'src/app/services/maintenance.service';
 import { DatePipe } from "@angular/common";
 import { PageEvent } from '@angular/material/paginator';
+import { MaintenanceParameters } from 'src/app/models/maintenance-parameters.model';
+import { FormControl, FormGroup } from '@angular/forms';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-maintenance',
@@ -11,11 +14,30 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class MaintenanceComponent implements OnInit {
 
+  rangeScheduledDate: FormGroup = new FormGroup({
+    start: new FormControl(''),
+    end: new FormControl(''),
+  });
+  rangeActualDate: FormGroup = new FormGroup({
+    start: new FormControl(''),
+    end: new FormControl(''),
+  });
+  rangeCreatedAt: FormGroup = new FormGroup({
+    start: new FormControl(''),
+    end: new FormControl(''),
+  });
+  maintenanceParameters: MaintenanceParameters = new MaintenanceParameters();
   pageIndex = 0;
   pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 20]
   length = 0;
+  selected = 1;
   dateNow = Date.now();
+  statusOptions = [
+    {value: 0, viewValue: "New"},
+    {value: 1, viewValue: "Pending"},
+    {value: 2, viewValue: "Completed"}
+  ];
 
   maintenances: Maintenance[] = [];
   pipe = new DatePipe('en-US');
@@ -24,11 +46,14 @@ export class MaintenanceComponent implements OnInit {
   constructor(public maintenanceService: MaintenanceService) { }
 
   ngOnInit(): void {
+    this.maintenanceParameters.orderBy = "status";
+    this.maintenanceParameters.pageNumber = this.pageIndex;
+    this.maintenanceParameters.pageSize = this.pageSize;
     this.getMaintenances();
   }
 
   getMaintenances() {
-    this.maintenanceService.getMaintenancesPaged(this.pageIndex, this.pageSize)
+    this.maintenanceService.getMaintenancesPaged(this.maintenanceParameters)
       .subscribe((response) => {
         this.maintenances = response.data;
         this.length = response.totalCount;
@@ -36,8 +61,8 @@ export class MaintenanceComponent implements OnInit {
   }
 
   pageChangeEvent(event: PageEvent) {
-    this.pageSize = event.pageSize;
-    this.pageIndex = event.pageIndex;
+    this.maintenanceParameters.pageNumber = event.pageIndex;
+    this.maintenanceParameters.pageSize = event.pageSize;
     this.getMaintenances();
   }
 
@@ -50,4 +75,40 @@ export class MaintenanceComponent implements OnInit {
 
     return (scheduledDate.getTime() - today.getTime()) / 1000 / 3600 / 24;
   }
+
+  sortData(headerName: string) {
+    if (headerName) {
+      this.maintenanceParameters.orderDescending = this.maintenanceParameters.orderDescending === false ? true : false;
+      this.maintenanceParameters.orderBy = headerName;
+      this.getMaintenances();
+    }
+  }
+
+  scheduledDateSelected(){
+    this.maintenanceParameters.scheduledDateStart = String(this.pipe.transform(this.rangeScheduledDate.value.start, 'y-MM-ddThh:mm:ss.SSS'));
+    this.maintenanceParameters.scheduledDateEnd = String(this.pipe.transform(this.rangeScheduledDate.value.end, 'y-MM-ddThh:mm:ss.SSS'));
+    this.filterMaintenances();
+  }
+
+  actualDateSelected(){
+    this.maintenanceParameters.actualDateStart = String(this.pipe.transform(this.rangeActualDate.value.start, 'y-MM-ddThh:mm:ss.SSS'));
+    this.maintenanceParameters.actualDateEnd = String(this.pipe.transform(this.rangeActualDate.value.end, 'y-MM-ddThh:mm:ss.SSS'));
+    this.filterMaintenances();
+  }
+
+  createdAtSelected(){
+    this.maintenanceParameters.createdAtStart = String(this.pipe.transform(this.rangeCreatedAt.value.start, 'y-MM-ddThh:mm:ss.SSS'));
+    this.maintenanceParameters.createdAtEnd = String(this.pipe.transform(this.rangeCreatedAt.value.end, 'y-MM-ddThh:mm:ss.SSS'));
+    this.filterMaintenances();
+  }
+
+  filterMaintenances() {
+    this.maintenanceParameters.pageNumber = 0;
+    this.pageIndex = 0;
+    this.getMaintenances();
+  }
+
+  isSorting(name: string) {
+    return this.maintenanceParameters.orderBy === name;
+  };
 }
