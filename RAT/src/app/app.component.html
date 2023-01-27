@@ -3,7 +3,7 @@
     <mat-sidenav-container class="side-container">
         <mat-sidenav mode="side" [opened]="true" [ngClass]="opened ? 'openedSideNav' : 'closedSideNav'">
             <mat-action-list>
-                <mat-list-item class="sidenav-list-items disable_ripple text-format">
+                <mat-list-item class="sidenav-list-items disable_ripple text-format" [routerLink]="['dashboard']">
                     <mat-icon fontSet="material-icons-outlined" class="icon">home</mat-icon>
                     <span *ngIf="opened" class="align-text">Dashboard</span>
                 </mat-list-item>

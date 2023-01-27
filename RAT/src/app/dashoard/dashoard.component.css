@@ -1,0 +1,13 @@
+.page-container{
+    margin: 50px;
+    height: 80%;
+    width: 65%;
+}
+
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+}
+
+.mat-radio-group{
+    margin-bottom: 30px;
+}

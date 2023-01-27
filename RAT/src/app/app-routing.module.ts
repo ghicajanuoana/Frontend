@@ -12,11 +12,12 @@ import { UserComponent } from './user/user.component';
 import { MaintenanceComponent } from './devices/maintenance/maintenance.component';
 import { AddDeviceMaintenanceComponent } from './add-device-maintenance/add-device-maintenance.component';
 import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
+import { DashoardComponent } from './dashoard/dashoard.component';
 
 const routes: Routes = [
   {
     path: "",
-    component: LocationComponent,
+    component: DashoardComponent,
     pathMatch: 'full'
   },
   {

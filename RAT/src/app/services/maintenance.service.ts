@@ -4,6 +4,7 @@ import { Maintenance } from "../models/maintenance.model"
 import { ConfigService } from "./configuration.service"
 import { header } from "./global.service";
 import { PagedList } from "../models/paged-list.model";
+import { DashboardMap } from "../models/dashboard-map.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,9 @@ export class MaintenanceService {
 
   addMaintenance(maintenance: Maintenance) {
     return this.http.post(`${this.apiURL}/Add`, maintenance, header)
+  }
+
+  getDashboardMap() {
+    return this.http.get<DashboardMap[]>(`${this.apiURL}/getAllMaintenancesDashboard`, header)
   }
 }

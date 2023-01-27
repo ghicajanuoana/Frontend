@@ -48,6 +48,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ImageDialogComponent } from './devices/image-dialog/image-dialog.component';
 import { MaintenanceComponent } from './devices/maintenance/maintenance.component';
 import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
+import { DashoardComponent } from './dashoard/dashoard.component';
+import { DashboardMapComponent } from './dashboard-map/dashboard-map.component';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatTableExporterModule } from 'mat-table-exporter';
 
 const appInitializer = (appConfig: ConfigService) => {
@@ -80,7 +83,10 @@ const appInitializer = (appConfig: ConfigService) => {
     AddDeviceMaintenanceComponent,
     ImageDialogComponent,
     MaintenanceComponent,
-    AddEditUserComponent
+    AddEditUserComponent,
+    DashoardComponent,
+    DashboardMapComponent,
+    MaintenanceComponent,
   ],
   imports: [
     MatBadgeModule,
@@ -113,6 +119,7 @@ const appInitializer = (appConfig: ConfigService) => {
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatRadioModule,
     MatTableExporterModule
   ],
   providers: [
