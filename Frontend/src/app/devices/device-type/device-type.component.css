@@ -1,0 +1,14 @@
+.filter-border {
+  border: solid 2px #dbdfe4;
+  border-radius: 5px;
+  padding: 7px;
+  width: 96%;
+}
+.cancel-btn {
+  background-color: #0095FF;
+  color: white;
+  width: 7%;
+  display: flex;
+  justify-content: center;
+  min-width: 200px; 
+}

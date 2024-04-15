@@ -1,0 +1,149 @@
+
+<app-nav-menu (showNavbarEvent)="showNavbar($event)"> 
+</app-nav-menu>
+<div class="main-container">
+    <app-dashboard-map></app-dashboard-map>
+    <mat-sidenav-container class="side-container">
+        <mat-sidenav mode="side" [opened]="true" [ngClass]="opened ? 'openedSideNav' : 'closedSideNav'">
+            <mat-action-list>
+                <mat-list-item class="sidenav-list-items disable_ripple text-format" [routerLink]="['']">
+                    <mat-icon fontSet="material-icons-outlined" class="icon">perm_identity</mat-icon>
+                    <span *ngIf="opened" class="align-text">Log out</span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <!-- <mat-list-item class="sidenav-list-items disable_ripple text-format" [routerLink]="['/dashboardmap']">
+                    <mat-icon fontSet="material-icons-outlined" class="icon">map</mat-icon>
+                    <span *ngIf="opened" class="align-text">Dashboard Map</span>
+                </mat-list-item>
+                <mat-divider></mat-divider> -->
+
+                <mat-list-item *ngIf="opened" id="features" class="disable_ripple text-format">FEATURES</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-expansion-panel (click)="showNavbar($event)" [hideToggle]="!opened" [expanded]="!opened == false"
+                    [class.mat-elevation-z0]="true">
+                    <mat-expansion-panel-header class="sidenav-list-items disable_ripple">
+                        <mat-icon fontSet="material-icons-outlined" class="icon">place</mat-icon>
+                        <span *ngIf="opened" class="align-text text-format">Locations</span>
+                    </mat-expansion-panel-header>
+                    <mat-divider></mat-divider>
+                    <mat-list-item [routerLink]="['/locations']" class="sidenav-list-items disable_ripple text-format">
+                        List</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item [routerLink]="['/location']" class="sidenav-list-items disable_ripple text-format">Add
+                        location</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider>
+
+                <mat-expansion-panel (click)="showNavbar($event)" [hideToggle]="!opened" [expanded]="!opened == false"
+                                     [class.mat-elevation-z0]="true">
+                 
+                  <mat-expansion-panel-header class="sidenav-list-items disable_ripple text-format">
+                    <mat-icon fontSet="material-icons-outlined" class="icon">smartphone</mat-icon>
+                    <span *ngIf="opened" class="align-text">Devices</span>
+                  </mat-expansion-panel-header>
+                  <mat-divider></mat-divider>
+                  <mat-list-item [routerLink]="['/devices']" class="sidenav-list-items disable_ripple text-format">
+                    List
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item [routerLink]="['/device']" class="sidenav-list-items disable_ripple text-format">Add device</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item [routerLink]="['/device-types']"
+                                 class="sidenav-list-items disable_ripple text-format">Device types</mat-list-item>
+                  <mat-divider></mat-divider>
+
+                  <!-- <mat-list-item [routerLink]="['/maintenance']"
+                                 class="sidenav-list-items disable_ripple text-format">Maintenance</mat-list-item>
+                  <mat-divider></mat-divider> -->
+
+                  <mat-list-item [routerLink]="['/todos']"
+                                 class="sidenav-list-items disable_ripple text-format">Maintenance</mat-list-item>
+                  <mat-divider></mat-divider>
+
+                  <!-- <mat-list-item [routerLink]="['/add-device-maintenance']"
+                                 class="sidenav-list-items disable_ripple text-format">Add Maintenance</mat-list-item>
+                  <mat-divider></mat-divider> -->
+                  <!-- <mat-list-item [routerLink]="['/alerts']"
+                  class="sidenav-list-items disable_ripple text-format">Alerts</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item class="sidenav-list-items disable_ripple text-format">Logs</mat-list-item>
+                  <mat-divider></mat-divider> -->
+                </mat-expansion-panel>
+                <mat-divider></mat-divider>
+
+                <mat-expansion-panel (click)="showNavbar($event)" [hideToggle]="!opened" [expanded]="!opened == false"
+                    [class.mat-elevation-z0]="true">
+                    <mat-expansion-panel-header class="sidenav-list-items disable_ripple text-format">
+                        <mat-icon fontSet="material-icons-outlined" class="icon">trending_up</mat-icon>
+                        <span *ngIf="opened" class="align-text">Device Thresholds</span>
+                    </mat-expansion-panel-header>
+                    <mat-divider></mat-divider>
+                    <mat-list-item [routerLink]="['/thresholds']" class="sidenav-list-items disable_ripple text-format">
+                        List
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item [routerLink]="['/add-threshold']"
+                        class="sidenav-list-items disable_ripple text-format">Add threshold</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item [routerLink]="['/device-reading-types']"
+                        class="sidenav-list-items disable_ripple text-format">Device Reading Types</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider>
+
+                <!-- <mat-expansion-panel (click)="showNavbar($event)" [hideToggle]="!opened" [expanded]="!opened == false"
+                    [class.mat-elevation-z0]="true">
+                    <mat-expansion-panel-header class="sidenav-list-items disable_ripple text-format">
+                        <mat-icon fontSet="material-icons-outlined" class="icon">pie_chart</mat-icon>
+                        <span *ngIf="opened" class="align-text">Reports</span>
+                    </mat-expansion-panel-header>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="sidenav-list-items disable_ripple text-format">List</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider> -->
+
+                <!-- <mat-expansion-panel (click)="showNavbar($event)" [hideToggle]="!opened" [expanded]="!opened == false"
+                    [class.mat-elevation-z0]="true">
+                    <mat-expansion-panel-header class="sidenav-list-items disable_ripple text-format">
+                        <mat-icon fontSet="material-icons-outlined" class="icon">cell_tower</mat-icon>
+                        <span *ngIf="opened" class="align-text">Middlewares</span>
+                    </mat-expansion-panel-header>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="sidenav-list-items disable_ripple text-format">List</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider> -->
+
+                <!-- <mat-expansion-panel (click)="showNavbar($event)" [hideToggle]="!opened" [expanded]="!opened == false"
+                    [class.mat-elevation-z0]="true">
+                    <mat-expansion-panel-header class="sidenav-list-items disable_ripple text-format">
+                        <mat-icon fontSet="material-icons-outlined" class="icon">supervisor_account</mat-icon>
+                        <span *ngIf="opened" class="align-text">Users</span>
+                    </mat-expansion-panel-header>
+                    <mat-divider></mat-divider>
+                    <mat-list-item routerLink="/users" class="sidenav-list-items disable_ripple text-format">List</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider> -->
+
+                <!-- <mat-expansion-panel (click)="showNavbar($event)" [hideToggle]="!opened" [expanded]="!opened == false"
+                    [class.mat-elevation-z0]="true">
+                    <mat-expansion-panel-header class="sidenav-list-items disable_ripple text-format">
+                        <mat-icon fontSet="material-icons-outlined" class="icon">settings</mat-icon>
+                        <span *ngIf="opened" class="align-text">Configuration</span>
+                    </mat-expansion-panel-header>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="sidenav-list-items disable_ripple text-format">List</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider> -->
+            </mat-action-list>
+        </mat-sidenav>
+        <mat-sidenav-content [ngClass]="opened ? 'sidenav-contentOpened' : 'sidenav-contentClosed'">
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

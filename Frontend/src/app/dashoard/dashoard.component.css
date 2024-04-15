@@ -1,0 +1,137 @@
+/* .page-container{
+    margin: 50px;
+    height: 80%;
+    width: 65%;
+}
+
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+}
+
+.mat-radio-group{
+    margin-bottom: 30px;
+} */
+
+.smaller-map {
+    /* Define your desired styles to make the map smaller */
+    width: 50%; /* Adjust the width as needed */
+    height: auto; /* Adjust the height as needed */
+  }
+  
+
+.main-container {
+    width: 100%;
+    height: 90%;
+}
+
+.side-container {
+    width: 100%;
+    height: 100%;
+}
+
+.side-nav-bar {
+    width: 200px !important;
+}
+
+.sidenav-contentOpended {
+    margin-left: 200px !important;
+    margin-top: 50px;
+}
+
+.sidenav-contentClosed {
+    margin-left: 90px !important;
+    margin-top: 50px;
+}
+
+.sidenav-list-items {
+    text-decoration: none;
+    color: #222b45;
+    font-size: smaller;
+}
+
+.sidenav-list-items:hover {
+    color: #3366ff;
+}
+
+.sidenav-list-items:focus {
+    color: #3366ff;
+}
+
+#features {
+    font-size: smaller;
+    color: gray;
+}
+
+.align-text {
+    display: flex;
+    align-items: center;
+}
+
+.disable_ripple:hover {
+    background: white !important;
+}
+
+.mat-list-item:focus {
+    color: #3366ff;
+}
+
+.text-format {
+    font-weight: 500;
+}
+
+.icon {
+    transform: scale(0.8);
+    color: gray;
+    margin-right: 2px;
+}
+
+.openedSideNav {
+    width: 200px;
+}
+
+.closedSideNav {
+    width: 90px;
+}
+
+.mat-expansion-panel-header {
+    right: 10px;
+}
+
+.mat-expansion-panel-header:focus {
+    border-left: 5px solid #3366ff;
+}
+
+.mat-expansion-panel-header:hover {
+    border-left: 15px solid #3366ff;
+}
+
+
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #4CAF50;
+  }

@@ -1,0 +1,12 @@
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: rgb(46, 128, 252);
+}
+
+.cancel-btn {
+    background-color: #0095FF;
+    color: white;
+    width: 7%;
+    display: flex;
+    justify-content: center;
+    min-width: 200px; 
+  }

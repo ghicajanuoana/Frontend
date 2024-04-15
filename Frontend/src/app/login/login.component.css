@@ -1,0 +1,96 @@
+.outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 100%;
+    max-width: 768px;
+}
+
+.panel {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.panel-heading {
+    background-color: #a8cce4;
+    padding: 10px;
+}
+
+.panel-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.input-field {
+    position: relative;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+}
+
+.input-field span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+}
+
+.input-field button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 18px;
+    padding: 12px;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.text-muted {
+    color: #888;
+}
+
+#forgot {
+    text-decoration: none;
+    color: #3498db;
+}
+
+#forgot:hover {
+    text-decoration: underline;
+}
+
+.cancel-btn {
+    background-color: #0095FF;
+    color: white;
+    width: 7%;
+    display: flex;
+    justify-content: center;
+    min-width: 200px; 
+  }

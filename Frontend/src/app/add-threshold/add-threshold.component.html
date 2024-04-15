@@ -1,0 +1,76 @@
+<mat-card class="mat-elevation-z10 card-container matcard">
+  <mat-card-title class="title">
+    <button routerLink="/dashboard" mat-raised-button class="cancel-btn">Back to main page</button>
+      <br>
+      <br>
+    <span>{{!isEditMode ? 'Add' : 'Edit'}} Threshold</span>
+  </mat-card-title>
+    <mat-divider></mat-divider>
+  <mat-card-content>
+    <form class="mat-card-content" [formGroup]="addThresholdForm">
+      <mat-card-content>
+      <span class="field-name"> Device Type<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="deviceType">Select type</mat-label>
+        <mat-select matInput formControlName="deviceType" placeholder="Select Type"  [compareWith]="compareObjects" [(ngModel)]="threshold.deviceType">
+          <mat-option *ngFor="let deviceType of allDeviceTypes" [value]="deviceType">
+            {{ deviceType.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+      <span class="field-name"> Reading type<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="deviceReadingType">Select type</mat-label>
+        <mat-select matInput formControlName="deviceReadingType" placeholder="Reading Type" [compareWith]="compareObjects" [(ngModel)]="threshold.deviceReadingType">
+          <mat-option *ngFor="let deviceReadingType of allDeviceReadingTypes" [value]="deviceReadingType">
+            {{ deviceReadingType.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+      <span class="field-name">Min value<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="minValue">Min Value</mat-label>
+        <input formControlName="minValue" name="minValue" matInput type="text" placeholder="Min value" [(ngModel)]="threshold.minValue">
+        <mat-error *ngIf="addThresholdForm.get('minValue')!.hasError">Please input a valid value</mat-error>
+      </mat-form-field>
+      </mat-card-content>
+      
+      <mat-card-content>
+      <span class="field-name">Warning value<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="warningValue">Warning Value</mat-label>
+        <input autocomplete="off" formControlName="warningValue" matInput type="text" placeholder="Warning value" [(ngModel)]="threshold.warningValue">
+        <mat-error *ngIf="addThresholdForm.get('warningValue')!.hasError">Please input a valid value</mat-error>
+      </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+      <span class="field-name">Critical value<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="criticalValue">Critical Value</mat-label>
+        <input autocomplete="off" formControlName="criticalValue" matInput type="text" placeholder="Critical value" [(ngModel)]="threshold.criticalValue">
+        <mat-error *ngIf="addThresholdForm.get('criticalValue')!.hasError">Please input a valid value</mat-error>
+      </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+      <span class="field-name">Max value<span class="required-star"> *</span></span>
+      <mat-form-field floatLabel="never" class="input-text-field">
+        <mat-label for="maxValue">Max Value</mat-label>
+        <input autocomplete="off" formControlName="maxValue" matInput type="text" placeholder="Max value" [(ngModel)]="threshold.maxValue">
+        <mat-error *ngIf="addThresholdForm.get('maxValue')!.hasError">Please input a valid value</mat-error>
+      </mat-form-field>
+      </mat-card-content>
+      
+      <mat-card-actions class="buttons-container">
+      <button mat-raised-button class="save-btn" (click)="addOrEditThreshold()"
+        [disabled]="!addThresholdForm.valid">SAVE</button>
+      <button mat-raised-button class="cancel-btn" [routerLink]="['/thresholds']">CANCEL</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

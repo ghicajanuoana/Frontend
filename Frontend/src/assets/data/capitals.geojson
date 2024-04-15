@@ -1,0 +1,48 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            23.36964391143687,
+            45.41869637328527
+          ]
+        },
+        "properties": {
+          "state": "Romania",
+          "name": "Petrosani"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            23.59863318063225,
+            46.76808718675661
+          ]
+        },
+        "properties": {
+          "state": "Romania",
+          "name": "Cluj-Napoca"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            26.103259240618197,
+            44.43377984606825
+          ]
+        },
+        "properties": {
+          "state": "Romania",
+          "name": "Bucuresti"
+        }
+      }
+      
+    ]
+  }

@@ -1,0 +1,82 @@
+<mat-card class="mat-elevation-z10 card-container matcard">
+    <mat-card-title class="title">
+        <span style="color: #3366ff;">{{!isEditMode ? 'Sign-up' : 'Edit user'}}</span>
+    </mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="addEditUserForm" (submit)="send()">
+        <mat-card-content>
+            <label class="field-name" style="color: #3366ff;">First Name*</label>
+            <mat-form-field floatLabel="never" class="input-text-field">
+                <mat-label>firstname</mat-label>
+                <input autocomplete="off" matInput type="text" formControlName="firstname" [(ngModel)]="user.firstname">
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+            <label class="field-name" style="color: #3366ff;">Last Name*</label>
+            <mat-form-field floatLabel="never" class="input-text-field">
+                <mat-label>lastname</mat-label>
+                <input autocomplete="off" matInput type="text" formControlName="lastname" [(ngModel)]="user.lastname">
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+            <label class="field-name" style="color: #3366ff;">Email*</label>
+            <mat-form-field floatLabel="never" class="input-text-field">
+                <mat-label>email</mat-label>
+                <input autocomplete="off" matInput type="text" formControlName="email" [(ngModel)]="user.email">
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+            <label class="field-name" style="color: #3366ff;">Username*</label>
+            <mat-form-field floatLabel="never" class="input-text-field">
+                <mat-label>username</mat-label>
+                <input autocomplete="off" matInput type="text" formControlName="username" [(ngModel)]="user.username">
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+            <label class="field-name" style="color: #3366ff;">Password*</label>
+            <mat-form-field floatLabel="never" class="input-text-field">
+                <mat-label>password</mat-label>
+                <input autocomplete="off" matInput type="password" formControlName="password" [(ngModel)]="user.password">
+                <mat-error *ngIf="addUser.password.hasError">Please enter a password</mat-error>
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+            <label class="field-name" style="color: #3366ff;">Confirm password*</label>
+            <mat-form-field floatLabel="never" class="input-text-field">
+                <mat-label>password</mat-label>
+                <input autocomplete="off" matInput type="confirmPassword" formControlName="confirmPassword" [(ngModel)]="user.confirmPassword">
+                <mat-error *ngIf="addUser.confirmPassword.hasError">Password not matching</mat-error>
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content *ngIf="this.allRoles.length > 0">
+            <label class="field-name" style="color: #3366ff;">Role*</label>
+            <mat-form-field floatLabel="never" class="input-text-field">
+                <mat-label for="role">Select role</mat-label>
+                <mat-select matInput formControlName="role" placeholder="Select role" [compareWith]="compareIds" [(ngModel)]="user.roleId" >
+                    <mat-option *ngFor="let role of allRoles" [value]="role.id">{{role.roleType}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+            <mat-checkbox [checked]="!addEditUserForm.value.resolved" 
+            (change)="addEditUserForm.get('isActive')?.setValue($event.checked)" 
+            formControlName="isActive" [(ngModel)]="user.isActive">Is active</mat-checkbox>
+        </mat-card-content>
+
+        <mat-card-actions class="buttons-container">
+            <button mat-raised-button class="save-btn" [disabled]="!addEditUserForm.valid" (click)="addEditUser()">SAVE</button>
+            <button mat-raised-button class="cancel-btn" routerLink="/">CANCEL</button>
+            <!-- <button type="submit" class="formbold-btn">Submit</button> -->
+        </mat-card-actions>
+
+    </form>
+</mat-card>

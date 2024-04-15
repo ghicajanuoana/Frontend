@@ -1,0 +1,90 @@
+.cancel-btn {
+  background-color: #0095FF;
+  color: white;
+  width: 7%;
+  display: flex;
+  justify-content: center;
+  min-width: 200px; 
+}
+
+.left-and-right {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-content: stretch;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 10;
+  width: 100%;
+  margin: 15px;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 10;
+  width: 100%;
+  margin: 15px;
+}
+
+.description {
+  background-color: #f7f9fc;
+  margin-bottom: -34px;
+  padding-bottom: -15px;
+}
+
+#image {
+  padding-top: 15px;
+}
+
+.field-name-desc {
+  background-color: #f7f9fc;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding-bottom: -15px;
+  padding-left: 17px;
+}
+
+.mat-form-field {
+  padding-bottom: 15px;
+  color: grey;
+}
+
+.image {
+  max-width: 100%;
+}
+
+.image-edit-mode:hover {
+  cursor: pointer;
+}
+
+.image-edit-mode {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 200px;
+}
+
+.image-preview {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.remove-file-selected{
+  background-color: #FF3D71;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  right:0;
+}
+
+.remove-file-existent {
+  background-color: #FF3D71;
+  color: white;
+}

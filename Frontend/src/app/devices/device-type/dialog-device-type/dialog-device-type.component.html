@@ -1,0 +1,25 @@
+<div mat-dialog-content>
+  <mat-card-title class="dialog-title">{{this.data.dialogTitle}}</mat-card-title>
+  <mat-divider></mat-divider>
+  <form class="form-custom" appearance="fill" #deviceForm="ngForm">
+
+    <mat-label class="field-name">Name <span class="required-star"> *</span></mat-label>
+    <br />
+    <mat-form-field floatLabel="never" class="input-text-field">
+      <input autocomplete="off" matInput placeholder="Name" type="text" name="deviceTypeName" [(ngModel)]="deviceTypeName" required>
+    </mat-form-field>
+
+    <!-- <mat-label class="field-name">Unit <span class="required-star"> *</span></mat-label>
+    <br />
+    <mat-form-field floatLabel="never" class="input-text-field">
+      <input autocomplete="off" matInput placeholder="Unit" type="text" name="deviceTypeUnit" [(ngModel)]="deviceTypeUnit" required>
+    </mat-form-field> -->
+
+    <div mat-dialog-actions class="dialog-buttons">
+      <button class="save-btn" mat-button type="submit" (click)="dialogSave(deviceForm.value)"
+        [disabled]="!deviceForm.valid">SAVE</button>
+      <button class="cancel-btn" mat-button (click)="onCancelClick()">CANCEL</button>
+    </div>
+    <mat-divider></mat-divider>
+  </form>
+</div>

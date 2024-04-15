@@ -1,0 +1,19 @@
+.form-field {
+  border: solid 2px #dbdfe4;
+  max-width: 90%;
+  max-height: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.cancel-btn {
+  background-color: #0095FF;
+  color: white;
+  width: 7%;
+  display: flex;
+  justify-content: center;
+  min-width: 200px; 
+}

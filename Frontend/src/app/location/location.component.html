@@ -1,0 +1,146 @@
+<div>
+  <mat-card class="mat-elevation-z10 card-container">
+    <mat-card-title class="title">
+      <button routerLink="/dashboard" mat-raised-button class="cancel-btn">Back to main page</button>
+      <br>
+      <br>
+      Locations     
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <table mat-table [dataSource]="locations" class="mat-elevation-z8 width-table">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('Name')"> Name
+            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('Name')" class="sort-arrow">arrow_downward
+            </mat-icon>
+            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('Name')" class="sort-arrow">arrow_upward
+            </mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let location"> {{location.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="country">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('Country')"> Country
+            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('Country')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('Country')" class="sort-arrow">
+              arrow_upward</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let location"> {{location.country}} </td>
+        </ng-container>
+        <mat-divider [vertical]="true"></mat-divider>
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('City')"> City
+            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('City')" class="sort-arrow">arrow_downward
+            </mat-icon>
+            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('City')" class="sort-arrow">arrow_upward
+            </mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let location"> {{location.city}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('Address')"> Address
+            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('Address')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('Address')" class="sort-arrow">
+              arrow_upward</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let location"> {{location.address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="contactEmail">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('ContactEmail')"> Contact Email
+            <mat-icon *ngIf="locationParameters.orderDescending && isSorting('ContactEmail')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!locationParameters.orderDescending && isSorting('ContactEmail')" class="sort-arrow">
+              arrow_upward</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let location"> {{location.contactEmail}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name-filter-box">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field floatLabel="never" class="form-field">
+                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.name"
+                  (keyup)="filterLocations()" placeholder="Name">
+              </mat-form-field>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="country-filter-box">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field floatLabel="never" class="form-field">
+                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.country"
+                  (keyup)="filterLocations()" placeholder="Country">
+              </mat-form-field>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="city-filter-box">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field floatLabel="never" class="form-field">
+                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.city"
+                  (keyup)="filterLocations()" placeholder="City">
+              </mat-form-field>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="address-filter-box">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field floatLabel="never" class="form-field">
+                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.address"
+                  (keyup)="filterLocations()" placeholder="Address">
+              </mat-form-field>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="contact-email-filter-box">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field floatLabel="never" class="form-field">
+                <input autocomplete="off" class="input-text-field" matInput type="text" [(ngModel)]="locationParameters.contactEmail"
+                  (keyup)="filterLocations()" placeholder="Contact Email">
+              </mat-form-field>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="actions-empty-cell">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1"></th>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let location">
+            <button mat-icon-button routerLink="/location/{{location.locationId}}">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onDelete(location)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-header-row
+          *matHeaderRowDef="['name-filter-box', 'country-filter-box', 'city-filter-box', 'address-filter-box', 'contact-email-filter-box', 'actions-empty-cell']">
+        </tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay;"></tr>
+      </table>
+    </mat-card-content>
+    <mat-paginator #paginator showFirstLastButtons [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions" (page)="pageChangeEvent($event)" aria-label="Select page">
+    </mat-paginator>
+    <mat-divider></mat-divider>
+    <button class="button-link" mat-raised-button routerLink="/location">ADD LOCATION</button>
+  </mat-card>
+</div>

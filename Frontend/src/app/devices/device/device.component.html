@@ -1,0 +1,161 @@
+<div>
+  <mat-card class="mat-elevation-z10 card-container">
+    <mat-card-title class="title">
+      <button routerLink="/dashboard" mat-raised-button class="cancel-btn">Back to main page</button>
+      <br>
+      <br>Devices</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <table mat-table [hiddenColumns]="[3,6]" matTableExporter [dataSource]="devices" #exporter="matTableExporter"
+        class="mat-elevation-z8 width-table">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('Name')"> Name
+            <mat-icon *ngIf="deviceParameters.orderDescending && isSorting('Name')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!deviceParameters.orderDescending && isSorting('Name')" class="sort-arrow">
+              arrow_upward</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let device"> {{device.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="serialNumber">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('SerialNumber')"> SerialNumber
+            <mat-icon *ngIf="deviceParameters.orderDescending && isSorting('SerialNumber')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!deviceParameters.orderDescending && isSorting('SerialNumber')" class="sort-arrow">
+              arrow_upward</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let device"> {{device.serialNumber}} </td>
+        </ng-container>
+
+        <mat-divider [vertical]="true"></mat-divider>
+
+        <ng-container matColumnDef="deviceType">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('DeviceType')"> Type
+            <mat-icon *ngIf="deviceParameters.orderDescending && isSorting('DeviceType')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!deviceParameters.orderDescending && isSorting('DeviceType')" class="sort-arrow">
+              arrow_upward</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let device"> {{device.deviceType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('Location')"> Location
+            <mat-icon *ngIf="deviceParameters.orderDescending && isSorting('Location')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!deviceParameters.orderDescending && isSorting('Location')" class="sort-arrow">arrow_upward
+            </mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let device"> {{device.location}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="imagePath">
+          <th mat-header-cell *matHeaderCellDef> Image </th>
+          <td mat-cell *matCellDef="let device; let current=index">
+            <img class="image" *ngIf="device.imageBytes" src="{{'data:image/jpg;base64,' + device.imageBytes}}"
+              (click)="openImageDialog(current)" />
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef (click)="sortData('Description')"> Description
+            <mat-icon *ngIf="deviceParameters.orderDescending && isSorting('Description')" class="sort-arrow">
+              arrow_downward</mat-icon>
+            <mat-icon *ngIf="!deviceParameters.orderDescending && isSorting('Description')" class="sort-arrow">
+              arrow_upward</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let device"> {{device.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let device">
+            <button mat-icon-button routerLink="/device/{{device.deviceId}}">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onDelete(device)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name-filter-box">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field floatLabel="never" class="form-field">
+                <input autocomplete="off" class="input-text-field" matInput type="text"
+                  [(ngModel)]="deviceParameters.name" (keyup)="filterDevices()" placeholder="Name">
+              </mat-form-field>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="serialNumber-filter-box">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field floatLabel="never" class="form-field">
+                <input autocomplete="off" class="input-text-field" matInput type="text"
+                  [(ngModel)]="deviceParameters.serialNumber" (keyup)="filterDevices()" placeholder="Serial Number">
+              </mat-form-field>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="description-filter-box">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field floatLabel="never" class="form-field">
+                <input autocomplete="off" class="input-text-field" matInput type="text"
+                  [(ngModel)]="deviceParameters.description" (keyup)="filterDevices()" placeholder="Description">
+              </mat-form-field>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="imagePath-empty-cell">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1"></th>
+        </ng-container>
+
+        <ng-container matColumnDef="deviceType-filter-box">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field floatLabel="never" class="form-field">
+                <input autocomplete="off" class="input-text-field" matInput type="text"
+                  [(ngModel)]="deviceParameters.deviceType" (keyup)="filterDevices()" placeholder="Device Type">
+              </mat-form-field>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="location-filter-box">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field floatLabel="never" class="form-field">
+                <input autocomplete="off" class="input-text-field" matInput type="text"
+                  [(ngModel)]="deviceParameters.location" (keyup)="filterDevices()" placeholder="Location">
+              </mat-form-field>
+            </div>
+          </th>
+        </ng-container>
+
+        <ng-container matColumnDef="actions-empty-cell">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="1"></th>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-header-row
+          *matHeaderRowDef="['name-filter-box', 'serialNumber-filter-box', 'description-filter-box', 'imagePath-empty-cell', 'deviceType-filter-box', 'location-filter-box', 'actions-empty-cell']">
+        </tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+      </table>
+    </mat-card-content>
+    <mat-paginator #paginator showFirstLastButtons [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions" (page)="pageChangeEvent($event)" aria-label="Select page">
+    </mat-paginator>
+    <mat-divider></mat-divider>
+    <button class="button-link" mat-raised-button routerLink="/device">ADD DEVICE</button>
+    <button class="export-button" mat-raised-button mat-button (click)="exportTable()">EXPORT TO CSV FE</button>
+    <button class="export-button" mat-raised-button mat-button (click)="exportToCSV()">EXPORT TO CSV BE</button>
+  </mat-card>
+</div>

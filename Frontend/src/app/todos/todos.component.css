@@ -1,0 +1,17 @@
+  .left-stripe,
+  .right-stripe {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 113px;
+    background-color: #92c7ec; 
+    z-index: 999; 
+  }
+
+  .left-stripe {
+    left: 0;
+  }
+
+  .right-stripe {
+    right: 0;
+  }
