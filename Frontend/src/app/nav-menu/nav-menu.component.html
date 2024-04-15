@@ -5,18 +5,7 @@
                 <mat-icon>menu</mat-icon>
             </button>
             <div>
-                Devices Analytics
-            </div>
-            <div class="bell-style">
-                <button [disabled]="alerts == null" 
-                        mat-icon-button 
-                        [matBadge]="alerts >= 100 ? '99+' : alerts > 0 ? alerts : null" 
-                        matBadgeColor="warn" 
-                        [disableRipple]="true" 
-                        [matBadgeHidden]="alerts > 0 ? false : true" 
-                        (click)="goToAlerts()">
-                    <mat-icon fontSet="material-icons-outlined" class="bell-icon">notifications</mat-icon>    
-                </button>                
+                <img src="/assets/images/EnsuringSafety.png" class="logo animLeft">
             </div>
         </mat-toolbar-row>
     </mat-toolbar>

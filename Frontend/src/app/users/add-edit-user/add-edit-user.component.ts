@@ -63,12 +63,11 @@ export class AddEditUserComponent implements OnInit {
       lastname: this.addEditUserForm.value.lastname,
       to_name: this.addEditUserForm.value.to_name,
       email: this.addEditUserForm.value.email,
+      roleType: this.addEditUserForm.value.role,
       subject: `Request from ${this.addEditUserForm.value.email}`,
     });
 
-    //alert('Message to Admin has been sent!');
     this.toastr.success('Message to Admin has been sent!');
-    //this.addEditUserForm.reset();
   }
 
   // checkPasswordStrength() {
@@ -100,6 +99,7 @@ export class AddEditUserComponent implements OnInit {
           {
           next: () => {
             this.toastr.success("User successfully added!");
+            this.send(); //added new
             this.router.navigate(['/']);
           },
           error: (e) => {

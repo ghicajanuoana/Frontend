@@ -82,21 +82,6 @@ export class LocationComponent implements OnInit {
   }
 
   checkDeleteLocation(id: number, location: any): void {
-    // if (location.isLocationUsed === true) {
-    //   const dialogRef = this.dialog.open(DeleteConfirmationComponent);
-    //   dialogRef.componentInstance.message = "There are devices assigned to this location, please remove all devices in the location first";
-    //   dialogRef.componentInstance.title = "Location in use!"
-    // }
-    // else {
-    //   const dialogRef = this.dialog.open(ConfirmationDialogComponent);
-    //   dialogRef.componentInstance.message = "Are you sure you want to delete this location?";
-    //   this.currentLocation = location;
-    //   dialogRef.afterClosed().subscribe(result => {
-    //     if (result == true)
-    //       this.deleteLocation();
-    //   });
-    // }
-
     this.locationService.checkDeleteLocationIsUsed(id).subscribe({
       next: () => {
         // this.deviceFound = false;
