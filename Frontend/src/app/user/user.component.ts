@@ -99,23 +99,37 @@ export class UserComponent implements OnInit {
     this.getUsers();
   }
 
-  deleteUser(id: number): void {
+  
+  deleteUser(id: number): void { 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
     dialogRef.componentInstance.message = "Are you sure you want to delete this user ?";
     dialogRef.afterClosed().subscribe(result => {
       if (result == true) {
         this.userService.deleteUser(id).subscribe({
           next: resp => {
+            this.router.navigate(['/otp']);
             this.getUsers();
-            this.toastr.info(resp);
+            // this.toastr.info(resp);
           },
           error: error => {
             this.toastr.error(error.error.Message);
           }
-        });
+        }); 
       }
     });
   }
+  
+
+  // verifyAdminDelete() {
+  //   const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+  //   dialogRef.componentInstance.message = "Are you sure you want to delete this user ?";
+  //   dialogRef.afterClosed().subscribe (result => {
+  //     if(result == true) {
+  //       this.router.navigate(['/otp']);
+        
+  //     }
+  //   })
+  // }
 
   verifyUpdate(user: User) {
     this.userService.getUserById(user.userId).subscribe()

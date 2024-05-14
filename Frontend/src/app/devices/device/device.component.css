@@ -36,5 +36,5 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 300px; /* You can adjust this value based on your content height */
+  min-height: 300px; 
 }

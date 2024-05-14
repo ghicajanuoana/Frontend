@@ -60,6 +60,7 @@ import { MarkerService } from './services/marker.service';
 import { TodosComponent } from './todos/todos.component';
 import { OnGoingMaintenanceComponent } from './on-going-maintenance/on-going-maintenance.component';
 import { DeletedTodoComponent } from './deleted-todo/deleted-todo.component';
+import { OtpComponent } from './otp/otp.component';
 const appInitializer = (appConfig: ConfigService) => {
   return () => {
     return appConfig.loadConfigurations();
@@ -100,7 +101,8 @@ const appInitializer = (appConfig: ConfigService) => {
     MaintenanceComponent,
     LoginComponent,
     LayoutComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    OtpComponent
   ],
   imports: [
     MatBadgeModule,

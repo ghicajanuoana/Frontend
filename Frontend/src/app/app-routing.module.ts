@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { TodosComponent } from './todos/todos.component';
 import { OnGoingMaintenanceComponent } from './on-going-maintenance/on-going-maintenance.component';
 import { DeletedTodoComponent } from './deleted-todo/deleted-todo.component';
+import { OtpComponent } from './otp/otp.component';
 
 const routes: Routes = [
   {
@@ -76,10 +77,6 @@ const routes: Routes = [
     path: "device-types",
     component: DeviceTypeComponent
   },
-  // {
-  //   path: "alerts",
-  //   component: AlertsComponent
-  // },
   {
     path: "location",
     component: AddAndEditLocationComponent,
@@ -162,6 +159,11 @@ const routes: Routes = [
       isEditMode: false
     }
   },
+  {
+    path:'otp',
+    component: OtpComponent
+  },
+
   {
     path: "**",
     redirectTo: ""

@@ -100,7 +100,7 @@ export class AddEditUserComponent implements OnInit {
           next: () => {
             this.toastr.success("User successfully added!");
             this.send(); //added new
-            this.router.navigate(['/']);
+            this.router.navigate(['users']);
           },
           error: (e) => {
             console.error("An error occurred:", e);

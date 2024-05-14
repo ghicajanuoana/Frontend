@@ -101,7 +101,7 @@
       <mat-card-actions class="buttons-container">
         <button mat-raised-button class="save-btn" (click)="addOrEditDevice()"
           [disabled]="!addEditDeviceForm.valid">SAVE</button>
-        <button mat-raised-button class="cancel-btn" (click)="back()">CANCEL</button>
+        <button mat-raised-button class="cancel-btn" routerLink="/devices">CANCEL</button>
       </mat-card-actions>
     </form>
 

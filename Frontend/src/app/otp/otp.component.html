@@ -1,0 +1,33 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <div class="mb-md-5 mt-md-4 pb-5">
+                <h2 class="text-center mt-4">One Time Password for Login</h2>
+                <p class="text-center" *ngIf="timeLeft > 0">This OTP will expire in <span class="badge bg-danger">{{ timeLeft }}</span> seconds.</p>
+  
+                <div class="d-grid gap-2 col-4 mx-auto mt-4">
+                  <button class="btn btn-primary" (click)="generateOTPOnClick()">Generate OTP</button>
+                </div>
+  
+                <div class="d-grid gap-2 col-6 mx-auto mt-4">
+                  <input type="text" class="form-control" [(ngModel)]="responseOTP" placeholder="Enter OTP here">
+                </div>
+  
+                <div class="d-grid gap-2 col-2 mx-auto mt-4">
+                  <button class="btn btn-success" (click)="verifyResponse()">Submit</button>
+                </div>          
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  
+    
